@@ -4,16 +4,14 @@
     ViewBag.Title = "Gerenciar seus logons externos";
 }
 
-<h2>@ViewBag.Title.</h2>
+<h4>@ViewBag.Title.</h4>
 
-<p class="text-success">@ViewBag.StatusMessage</p>
 @{
     var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
     if (loginProviders.Count() == 0) {
         <div>
             <p>
-                Não há nenhum serviço de autenticação externo configurado. Confira <a href="https://go.microsoft.com/fwlink/?LinkId=313242">este artigo</a>
-                para obter detalhes de como configurar este aplicativo ASP.NET para permitir o registro em log usando serviços externos.
+                Não há nenhum serviço de autenticação externo configurado.
             </p>
         </div>
     }

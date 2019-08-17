@@ -2,22 +2,80 @@
 
 @if (Request.IsAuthenticated)
 {
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-    {
-    @Html.AntiForgeryToken()
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink("Olá " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+
         </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Fazer logoff</a></li>
+
     </ul>
-    }
+
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Registrar", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Logon", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>
 }
+
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="sidenav" id="slide_login">
+            <li>
+                <div class="user-view">
+                    <div class="background">
+                        <img src="~/imagens/fundoPadrao.png" alt="Imagem Fundo">
+                    </div>
+                    <a href="#">
+                        <img class="circle" src="~/imagens/avatarPadrao.png" alt="Avatar">
+                    </a>
+                </div>
+            </li>
+            <li><div class="divider"></div></li>
+            <li>
+                @Html.ActionLink("Olá " + User.Identity.GetUserName() + "!", "Index", "Manage")
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Fazer logoff</a></li>
+            <li><div class="divider"></div></li>
+            <li>
+                <a class="waves-effect"><i class="material-icons left">notifications</i>Notificações</a>
+            </li>
+            <li><div class="divider"></div></li>
+            <li>
+                <a class="waves-effect"><i class="material-icons">message</i> Mensagens</a>
+            </li>
+            <li><div class="divider"></div></li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="sidenav" id="slide_login">
+        <li>
+            <div class="user-view" style="height:100px;">
+                <div class="background">
+                    <img src="~/imagens/fundoPadrao.png" alt="Imagem Fundo">
+                </div>
+            </div>
+        </li>
+        <li><div class="divider"></div></li>
+        <li>@Html.ActionLink("Registrar", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li><div class="divider"></div></li>
+        <li>@Html.ActionLink("Logon", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li><div class="divider"></div></li>
+    </ul>
+}
+
+<script language="javascript">
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const loginOptions = { edge: 'right' };
+
+        const login = document.querySelectorAll('#slide_login');
+        M.Sidenav.init(login, loginOptions);
+    });
+
+</script>

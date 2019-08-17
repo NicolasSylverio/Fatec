@@ -1,21 +1,111 @@
-﻿
-    <div class="navbar navbar-inverse navbar-fixed-top">
+﻿@using Microsoft.AspNet.Identity
+
+<nav>
+    <div class="nav-wrapper">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Fatec", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Início", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Sobre", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contato", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
+            <ul class="hide-on-med-and-down left">
+                <li>
+                    <a href="#" class="sidenav-trigger show-on-large left" data-target="slide_menu"><i class="material-icons">menu</i></a>
+                </li>
+            </ul>
+            <ul class="hide-on-med-and-down right">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li>
+                        <a href="#" class="sidenav-trigger show-on-large" data-target="slide_login"><i class="material-icons left">person</i>@User.Identity.GetUserName()</a>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a href="@Url.Action("Login", "Account")" class="sidenav-trigger show-on-large"><i class="material-icons left">lock</i>Login</a>
+                    </li>
+                }
+            </ul>
+
+            <a href="#" class="sidenav-trigger left" data-target="slide_menu"><i class="material-icons left">menu</i></a>
+            @Html.ActionLink("Fatec", "Index", "Home", new { area = "" }, new { @class = "brand-logo center" })
+            <a href="#" class="sidenav-trigger right" data-target="slide_login"><i class="material-icons right">person</i></a>
+
+            @Html.Partial("_LoginPartial")
         </div>
     </div>
+</nav>
+
+<ul class="sidenav" id="slide_menu">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <li class="logo">
+            <a id="logo-container" class="brand-logo" href="/">
+                <object id="front-page-logo" data="imagens/logoPadrao.png"></object>
+            </a>
+        </li>
+        <li class="version">
+            <a href="/">Mvc</a>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li>
+            <a asp-area="" asp-controller="Home" asp-action="Index" class="collapsible-header waves-effect waves-teal">Home<i class="material-icons">home</i></a>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li>
+            <a asp-area="" asp-controller="Home" asp-action="Privacy" class="collapsible-header waves-effect waves-teal">Privacidade<i class="material-icons">message</i></a>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+    }
+    <li class="logo">
+        <a id="logo-container" class="brand-logo" href="/">
+            <object id="front-page-logo" data="imagens/logoPadrao.png"></object>
+        </a>
+    </li>
+    <li class="version">
+        <a href="/">Mvc</a>
+    </li>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <li>@Html.ActionLink("Início", "Index", "Home")</li>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <li>@Html.ActionLink("Sobre", "About", "Home")</li>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <li>@Html.ActionLink("Contato", "Contact", "Home")</li>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <li>@Html.ActionLink("Politica de Privacidade", "Privacy", "Home")</li>
+    <li>
+        <div class="divider"></div>
+    </li>
+</ul>
+
+<script language="javascript">
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const menuOptions = {};
+        const loginOptions = { edge: 'right' };
+        const collapsibleOptions = { inDuration: 50, outDuration: 50 };
+
+        const menu = document.querySelectorAll('#slide_menu');
+        M.Sidenav.init(menu, menuOptions);
+
+        const login = document.querySelectorAll('#slide_login');
+        M.Sidenav.init(login, loginOptions);
+
+        const elems = document.querySelectorAll('.collapsible');
+        M.Collapsible.init(elems, collapsibleOptions);
+    });
+
+</script>

@@ -1,25 +1,31 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Meu Aplicativo ASP.NET</title>
+    <title>@ViewBag.Title - Fatec</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
-<body>
-    @Html.Partial("_menu")
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
+<body style="padding: 0px">
 
-    </div>
+    @Html.Partial("_menu")
+
+    <main role="main">
+
+        <div class="container">
+            @RenderBody()
+        </div>
+
+    </main>
+
     @Html.Partial("_footer")
 
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/materialize")
+    @RenderSection("scripts", false)
 </body>
 </html>

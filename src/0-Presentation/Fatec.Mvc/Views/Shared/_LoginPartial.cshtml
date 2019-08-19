@@ -2,53 +2,46 @@
 
 @if (Request.IsAuthenticated)
 {
-
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-
-        </li>
-
-    </ul>
-
-}
-else
-{
-    <ul class="nav navbar-nav navbar-right">
-    </ul>
-}
-
-@if (Request.IsAuthenticated)
-{
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
     {
         @Html.AntiForgeryToken()
 
-        <ul class="sidenav" id="slide_login">
-            <li>
-                <div class="user-view">
-                    <div class="background">
-                        <img src="~/imagens/fundoPadrao.png" alt="Imagem Fundo">
-                    </div>
-                    <a href="#">
-                        <img class="circle" src="~/imagens/avatarPadrao.png" alt="Avatar">
-                    </a>
+    <ul class="sidenav" id="slide_login">
+        <li>
+            <div class="user-view">
+                <div class="background">
+                    <img src="~/imagens/fundoPadrao.png" alt="Imagem Fundo">
                 </div>
-            </li>
-            <li><div class="divider"></div></li>
-            <li>
-                @Html.ActionLink("Olá " + User.Identity.GetUserName() + "!", "Index", "Manage")
-            </li>
-            <li><a href="javascript:document.getElementById('logoutForm').submit()">Fazer logoff</a></li>
-            <li><div class="divider"></div></li>
-            <li>
-                <a class="waves-effect"><i class="material-icons left">notifications</i>Notificações</a>
-            </li>
-            <li><div class="divider"></div></li>
-            <li>
-                <a class="waves-effect"><i class="material-icons">message</i> Mensagens</a>
-            </li>
-            <li><div class="divider"></div></li>
-        </ul>
+                <a href="#">
+                    <img class="circle" src="~/imagens/avatarPadrao.png" alt="Avatar">
+                </a>
+            </div>
+        </li>
+        <li>
+            @Html.ActionLink("Olá " + User.Identity.GetUserName(), "Index", "Manage", new { @class = "collapsible-header waves-effect waves-teal center"})
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li>
+            <a href="javascript:document.getElementById('logoutForm').submit()" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">account_circle</i>Fazer logoff</a>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li>
+            <a href="@Url.Action("", "")" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">notifications</i>Notificações</a>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li>
+            <a href="@Url.Action("", "")" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">message</i>Mensagens</a>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+    </ul>
     }
 }
 else
@@ -61,11 +54,17 @@ else
                 </div>
             </div>
         </li>
-        <li><div class="divider"></div></li>
+        <li>
+            <div class="divider"></div>
+        </li>
         <li>@Html.ActionLink("Registrar", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li><div class="divider"></div></li>
+        <li>
+            <div class="divider"></div>
+        </li>
         <li>@Html.ActionLink("Logon", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-        <li><div class="divider"></div></li>
+        <li>
+            <div class="divider"></div>
+        </li>
     </ul>
 }
 

@@ -24,8 +24,17 @@
             </ul>
 
             <a href="#" class="sidenav-trigger left" data-target="slide_menu"><i class="material-icons left">menu</i></a>
+
             @Html.ActionLink("Fatec", "Index", "Home", new { area = "" }, new { @class = "brand-logo center" })
-            <a href="#" class="sidenav-trigger right" data-target="slide_login"><i class="material-icons right">person</i></a>
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a href="#" class="sidenav-trigger right" data-target="slide_login"><i class="material-icons right">person</i></a>
+            }
+            else
+            {
+                <a href="#" class="sidenav-trigger right" data-target="slide_login"><i class="material-icons right">lock</i></a>
+            }
 
             @Html.Partial("_LoginPartial")
         </div>
@@ -41,51 +50,80 @@
             </a>
         </li>
         <li class="version">
-            <a href="/">Mvc</a>
-        </li>
-        <li>
-            <div class="divider"></div>
-        </li>
-        <li>
-            <a asp-area="" asp-controller="Home" asp-action="Index" class="collapsible-header waves-effect waves-teal">Home<i class="material-icons">home</i></a>
-        </li>
-        <li>
-            <div class="divider"></div>
-        </li>
-        <li>
-            <a asp-area="" asp-controller="Home" asp-action="Privacy" class="collapsible-header waves-effect waves-teal">Privacidade<i class="material-icons">message</i></a>
-        </li>
-        <li>
-            <div class="divider"></div>
-        </li>
-        <li>
-            <div class="divider"></div>
+            <a href="/" class="collapsible-header waves-effect waves-teal center">Fatec</a>
         </li>
     }
-    <li class="logo">
-        <a id="logo-container" class="brand-logo" href="/">
-            <object id="front-page-logo" data="imagens/logoPadrao.png"></object>
-        </a>
+    else
+    {
+        <li class="logo">
+            <a id="logo-container" class="brand-logo" href="/">
+                <object id="front-page-logo" data="imagens/logoPadrao.png"></object>
+            </a>
+        </li>
+        <li class="version">
+            <a href="/" class="collapsible-header waves-effect waves-teal center">Fatec</a>
+        </li>
+    }
+
+    <li>
+        <div class="divider"></div>
     </li>
-    <li class="version">
-        <a href="/">Mvc</a>
+    <li>
+        <a href="@Url.Action("Index", "Home")" class="collapsible-header waves-effect waves-teal"><i class="material-icons left"></i>Início</a>
     </li>
     <li>
         <div class="divider"></div>
     </li>
-    <li>@Html.ActionLink("Início", "Index", "Home")</li>
+    <li>
+        <a href="@Url.Action("Contact", "Home")" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">question_answer</i>Contato</a>
+    </li>
     <li>
         <div class="divider"></div>
     </li>
-    <li>@Html.ActionLink("Sobre", "About", "Home")</li>
+    <li>
+        <a href="@Url.Action("Privacy", "Home")" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">lock_open</i>Politica de Privacidade</a>
+    </li>
     <li>
         <div class="divider"></div>
     </li>
-    <li>@Html.ActionLink("Contato", "Contact", "Home")</li>
+    <li>
+        <a href="@Url.Action("Index", "VagasEstagio")" class="collapsible-header waves-effect waves-teal"><i class="material-icons left"></i>Vagas de Estágio</a>
+    </li>
     <li>
         <div class="divider"></div>
     </li>
-    <li>@Html.ActionLink("Politica de Privacidade", "Privacy", "Home")</li>
+    <li>
+        <a href="@Url.Action("Index", "VagasEmprego")" class="collapsible-header waves-effect waves-teal"><i class="material-icons left"></i>Vagas de Emprego</a>
+    </li>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <li>
+        <a href="https://siga.cps.sp.gov.br/aluno/login.aspx" target="_blank" class="collapsible-header waves-effect waves-teal"><i class="material-icons left"></i>Siga</a>
+    </li>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <li>
+        <ul class="collapsible collapsible-accordion">
+            <li>
+                <a class="collapsible-header waves-effect waves-teal">Outros<i class="material-icons">arrow_drop_down</i></a>
+                <div class="collapsible-body">
+                    <ul>
+                        <li>
+                            <a href="http://www.fatecjd.edu.br/aacc/" target="_blank" class="collapsible-header waves-effect waves-teal"><i class="material-icons left"></i>AACC - Apenas GTI</a>
+                        </li>
+                        <li>
+                            <a href="http://www.fatecjd.edu.br/semtec_inscricao/" target="_blank" class="collapsible-header waves-effect waves-teal"><i class="material-icons left"></i>Certificados</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("", "")" target="_blank" class="collapsible-header waves-effect waves-teal"><i class="material-icons left"></i>Tabelas Prof. João Carlos</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </li>
     <li>
         <div class="divider"></div>
     </li>

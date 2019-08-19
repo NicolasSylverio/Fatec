@@ -181,16 +181,18 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\material-icons.css" />
-    <Content Include="Content\materialize.css" />
-    <Content Include="Content\materialize.min.css" />
+    <Content Include="Content\css\material-icons.css" />
+    <Content Include="Content\css\materialize.css" />
+    <Content Include="Content\css\materialize.min.css" />
+    <Content Include="Content\images\logoPadrao.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\site.css" />
+    <Content Include="Content\css\site.css" />
     <Content Include="Scripts\materialize.js" />
     <Content Include="Scripts\materialize.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\service-worker.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -241,6 +243,7 @@
     <None Include="Properties\PublishProfiles\FatecOneSis - Web Deploy.pubxml" />
     <Content Include="Views\VagasEstagio\Index.cshtml" />
     <Content Include="Views\VagasEmprego\Index.cshtml" />
+    <Content Include="Content\manifest.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\3-Domain\Fatec.Domain\Fatec.Domain.csproj">

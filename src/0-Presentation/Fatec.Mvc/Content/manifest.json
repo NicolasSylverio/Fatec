@@ -1,0 +1,21 @@
+{
+  "short_name": "Fatec",
+  "name": "Fatec Intranet",
+  "icons": [
+    {
+      "src": "/Content/images/logoPadrao.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/Content/images/logoPadrao.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#ee6e73"
+}

@@ -1,5 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
 <html lang="pt-br">
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
@@ -20,26 +26,14 @@
 
     <title>@ViewBag.Title - Fatec</title>
 
-    @Styles.Render("~/bundles/css")
-    @Scripts.Render("~/bundles/modernizr")
-
 </head>
-<body style="padding: 0">
 
-    @Html.Partial("_menu")
+<body>
 
-    <main role="main">
+    <div>
+        teste
+    </div>
 
-        <div class="container">
-            @RenderBody()
-        </div>
-
-    </main>
-
-    @Html.Partial("_footer")
-
-    @Scripts.Render("~/bundles/js")
-
-    @RenderSection("scripts", false)
 </body>
+
 </html>

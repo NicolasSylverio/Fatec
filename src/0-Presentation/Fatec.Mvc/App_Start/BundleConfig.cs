@@ -10,7 +10,9 @@ namespace Fatec.Mvc
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/js").Include(
-                            "~/Scripts/materialize.min.js"));
+                            "~/Scripts/materialize.min.js",
+                            "~/Scripts/service-worker.js",
+                            "~/Scripts/site.js"));
 
             bundles.Add(new StyleBundle("~/bundles/css").Include(
                             "~/Content/css/site.css",

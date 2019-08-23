@@ -45,23 +45,23 @@
     @if (User.Identity.IsAuthenticated)
     {
         <li class="logo">
-            <a id="logo-container" class="brand-logo" href="/">
+            <a id="logo-container" class="brand-logo" href="/Home">
                 @*<object id="front-page-logo" data="~/images/logoPadrao.png"></object>*@
             </a>
         </li>
         <li class="version">
-            <a href="/" class="collapsible-header waves-effect waves-teal center">Fatec</a>
+            <a href="/Home" class="collapsible-header waves-effect waves-teal center">Fatec</a>
         </li>
     }
     else
     {
         <li class="logo">
-            <a id="logo-container" class="brand-logo" href="/">
+            <a id="logo-container" class="brand-logo" href="/Home">
                 @*<object id="front-page-logo" data="~/images/logoPadrao.png"></object>*@
             </a>
         </li>
         <li class="version">
-            <a href="/" class="collapsible-header waves-effect waves-teal center">Fatec</a>
+            <a href="/Home" class="collapsible-header waves-effect waves-teal center">Fatec</a>
         </li>
     }
 
@@ -69,7 +69,7 @@
         <div class="divider"></div>
     </li>
     <li>
-        <a href="@Url.Action("Index", "Home")" class="collapsible-header waves-effect waves-teal"><i class="material-icons left"></i>Início</a>
+        <a href="@Url.Action("Index", "Home")" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">layers</i>Início</a>
     </li>
     <li>
         <div class="divider"></div>
@@ -87,19 +87,19 @@
         <div class="divider"></div>
     </li>
     <li>
-        <a href="@Url.Action("Index", "VagasEstagio")" class="collapsible-header waves-effect waves-teal"><i class="material-icons left"></i>Vagas de Estágio</a>
+        <a href="@Url.Action("Index", "VagasEstagio")" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">next_week</i>Vagas de Estágio</a>
     </li>
     <li>
         <div class="divider"></div>
     </li>
     <li>
-        <a href="@Url.Action("Index", "VagasEmprego")" class="collapsible-header waves-effect waves-teal"><i class="material-icons left"></i>Vagas de Emprego</a>
+        <a href="@Url.Action("Index", "VagasEmprego")" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">work</i>Vagas de Emprego</a>
     </li>
     <li>
         <div class="divider"></div>
     </li>
     <li>
-        <a href="https://siga.cps.sp.gov.br/aluno/login.aspx" target="_blank" class="collapsible-header waves-effect waves-teal"><i class="material-icons left"></i>Siga</a>
+        <a href="https://siga.cps.sp.gov.br/aluno/login.aspx" target="_blank" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">school</i>Siga</a>
     </li>
     <li>
         <div class="divider"></div>
@@ -111,13 +111,13 @@
                 <div class="collapsible-body">
                     <ul>
                         <li>
-                            <a href="http://www.fatecjd.edu.br/aacc/" target="_blank" class="collapsible-header waves-effect waves-teal"><i class="material-icons left"></i>AACC - Apenas GTI</a>
+                            <a href="http://www.fatecjd.edu.br/aacc/" target="_blank" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">add_circle_outline</i>AACC - Apenas GTI</a>
                         </li>
                         <li>
-                            <a href="http://www.fatecjd.edu.br/semtec_inscricao/" target="_blank" class="collapsible-header waves-effect waves-teal"><i class="material-icons left"></i>Certificados</a>
+                            <a href="http://www.fatecjd.edu.br/semtec_inscricao/" target="_blank" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">insert_drive_file</i>Certificados</a>
                         </li>
                         <li>
-                            <a href="@Url.Action("", "")" target="_blank" class="collapsible-header waves-effect waves-teal"><i class="material-icons left"></i>Tabelas Prof. João Carlos</a>
+                            <a href="@Url.Action("", "")" target="_blank" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">local_library</i>Tabelas Prof. João Carlos</a>
                         </li>
                     </ul>
                 </div>
@@ -132,6 +132,7 @@
 <script language="javascript">
 
     document.addEventListener('DOMContentLoaded', function () {
+
         const menuOptions = {};
         const loginOptions = { edge: 'right' };
         const collapsibleOptions = { inDuration: 50, outDuration: 50 };

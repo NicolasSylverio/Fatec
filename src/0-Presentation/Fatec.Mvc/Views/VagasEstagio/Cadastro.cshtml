@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Fatec.Mvc.Models.VagaEstagioViewModel>
+<div class="col s12 m12 push-l2 l8 push-xl2 xl8 center">
+
+    <div class="row">
+        <div class="col-4">
+            <h2>@ViewBag.Title</h2>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    @if (Model != null)
+    {
+        <ul class="collapsible expandable">
+            @foreach (var vaga in Model)
+            {
+                <li>
+                    <div class="collapsible-header">
+                        <span style="padding-top:5px">
+                            <i class="material-icons"></i>
+                        </span>
+                        <span style="padding-top:5px">
+                            @vaga.Titulo
+                        </span>
+                        <span style="padding-top:5px">
+                            <i class="material-icons right">expand_more</i>
+                        </span>
+                        <div class="col s1 m1 xl1 l1 right" style="padding: 0 0 0 0">
+                            <a asp-action="Alterar" asp-route-id="teste" title="Editar" class="btn blue lighten-2 waves-effect right" style="max-height:36px; max-width:52px; padding:0px 0px 0px 10px;">
+                                <i class="material-icons center">edit</i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="collapsible-body">
+                        <span class="col l4 xl4 m4 s4">Teste</span>
+                        <span class="center">Teste</span>
+                        <a asp-action="Remove" asp-route-id="Teste/Teste" title="Excluir" class="btn red lighten-2 waves-effect right" style="max-height:36px; max-width:52px;">
+                            <i class="material-icons">clear</i>
+                        </a>
+                    </div>
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <div class="center">
+            <h4>Nenhuma vaga de Estágio disponível no momento</h4>
+        </div>
+    }
+</div>

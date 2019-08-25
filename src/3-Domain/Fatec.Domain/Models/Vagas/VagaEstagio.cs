@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Fatec.Mvc.Models
+namespace Fatec.Domain.Models.Vagas
 {
-    public class VagaEstagioViewModel
+    public class VagaEstagio
     {
         public int Id { get; set; }
         public string Titulo { get; set; }

@@ -15,36 +15,25 @@
 <div class="row">
     @if (Model != null)
     {
-        <ul class="collapsible expandable">
-            @foreach (var vaga in Model)
-            {
-            <li>
-                <div class="collapsible-header">
-                    <span style="padding-top:5px">
-                        <i class="material-icons"></i>
-                    </span>
-                    <span style="padding-top:5px">
-                        @vaga.Titulo
-                    </span>
-                    <span style="padding-top:5px">
-                        <i class="material-icons right">expand_more</i>
-                    </span>
-                    <div class="col s1 m1 xl1 l1 right" style="padding: 0 0 0 0">
-                        <a asp-action="Alterar" asp-route-id="teste" title="Editar" class="btn blue lighten-2 waves-effect right" style="max-height:36px; max-width:52px; padding:0px 0px 0px 10px;">
-                            <i class="material-icons center">edit</i>
-                        </a>
+        foreach (var vaga in Model)
+        {
+            <div class="col s12 m7">
+                <h4 class="header">@vaga.Titulo</h4>
+                <div class="card horizontal">
+                    <div class="card-image">
+                        <img src="https://lorempixel.com/100/190/nature/6">
+                    </div>
+                    <div class="card-stacked">
+                        <div class="card-content">
+                            <p>@vaga.Descricao</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="mailto:@vaga.Email">@vaga.Email</a>
+                        </div>
                     </div>
                 </div>
-                <div class="collapsible-body">
-                    <span class="col l4 xl4 m4 s4">Teste</span>
-                    <span class="center">Teste</span>
-                    <a asp-action="Remove" asp-route-id="Teste/Teste" title="Excluir" class="btn red lighten-2 waves-effect right" style="max-height:36px; max-width:52px;">
-                        <i class="material-icons">clear</i>
-                    </a>
-                </div>
-            </li>
-            }
-        </ul>
+            </div>
+        }
     }
     else
     {

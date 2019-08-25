@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Fatec.Mvc.Models
+namespace Fatec.Application.ViewModels
 {
     public class VagaEstagioViewModel
     {

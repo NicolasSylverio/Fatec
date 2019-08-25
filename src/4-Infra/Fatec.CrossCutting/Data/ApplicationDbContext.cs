@@ -1,7 +1,7 @@
 ﻿using Fatec.CrossCutting.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace Fatec.DataBase.Context
+namespace Fatec.Infra.CrossCutting.Context
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {

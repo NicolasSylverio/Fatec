@@ -22,12 +22,29 @@
     <meta name="apple-mobile-web-app-title" content="Weather PWA">
     <link rel="apple-touch-icon" href="/Content/images/logoPadrao.png">
 
-    <title>@ViewBag.Title - Fatec</title>
+    <title>@ViewBag.Title - Offline - Fatec</title>
 
-    </head>
-    <body>
-        <div>
-            teste
+    @Styles.Render("~/bundles/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body style="padding: 0">
+
+    @Html.Partial("_menu")
+
+    <main role="main">
+
+        <div class="container">
+            @RenderBody();
         </div>
-    </body>
+
+        @Html.Partial("_floating")
+
+    </main>
+
+    @Html.Partial("_footer")
+
+    @Scripts.Render("~/bundles/js")
+
+</body>
 </html>

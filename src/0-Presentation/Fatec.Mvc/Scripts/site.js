@@ -1,5 +1,6 @@
 ﻿if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/Views/service-worker.js')
+    navigator.serviceWorker
+        .register('/service-worker.js')
         .then(function (registration) {
             console.log('Registration successful, scope is:', registration.scope);
         })
@@ -8,6 +9,6 @@
         });
 }
 
-navigator.serviceWorker.register('/Views/service-worker.js', {
-    scope: '/Home'
+navigator.serviceWorker.register('/service-worker.js', {
+    scope: '/'
 });

@@ -10,7 +10,7 @@
     <meta name="theme-color" content="#ffffff" />
 
     <!-- PWA: rel manifest -->
-    <link rel="manifest" href="/Content/manifest.json">
+    <link rel="manifest" href="/manifest.json">
 
     <!-- IOS: icones meta tags -->
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -34,11 +34,11 @@
             @RenderBody()
         </div>
 
+        @Html.Partial("_floating")
+
     </main>
 
     @Html.Partial("_footer")
-
-    @Html.Partial("_floating")
 
     @Scripts.Render("~/bundles/js")
 

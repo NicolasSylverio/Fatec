@@ -194,7 +194,7 @@
     <Content Include="Scripts\materialize.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\service-worker.js" />
-    <Content Include="Views\service-worker.js" />
+    <Content Include="service-worker.js" />
     <Content Include="Scripts\site.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -235,6 +235,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\images\icons\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -243,13 +244,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Privacy.cshtml" />
-    <None Include="Properties\PublishProfiles\FatecOneSis - Web Deploy.pubxml" />
     <Content Include="Views\VagasEstagio\Index.cshtml" />
     <Content Include="Views\VagasEmprego\Index.cshtml" />
-    <Content Include="Content\manifest.json" />
+    <Content Include="manifest.json" />
     <Content Include="Views\Offline\Index.cshtml" />
     <Content Include="Views\Offline\_offlineLayout.cshtml" />
     <Content Include="Views\Shared\_floating.cshtml" />
+    <None Include="Properties\PublishProfiles\fatecjundiai - Web Deploy.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\3-Domain\Fatec.Domain\Fatec.Domain.csproj">

@@ -1,6 +1,7 @@
 {
   "short_name": "Fatec",
   "name": "Fatec Intranet",
+  "description": "Fatec Jundiai Intranet Progressive Web App",
   "icons": [
     {
       "src": "/Content/images/logoPadrao.png",
@@ -16,6 +17,6 @@
   "start_url": "/Home",
   "background_color": "#ffffff",
   "display": "standalone",
-  "scope": "/Home",
+  "scope": "/",
   "theme_color": "#ee6e73"
 }

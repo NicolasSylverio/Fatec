@@ -1,7 +1,14 @@
-﻿a.navbar-brand {
-    white-space: normal;
-    text-align: center;
-    word-break: break-all;
+﻿@font-face {
+    font-family: 'Roboto';
+    font-display: auto;
+    font-style: normal;
+    font-weight: 500;
+    src: local('Roboto'), url('../../fonts/Roboto-Regular.ttf') format('ttf');
+}
+
+* {
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
 }
 
 /* Sticky footer styles
@@ -60,4 +67,10 @@ main {
 
 .secondary-color {
     background-color: #ffffff;
+}
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
 }

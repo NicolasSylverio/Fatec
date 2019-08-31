@@ -1,0 +1,25 @@
+﻿<div class="fixed-action-btn" style="margin-bottom: 70px;">
+    <a class="btn-floating btn-large secondary-color">
+        <i class="large material-icons">mode_edit</i>
+    </a>
+    <ul>
+        <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+        <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+        <li><a Id="#btnDownloadApp" class="btn-floating green"><i class="material-icons">publish</i></a></li>
+        <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+    </ul>
+</div>
+
+<script language="javascript">
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const options = {
+            hoverEnabled: false,
+            direction: 'left'
+        };
+
+        const elems = document.querySelectorAll('.fixed-action-btn');
+        M.FloatingActionButton.init(elems, options);
+    });
+
+</script>

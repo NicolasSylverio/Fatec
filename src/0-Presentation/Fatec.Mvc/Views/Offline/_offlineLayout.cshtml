@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -10,15 +14,15 @@
     <meta name="theme-color" content="#ffffff" />
 
     <!-- PWA: rel manifest -->
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="/Content/manifest.json">
 
     <!-- IOS: icones meta tags -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Intranet Fatec">
+    <meta name="apple-mobile-web-app-title" content="Weather PWA">
     <link rel="apple-touch-icon" href="/Content/images/logoPadrao.png">
 
-    <title>@ViewBag.Title - Fatec</title>
+    <title>@ViewBag.Title - Offline - Fatec</title>
 
     @Styles.Render("~/bundles/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -31,7 +35,7 @@
     <main role="main">
 
         <div class="container">
-            @RenderBody()
+            @RenderBody();
         </div>
 
         @Html.Partial("_floating")
@@ -42,6 +46,5 @@
 
     @Scripts.Render("~/bundles/js")
 
-    @RenderSection("scripts", false)
 </body>
 </html>

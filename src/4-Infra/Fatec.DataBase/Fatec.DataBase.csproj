@@ -68,6 +68,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Context\IDbContext.cs" />
     <Compile Include="Context\IntranetFatecContext.cs" />
     <Compile Include="Context\Context.cs" />
     <Compile Include="Migrations\201908250253173_inicial.cs" />

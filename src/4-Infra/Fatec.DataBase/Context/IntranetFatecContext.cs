@@ -7,7 +7,7 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 namespace Fatec.Infra.DataBase.Context
 {
     [DbConfigurationType(typeof(MySqlEFConfiguration))]
-    public class IntranetFatecContext : DbContext
+    public class IntranetFatecContext : DbContext, IDbContext
     {
         public IntranetFatecContext()
             : base("IntranetFatecContext")

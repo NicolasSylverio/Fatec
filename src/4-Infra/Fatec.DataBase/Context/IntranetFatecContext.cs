@@ -6,13 +6,12 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace Fatec.Infra.DataBase.Context
 {
-    [DbConfigurationType(typeof(MySqlEFConfiguration))]
+    //[DbConfigurationType(typeof(MySqlEFConfiguration))]
     public class IntranetFatecContext : DbContext, IDbContext
     {
         public IntranetFatecContext()
             : base("IntranetFatecContext")
         {
-
         }
 
         public IntranetFatecContext(string connectionString)

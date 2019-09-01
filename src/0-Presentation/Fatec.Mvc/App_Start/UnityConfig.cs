@@ -1,3 +1,5 @@
+using AutoMapper;
+using Fatec.Application.AutoMapper;
 using Fatec.Application.Interface;
 using Fatec.Application.Services;
 using Fatec.Domain.Interfaces.Repositories;
@@ -63,11 +65,18 @@ namespace Fatec.Mvc
             // it is NOT necessary to register your controllers
 
 
-            container.RegisterType<DbContext, IntranetFatecContext>(new HierarchicalLifetimeManager(), new InjectionConstructor("server=aws-mysql.marcelomb.com;port=3306;database=intranet;uid=myuser;password=mypassword"));
+           // container.RegisterType<DbContext, IntranetFatecContext>(new HierarchicalLifetimeManager(), new InjectionConstructor("server=xxx.com;port=3306;database=intranet;uid=xxxx;password=xxxxx"));
 
             container.RegisterType<IVagaEstagioRepository, VagaEstagioRepository>();
             container.RegisterType<IVagaEstagioAppService, VagaEstagioAppService>();
-            //container.RegisterType<Infra.DataBase.Context.IntranetFatecContext>(new HierarchicalLifetimeManager());
+            
+
+            var mapperConfig = AutoMapperConfig.RegisterMappings();
+            var mapper = mapperConfig.CreateMapper();
+            container.RegisterType<IMapper, Mapper>(new InjectionConstructor(mapperConfig));
+            //container.RegisterInstance(mapper, Activator.CreateInstance<T>());
+
+            container.RegisterType<IDbContext, IntranetFatecContext>();
 
 
 

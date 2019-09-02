@@ -15,5 +15,6 @@ namespace Fatec.Application.ViewModels
         public string Email { get; set; }
         public string Telefone { get; set; }
         public string URLImagem { get; set; }
+        public string URLSite { get; set; }
     }
 }

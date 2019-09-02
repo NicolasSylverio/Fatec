@@ -34,7 +34,7 @@ namespace Fatec.Infra.Data.Repositories
                 .ToList();
         }
 
-        public VagaEstagio GetById(int id)
+        public VagaEstagio GetById(int id)  
         {
             return Db.Set<VagaEstagio>()
                 .Find(id);

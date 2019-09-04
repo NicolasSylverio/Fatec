@@ -6,12 +6,10 @@ using Fatec.Domain.Interfaces.Repositories;
 using Fatec.Infra.Data.Repositories;
 using Fatec.Infra.DataBase.Context;
 using System;
-using System.Data.Entity;
 using System.Web.Mvc;
 using Unity;
 using Unity.AspNet.Mvc;
 using Unity.Injection;
-using Unity.Lifetime;
 
 namespace Fatec.Mvc
 {
@@ -70,15 +68,12 @@ namespace Fatec.Mvc
             container.RegisterType<IVagaEstagioRepository, VagaEstagioRepository>();
             container.RegisterType<IVagaEstagioAppService, VagaEstagioAppService>();
             
-
             var mapperConfig = AutoMapperConfig.RegisterMappings();
             var mapper = mapperConfig.CreateMapper();
             container.RegisterType<IMapper, Mapper>(new InjectionConstructor(mapperConfig));
             //container.RegisterInstance(mapper, Activator.CreateInstance<T>());
 
             container.RegisterType<IDbContext, IntranetFatecContext>();
-
-
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }

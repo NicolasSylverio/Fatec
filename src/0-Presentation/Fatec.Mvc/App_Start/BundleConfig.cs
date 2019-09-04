@@ -6,12 +6,9 @@ namespace Fatec.Mvc
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/js").Include(
                             "~/Scripts/materialize.min.js",
-                            "~/Scripts/service-worker.js",
                             "~/Scripts/site.js"));
 
             bundles.Add(new StyleBundle("~/bundles/css").Include(

@@ -234,7 +234,6 @@
     <Content Include="Content\css\site.css" />
     <Content Include="Scripts\materialize.js" />
     <Content Include="Scripts\materialize.min.js" />
-    <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="service-worker.js" />
     <Content Include="Scripts\site.js" />
     <Content Include="Web.config">

@@ -79,6 +79,9 @@
     <Compile Include="Identity\ApplicationUserManager.cs" />
     <Compile Include="Identity\IdentityEmailService.cs" />
     <Compile Include="Identity\IdentitySmsService.cs" />
+    <Compile Include="Interfaces\Repositories\IRepositoryBase.cs" />
+    <Compile Include="Interfaces\Repositories\IVagaEstagioRepository.cs" />
+    <Compile Include="Models\Vagas\VagaEstagio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\EmailService.cs" />
     <Compile Include="Services\SmsService.cs" />
@@ -94,10 +97,6 @@
     <ProjectReference Include="..\..\4-Infra\Fatec.CrossCutting\Fatec.CrossCutting.csproj">
       <Project>{CBD67C1C-A4FB-4C6A-B16F-229D34882312}</Project>
       <Name>Fatec.CrossCutting</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\4-Infra\Fatec.DataBase\Fatec.DataBase.csproj">
-      <Project>{579CEEC6-F0B7-48D4-9BA2-1BC8CF577DE0}</Project>
-      <Name>Fatec.DataBase</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

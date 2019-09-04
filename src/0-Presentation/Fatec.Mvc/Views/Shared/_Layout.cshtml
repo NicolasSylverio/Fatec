@@ -21,7 +21,6 @@
     <title>@ViewBag.Title - Fatec</title>
 
     @Styles.Render("~/bundles/css")
-    @Scripts.Render("~/bundles/modernizr")
 
 </head>
 <body style="padding: 0">
@@ -35,6 +34,8 @@
         </div>
 
         @Html.Partial("_floating")
+        
+        <noscript>JavaScript não é suportado ou está desativado no navegador!</noscript>
 
     </main>
 

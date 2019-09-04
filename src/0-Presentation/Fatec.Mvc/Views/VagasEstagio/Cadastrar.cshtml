@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Fatec.Application.ViewModels.VagaEstagioViewModel>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.fixed-action-btn');
+        var instances = M.FloatingActionButton.init(elems, {
+            direction: 'left',
+            hoverEnabled: false
+        });
+    });
+
+</script>
+<style>
+    .fixed-action-btn {
+        bottom: 80px;
+        right: 50px; /*desired value*/
+    }
+</style>
+<br />
+<nav>
+    <div class="nav-wrapper">
+        <div class="col s12">
+            <a href="#!" class="breadcrumb">&nbsp; Vagas de Estágio</a>
+            <a href='@Url.Action("Cadastro", "VagasEstagio")' class="breadcrumb">Cadastro</a>
+            <a href="#!" class="breadcrumb">@ViewBag.Title</a>
+        </div>
+    </div>
+</nav>
+<div class="col s12 m12 push-l2 l8 push-xl2 xl8 center">
+
+    @*<div class="row">
+            <div class="col-4">
+                <h2>@ViewBag.Title</h2>
+            </div>
+        </div>*@
+
+
+
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large red">
+            <i class="large material-icons">mode_edit</i>
+        </a>
+        <ul>
+            <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+            <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+            <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+            <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+        </ul>
+    </div>
+
+
+    <div class="row">
+        @if (Model != null)
+        {
+            <ul class="collapsible expandable">
+                @foreach (var vaga in Model)
+                {
+                    <li>
+                        <div class="collapsible-header">
+                            <span style="padding-top:5px">
+                                <i class="material-icons"></i>
+                            </span>
+                            <span style="padding-top:5px">
+                                @vaga.Titulo
+                            </span>
+                            <span style="padding-top:5px">
+                                <i class="material-icons right">expand_more</i>
+                            </span>
+                            <div class="col s1 m1 xl1 l1 right" style="padding: 0 0 0 0">
+                                <a asp-action="Alterar" asp-route-id="teste" title="Editar" class="btn blue lighten-2 waves-effect right" style="max-height:36px; max-width:52px; padding:0px 0px 0px 10px;">
+                                    <i class="material-icons center">edit</i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="collapsible-body">
+                            <span class="col l4 xl4 m4 s4">Teste</span>
+                            <span class="center">Teste</span>
+                            <a asp-action="Remove" asp-route-id="Teste/Teste" title="Excluir" class="btn red lighten-2 waves-effect right" style="max-height:36px; max-width:52px;">
+                                <i class="material-icons">clear</i>
+                            </a>
+                        </div>
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <div class="center">
+                <h4>Nenhuma vaga de Estágio disponível no momento</h4>
+            </div>
+        }
+    </div>
+</div>

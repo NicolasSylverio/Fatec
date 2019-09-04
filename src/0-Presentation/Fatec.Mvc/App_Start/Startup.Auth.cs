@@ -1,5 +1,5 @@
 ﻿using Fatec.CrossCutting.Models;
-using Fatec.DataBase.Context;
+using Fatec.Infra.DataBase.Context;
 using Fatec.Domain.Identity;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -7,6 +7,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 using System;
+using Fatec.Infra.CrossCutting.Context;
 
 namespace Fatec.Mvc
 {

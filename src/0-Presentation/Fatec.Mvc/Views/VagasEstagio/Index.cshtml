@@ -1,55 +1,86 @@
-﻿@model IEnumerable<Fatec.Mvc.Models.VagaEstagioViewModel>
-@{
-    ViewBag.Title = "Vagas de Estágio";
-}
-
-<div class="col s12 m12 push-l2 l8 push-xl2 xl8 center">
-
-    <div class="row">
-        <div class="col-4">
-            <h2>@ViewBag.Title</h2>
+﻿@using Fatec.Application.ViewModels;
+@model IEnumerable<VagaEstagioViewModel>
+<br />
+<nav>
+    <div class="nav-wrapper">
+        <div class="col s12">
+            <a href="#!" class="breadcrumb">&nbsp; Vagas de Estágio</a>
+            <a href="#!" class="breadcrumb">@ViewBag.Title</a>
         </div>
     </div>
-</div>
+</nav>
+<br />
 
-<div class="row">
-    @if (Model != null)
+@*<div class="col s12 m12 push-l2 l8 push-xl2 xl8 center">
+
+        <div class="row">
+            <div class="col-4">
+                <h2>@ViewBag.Title</h2>
+            </div>
+        </div>
+    </div>*@
+
+@if (Model != null)
+{
+
+    @Html.Raw("<div class=\"row\">");
+
+    //foreach (var vaga in Model)
+    for (int i = 0; i < Model.Count(); i++)
     {
-        <ul class="collapsible expandable">
-            @foreach (var vaga in Model)
-            {
-            <li>
-                <div class="collapsible-header">
-                    <span style="padding-top:5px">
-                        <i class="material-icons"></i>
-                    </span>
-                    <span style="padding-top:5px">
-                        @vaga.Titulo
-                    </span>
-                    <span style="padding-top:5px">
-                        <i class="material-icons right">expand_more</i>
-                    </span>
-                    <div class="col s1 m1 xl1 l1 right" style="padding: 0 0 0 0">
-                        <a asp-action="Alterar" asp-route-id="teste" title="Editar" class="btn blue lighten-2 waves-effect right" style="max-height:36px; max-width:52px; padding:0px 0px 0px 10px;">
-                            <i class="material-icons center">edit</i>
-                        </a>
+        string classeCard = "col s6";
+
+        VagaEstagioViewModel vaga = Model.ElementAt(i);
+
+        //if ((vaga.Descricao != null && vaga.Descricao.Length > 800) ||
+        //        (vaga.URLImagem != null && vaga.URLImagem != String.Empty))
+        //{
+        classeCard = "col s12";
+        //}
+
+        if (vaga != null)
+        {
+            <div class="@classeCard">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="@vaga.URLImagem">
+                        @*<img src="https://www.prefeitura.sp.gov.br/cidade/secretarias/upload/planejamento/portal_do_servidor/portalestagio2.jpg">*@
+                        @*<a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>*@
                     </div>
+                    <div class="card-content">
+                        <span class="card-title">@vaga.Titulo</span>
+                        <p>@Html.Raw(@vaga.Descricao)</p>
+                    </div>
+                    @if (vaga.Email != null || vaga.URLSite != null)
+                    {
+                        <div class="card-action">
+                            @if (vaga.Email != null)
+                            {
+                                <a href="mailto:@vaga.Email"><i class="material-icons tiny">email</i>@vaga.Email.ToLower()</a>
+                            }
+                            @if (vaga.URLSite != null)
+                            {
+                                var url = vaga.URLSite;
+                                if (!(url.ToUpper().Contains("HTTP://") || url.ToUpper().Contains("HTTPS://")))
+                                {
+                                    url = string.Format("Http://{0}", url);
+                                }
+
+                                <a href="@url"><i class="material-icons tiny">open_in_browser</i>@vaga.URLSite.ToLower()</a>
+                            }
+                        </div>
+                    }
                 </div>
-                <div class="collapsible-body">
-                    <span class="col l4 xl4 m4 s4">Teste</span>
-                    <span class="center">Teste</span>
-                    <a asp-action="Remove" asp-route-id="Teste/Teste" title="Excluir" class="btn red lighten-2 waves-effect right" style="max-height:36px; max-width:52px;">
-                        <i class="material-icons">clear</i>
-                    </a>
-                </div>
-            </li>
-            }
-        </ul>
+            </div>
+        }
     }
-    else
-    {
+    @Html.Raw("</div>")
+}
+else
+{
+    <div class="row">
         <div class="center">
             <h4>Nenhuma vaga de Estágio disponível no momento</h4>
         </div>
-    }
-</div>
+    </div>
+}

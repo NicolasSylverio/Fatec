@@ -1,18 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Fatec.Application.Interface;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Fatec.Mvc.Controllers
 {
     public class VagasEstagioController : Controller
     {
+        private readonly IVagaEstagioAppService _vagaEstagioAppService;
+
+        public VagasEstagioController(IVagaEstagioAppService vagaEstagioAppService)
+        {
+            _vagaEstagioAppService = vagaEstagioAppService;
+        }
+
         // GET: Estagio
         public ActionResult Index()
         {
-            return View();
+            ViewBag.Title = "Vagas de Estágio";
+            var vagas = _vagaEstagioAppService.GetAllVagaEstagioViewModel().AsEnumerable();
+            return View(vagas);
         }
+
+        public ActionResult Cadastro()
+        {
+
+            ViewBag.Title = "Cadastro";
+            var vagas = _vagaEstagioAppService.GetAllVagaEstagioViewModel().AsEnumerable();
+            return View(vagas);
+        }
+
+        public ActionResult Cadastrar()
+        {
+            ViewBag.Title = "Cadastrar Vaga de Estágio";
+            var vagas = _vagaEstagioAppService.GetAllVagaEstagioViewModel().AsEnumerable();
+            return View(vagas);
+        }
+
 
         // GET: Estagio/Details/5
         public ActionResult Details(int id)

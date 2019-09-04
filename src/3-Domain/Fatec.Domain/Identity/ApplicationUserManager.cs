@@ -1,5 +1,5 @@
 ﻿using Fatec.CrossCutting.Models;
-using Fatec.DataBase.Context;
+using Fatec.Infra.CrossCutting.Context;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;

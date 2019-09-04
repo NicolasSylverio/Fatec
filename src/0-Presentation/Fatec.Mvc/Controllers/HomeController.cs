@@ -4,6 +4,7 @@ namespace Fatec.Mvc.Controllers
 {
     public class HomeController : Controller
     {
+        [Route("Home")]
         public ActionResult Index()
         {
             return View();

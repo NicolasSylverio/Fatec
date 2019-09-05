@@ -1,5 +1,13 @@
 ﻿@using Fatec.Application.ViewModels;
 @model IEnumerable<VagaEstagioViewModel>
+<style>
+    teste {
+        -webkit-column-count: 3; /* Chrome, Safari, Opera */
+        -moz-column-count: 3; /* Firefox */
+        column-count: 3;
+    }
+</style>
+
 <br />
 <nav>
     <div class="nav-wrapper">
@@ -23,64 +31,28 @@
 @if (Model != null)
 {
 
-    @Html.Raw("<div class=\"row\">");
+    @Html.Raw("<div class=\"row teste\" >");
 
     //foreach (var vaga in Model)
-    for (int i = 0; i < Model.Count(); i++)
-    {
-        string classeCard = "col s6";
-
-        VagaEstagioViewModel vaga = Model.ElementAt(i);
-
-        //if ((vaga.Descricao != null && vaga.Descricao.Length > 800) ||
-        //        (vaga.URLImagem != null && vaga.URLImagem != String.Empty))
-        //{
-        classeCard = "col s12";
-        //}
-
-        if (vaga != null)
+        for (int i = 0; i < Model.Count(); i++)
         {
-            @*<div class="@classeCard">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="@vaga.URLImagem">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title">@vaga.Titulo</span>
-                        <p>@Html.Raw(@vaga.Descricao)</p>
-                    </div>
-                    @if (vaga.Email != null || vaga.URLSite != null)
-                    {
-                        <div class="card-action">
-                            @if (vaga.Email != null)
-                            {
-                                <a href="mailto:@vaga.Email"><i class="material-icons tiny">email</i>@vaga.Email.ToLower()</a>
-                            }
-                            @if (vaga.URLSite != null)
-                            {
-                                var url = vaga.URLSite;
-                                if (!(url.ToUpper().Contains("HTTP://") || url.ToUpper().Contains("HTTPS://")))
-                                {
-                                    url = string.Format("Http://{0}", url);
-                                }
+            VagaEstagioViewModel vaga = Model.ElementAt(i);
 
-                                <a href="@url"><i class="material-icons tiny">open_in_browser</i>@vaga.URLSite.ToLower()</a>
-                            }
-                        </div>
-                    }
-                </div>
-            </div>*@
+            if (vaga != null)
+            {
 
-            <div class="col s12 m6 l6 xl4">
+
+
+            <div class="col s12 m6 l6 xl4 ">
                 <div class="card hoverable">
                     <div class="card-image">
-                        <img class="materialboxed" src="@vaga.URLImagem">
+                        <img class="materialboxed" src="@vaga.UrlImagem">
                     </div>
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">@vaga.Titulo<i class="material-icons right">more_vert</i></span>
-                        @if (vaga.Email != null)
-                        {
-                            <p>Contato: <a href="@vaga.Email">@vaga.Email.ToLower()</a></p>
+                        @if (vaga.Empresa.Email != null)
+    {
+                            <p>Contato: <a href="@vaga.Empresa.Email">@vaga.Empresa.Email.ToLower()</a></p>
                         }
                     </div>
                     <div class="card-reveal hoverable">
@@ -91,15 +63,15 @@
                     </div>
                     <div class="card-action">
                         @*<a href="#">Empresa</a>*@
-                        @if (vaga.URLSite != null)
+                        @if (vaga.Empresa.UrlSite != null)
                         {
-                            var url = vaga.URLSite;
+                            var url = vaga.Empresa.UrlSite;
                             if (!(url.ToUpper().Contains("HTTP://") || url.ToUpper().Contains("HTTPS://")))
                             {
                                 url = string.Format("Http://{0}", url);
                             }
 
-                            <a href="@url"><i class="material-icons tiny">open_in_browser</i>@vaga.URLSite.ToLower()</a>
+                            <a href="@url"><i class="material-icons tiny">open_in_browser</i>@vaga.Empresa.UrlSite.ToLower()</a>
                         }
                         <a href="#">Mais Detalhes..</a>
                     </div>

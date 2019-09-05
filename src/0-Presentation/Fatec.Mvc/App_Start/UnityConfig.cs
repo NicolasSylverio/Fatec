@@ -67,6 +67,8 @@ namespace Fatec.Mvc
 
             container.RegisterType<IVagaEstagioRepository, VagaEstagioRepository>();
             container.RegisterType<IVagaEstagioAppService, VagaEstagioAppService>();
+            container.RegisterType<IEmpresaRepository, EmpresaRepository>();
+            container.RegisterType<IEmpresaAppService, EmpresaAppService>();
 
             container.RegisterType<IVagaEmpregoAppService, VagaEmpregoAppService>();
 

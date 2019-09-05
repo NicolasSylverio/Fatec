@@ -1,0 +1,54 @@
+﻿@using Fatec.Application.ViewModels;
+@model IEnumerable<EmpresaViewModel>
+
+
+<br />
+<nav>
+    <div class="nav-wrapper">
+        <div class="col s12">
+            <a href="#!" class="breadcrumb">&nbsp; Vagas de Estágio</a>
+            <a href="#!" class="breadcrumb">@ViewBag.Title</a>
+        </div>
+    </div>
+</nav>
+<br />
+
+
+@if (Model != null)
+{
+
+    @Html.Raw("<div class=\"row\" >");
+
+    //foreach (var vaga in Model)
+    for (int i = 0; i < Model.Count(); i++)
+    {
+        EmpresaViewModel empresa = Model.ElementAt(i);
+
+        if (empresa != null)
+        {
+            <div class="col s12 m6">
+                <div class="card ">
+                    <div class="card-content ">
+                        <span class="card-title">@empresa.Nome</span>
+                        <p>
+                            Telefone: @empresa.Telefone
+                        </p>
+                    </div>
+                    <div class="card-action">
+                        <a href="@empresa.Email">Email</a>
+                        <a href="@empresa.Email">Site</a>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    @Html.Raw("</div>")
+}
+else
+{
+    <div class="row">
+        <div class="center">
+            <h4>Nenhuma empresa cadastrada no momento</h4>
+        </div>
+    </div>
+}

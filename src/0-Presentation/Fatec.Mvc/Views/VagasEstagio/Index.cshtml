@@ -43,7 +43,7 @@
             <div class="@classeCard">
                 <div class="card">
                     <div class="card-image">
-                        <img src="@vaga.URLImagem">
+                        <img src="@vaga.UrlImagem">
                         @*<img src="https://www.prefeitura.sp.gov.br/cidade/secretarias/upload/planejamento/portal_do_servidor/portalestagio2.jpg">*@
                         @*<a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>*@
                     </div>
@@ -51,22 +51,22 @@
                         <span class="card-title">@vaga.Titulo</span>
                         <p>@Html.Raw(@vaga.Descricao)</p>
                     </div>
-                    @if (vaga.Email != null || vaga.URLSite != null)
+                    @if (vaga.Empresa.Email != null || vaga.Empresa.UrlSite != null)
                     {
                         <div class="card-action">
-                            @if (vaga.Email != null)
+                            @if (vaga.Empresa.Email != null)
                             {
-                                <a href="mailto:@vaga.Email"><i class="material-icons tiny">email</i>@vaga.Email.ToLower()</a>
+                                <a href="mailto:@vaga.Empresa.Email"><i class="material-icons tiny">email</i>@vaga.Empresa.Email.ToLower()</a>
                             }
-                            @if (vaga.URLSite != null)
+                            @if (vaga.Empresa.UrlSite != null)
                             {
-                                var url = vaga.URLSite;
+                                var url = vaga.Empresa.UrlSite;
                                 if (!(url.ToUpper().Contains("HTTP://") || url.ToUpper().Contains("HTTPS://")))
                                 {
                                     url = string.Format("Http://{0}", url);
                                 }
 
-                                <a href="@url"><i class="material-icons tiny">open_in_browser</i>@vaga.URLSite.ToLower()</a>
+                                <a href="@url"><i class="material-icons tiny">open_in_browser</i>@vaga.Empresa.UrlSite.ToLower()</a>
                             }
                         </div>
                     }

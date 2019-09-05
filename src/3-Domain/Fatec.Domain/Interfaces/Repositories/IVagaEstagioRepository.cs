@@ -1,5 +1,4 @@
-﻿using Fatec.Domain.Interfaces.Repositories;
-using Fatec.Domain.Models.Vagas;
+﻿using Fatec.Domain.Models.Vagas;
 
 namespace Fatec.Domain.Interfaces.Repositories
 {

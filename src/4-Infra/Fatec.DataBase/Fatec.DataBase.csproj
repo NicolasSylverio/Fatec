@@ -71,17 +71,14 @@
     <Compile Include="Context\IDbContext.cs" />
     <Compile Include="Context\IntranetFatecContext.cs" />
     <Compile Include="Context\Context.cs" />
-    <Compile Include="Migrations\201908250253173_inicial.cs" />
-    <Compile Include="Migrations\201908250253173_inicial.Designer.cs">
-      <DependentUpon>201908250253173_inicial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201909011650101_urlsite vagaEstagio.cs" />
-    <Compile Include="Migrations\201909011650101_urlsite vagaEstagio.Designer.cs">
-      <DependentUpon>201909011650101_urlsite vagaEstagio.cs</DependentUpon>
+    <Compile Include="Migrations\201909052048462_correcoes.cs" />
+    <Compile Include="Migrations\201909052048462_correcoes.Designer.cs">
+      <DependentUpon>201909052048462_correcoes.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\RepositoryBase.cs" />
+    <Compile Include="Repository\EmpresaRepository.cs" />
     <Compile Include="Repository\VagaEstagioRepository.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -101,11 +98,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201908250253173_inicial.resx">
-      <DependentUpon>201908250253173_inicial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909011650101_urlsite vagaEstagio.resx">
-      <DependentUpon>201909011650101_urlsite vagaEstagio.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201909052048462_correcoes.resx">
+      <DependentUpon>201909052048462_correcoes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

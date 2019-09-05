@@ -211,6 +211,7 @@
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\OfflineController.cs" />
+    <Compile Include="Controllers\EmpresasController.cs" />
     <Compile Include="Controllers\VagasEstagioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -297,6 +298,7 @@
     <Content Include="Views\VagasEstagio\Cadastro.cshtml" />
     <Content Include="Views\VagasEstagio\Cadastrar.cshtml" />
     <Content Include="Views\VagasEstagio\Index2.cshtml" />
+    <Content Include="Views\Empresas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\2-Application\Fatec.Application\Fatec.Application.csproj">

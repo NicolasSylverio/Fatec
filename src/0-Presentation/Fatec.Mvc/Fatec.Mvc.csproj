@@ -296,6 +296,7 @@
     <None Include="Properties\PublishProfiles\fatecjundiai - Web Deploy.pubxml" />
     <Content Include="Views\VagasEstagio\Cadastro.cshtml" />
     <Content Include="Views\VagasEstagio\Cadastrar.cshtml" />
+    <Content Include="Views\VagasEstagio\Index2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\2-Application\Fatec.Application\Fatec.Application.csproj">

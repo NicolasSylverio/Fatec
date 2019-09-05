@@ -21,6 +21,13 @@ namespace Fatec.Mvc.Controllers
             return View(vagas);
         }
 
+        public ActionResult Index2()
+        {
+            ViewBag.Title = "Vagas de Estágio v2";
+            var vagas = _vagaEstagioAppService.GetAllVagaEstagioViewModel().AsEnumerable();
+            return View(vagas);
+        }
+
         public ActionResult Cadastro()
         {
 
@@ -32,8 +39,9 @@ namespace Fatec.Mvc.Controllers
         public ActionResult Cadastrar()
         {
             ViewBag.Title = "Cadastrar Vaga de Estágio";
-            var vagas = _vagaEstagioAppService.GetAllVagaEstagioViewModel().AsEnumerable();
-            return View(vagas);
+            //var vagas = _vagaEstagioAppService.GetAllVagaEstagioViewModel().AsEnumerable();
+            //return View(vagas);
+            return View();
         }
 
 

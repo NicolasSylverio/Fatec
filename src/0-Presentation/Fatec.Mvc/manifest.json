@@ -44,5 +44,6 @@
   "display": "standalone",
   "scope": "/",
   "theme_color": "#ee6e73",
-  "orientation": "portrait"
+  "orientation": "portrait",
+  "lang":  "pt-BR" 
 }

@@ -67,7 +67,9 @@ namespace Fatec.Mvc
 
             container.RegisterType<IVagaEstagioRepository, VagaEstagioRepository>();
             container.RegisterType<IVagaEstagioAppService, VagaEstagioAppService>();
-            
+
+            container.RegisterType<IVagaEmpregoAppService, VagaEmpregoAppService>();
+
             var mapperConfig = AutoMapperConfig.RegisterMappings();
             var mapper = mapperConfig.CreateMapper();
             container.RegisterType<IMapper, Mapper>(new InjectionConstructor(mapperConfig));

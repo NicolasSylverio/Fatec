@@ -10,7 +10,7 @@
     <meta name="theme-color" content="#ffffff" />
 
     <!-- PWA: rel manifest -->
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="../../manifest.json">
 
     <!-- IOS: icones meta tags -->
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,9 +33,7 @@
             @RenderBody()
         </div>
 
-        @Html.Partial("_floating")
-        
-        <noscript>JavaScript não é suportado ou está desativado no navegador!</noscript>
+        <noscript class="center">JavaScript não é suportado ou está desativado no navegador!</noscript>
 
     </main>
 

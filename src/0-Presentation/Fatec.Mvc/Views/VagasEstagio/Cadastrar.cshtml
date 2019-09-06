@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Fatec.Application.ViewModels.VagaEstagioViewModel>
+﻿@model Fatec.Application.ViewModels.VagaEstagioViewModel
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -28,66 +28,107 @@
 </nav>
 <div class="col s12 m12 push-l2 l8 push-xl2 xl8 center">
 
-    @*<div class="row">
-            <div class="col-4">
-                <h2>@ViewBag.Title</h2>
-            </div>
-        </div>*@
+    <div class="container">
+        <div>
+            <h3>Cadastro de Vagas de Estágio</h3>
+        </div>
 
+        <div class="row">
+            <form method="post" class="col s12">
+                <div>
+                    <div class="input-field col s12 m6 l6 xl6">
+                        <input asp-for="Nome" id="Nome" type="text" class="validate" data-length="50" />
+                        <label asp-for="Nome">Nome</label>
+                        <span asp-validation-for="Nome" class="helper-text" data-error="wrong"></span>
+                    </div>
 
+                    <div class="input-field col s12 m6 l6 xl6">
+                        <input asp-for="Sobrenome" id="Sobrenome" type="text" class="validate" min="3" data-length="50" />
+                        <label asp-for="Sobrenome"></label>
+                        <span asp-validation-for="Sobrenome" class="helper-text" data-error="wrong"></span>
+                    </div>
 
-    <div class="fixed-action-btn">
-        <a class="btn-floating btn-large red">
-            <i class="large material-icons">mode_edit</i>
-        </a>
-        <ul>
-            <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
-            <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-            <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-            <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
-        </ul>
-    </div>
+                    <div class="input-field col s12 m6 l6 xl6">
+                        <input asp-for="Cpf" id="Cpf" type="text" class="validate" data-length="11" />
+                        <label asp-for="Cpf"></label>
+                        <span asp-validation-for="Cpf" class="helper-text" data-error="wrong"></span>
+                    </div>
 
+                    <div class="input-field col s12 m6 l6 xl6">
+                        <input asp-for="DataNascimento" id="DataNascimento" type="date" class="" data-length="10" />
+                        <label asp-for="DataNascimento"></label>
+                        <span asp-validation-for="DataNascimento" class="helper-text" data-error="wrong"></span>
+                    </div>
 
-    <div class="row">
-        @if (Model != null)
-        {
-            <ul class="collapsible expandable">
-                @foreach (var vaga in Model)
-                {
-                    <li>
-                        <div class="collapsible-header">
-                            <span style="padding-top:5px">
-                                <i class="material-icons"></i>
-                            </span>
-                            <span style="padding-top:5px">
-                                @vaga.Titulo
-                            </span>
-                            <span style="padding-top:5px">
-                                <i class="material-icons right">expand_more</i>
-                            </span>
-                            <div class="col s1 m1 xl1 l1 right" style="padding: 0 0 0 0">
-                                <a asp-action="Alterar" asp-route-id="teste" title="Editar" class="btn blue lighten-2 waves-effect right" style="max-height:36px; max-width:52px; padding:0px 0px 0px 10px;">
-                                    <i class="material-icons center">edit</i>
-                                </a>
-                            </div>
+                    <div class="input-field col s12 m6 l6 xl6">
+                        <input asp-for="Login" id="Login" type="text" class="validate" data-length="20" />
+                        <label asp-for="Login"></label>
+                        <span asp-validation-for="Login" class="helper-text" data-error="wrong"></span>
+                    </div>
+
+                    <div class="input-field col s12 m6 l6 xl6">
+                        <input asp-for="Senha" id="Senha" type="password" class="validate" data-length="20" />
+                        <label asp-for="Senha"></label>
+                        <span asp-validation-for="Senha" class="helper-text" data-error="wrong"></span>
+                    </div>
+
+                    <div class="input-field col s12 m4 l4 xl4">
+                        <input asp-for="Celular" id="Celular" type="number" class="validate" data-length="9" />
+                        <label asp-for="Celular"></label>
+                        <span asp-validation-for="Celular" class="helper-text" data-error="wrong"></span>
+                    </div>
+
+                    <div class="input-field col s12 m4 l4 xl4">
+                        <select asp-for="Sexo">
+                            <option value="" disabled selected>Selecione uma opção</option>
+                            <option value="0">Feminino</option>
+                            <option value="1">Masculino</option>
+                            <option value="2">Outros</option>
+                        </select>
+                        <label asp-for="Sexo"></label>
+                        <br />
+                        <br />
+                    </div>
+
+                    <div class="input-field col s12 m4 l4 xl4">
+                        <select asp-for="TipoUsuario">
+                            <option value="" disabled selected>Selecione uma opção</option>
+                            <option value="0">Supervisor</option>
+                            <option value="1">Funcionario</option>
+                            <option value="2">Aluno</option>
+                            <option value="3">Visitante</option>
+                        </select>
+                        <label asp-for="TipoUsuario"></label>
+                        <span asp-validation-for="TipoUsuario" class="helper-text" data-error="wrong"></span>
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 xl12">
+                        <input asp-for="Email" id="Email" type="email" class="validate" data-length="100" />
+                        <label asp-for="Email"></label>
+                        <span asp-validation-for="Email" class="helper-text" data-error="E-mail invalido" data-success="Email Valido"></span>
+                    </div>
+
+                    <div class="input-field col s12 m12 l12 xl12">
+                        <div class="left">
+                            <button type="submit" title="Cadastrar" asp-action="CadastroUsuario" method="post" class="btn teal lighten-2">Cadastrar</button>
+                            <a asp-action="CadastroUsuario" method="get" class="btn amber lighten-2">Limpar</a>
                         </div>
-                        <div class="collapsible-body">
-                            <span class="col l4 xl4 m4 s4">Teste</span>
-                            <span class="center">Teste</span>
-                            <a asp-action="Remove" asp-route-id="Teste/Teste" title="Excluir" class="btn red lighten-2 waves-effect right" style="max-height:36px; max-width:52px;">
-                                <i class="material-icons">clear</i>
-                            </a>
-                        </div>
-                    </li>
-                }
-            </ul>
-        }
-        else
-        {
-            <div class="center">
-                <h4>Nenhuma vaga de Estágio disponível no momento</h4>
-            </div>
-        }
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
+
+@section Scripts
+    {
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            const elems = document.querySelectorAll('select');
+            const textNeedCount = document.querySelectorAll('#Nome, #Sobrenome, #DataNascimento, #Cpf, #Login, #Celular, #Senha, #Email');
+            const options = {};
+            M.FormSelect.init(elems, options);
+            M.CharacterCounter.init(textNeedCount);
+        });
+    </script>
+    }

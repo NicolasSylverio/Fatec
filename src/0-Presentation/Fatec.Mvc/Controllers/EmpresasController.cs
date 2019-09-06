@@ -4,27 +4,20 @@ using System.Web.Mvc;
 
 namespace Fatec.Mvc.Controllers
 {
-    public class VagasEstagioController : Controller
+    public class EmpresasController : Controller
     {
-        private readonly IVagaEstagioAppService _vagaEstagioAppService;
+        private readonly IEmpresaAppService _empresaAppService;
 
-        public VagasEstagioController(IVagaEstagioAppService vagaEstagioAppService)
+        public EmpresasController(IEmpresaAppService empresaAppService)
         {
-            _vagaEstagioAppService = vagaEstagioAppService;
+            _empresaAppService = empresaAppService;
         }
 
         // GET: Estagio
         public ActionResult Index()
         {
-            ViewBag.Title = "Vagas de Estágio";
-            var vagas = _vagaEstagioAppService.GetAllVagaEstagioViewModel().AsEnumerable();
-            return View(vagas);
-        }
-
-        public ActionResult Index2()
-        {
-            ViewBag.Title = "Vagas de Estágio v2";
-            var vagas = _vagaEstagioAppService.GetAllVagaEstagioViewModel().AsEnumerable();
+            ViewBag.Title = "Empresas";
+            var vagas = _empresaAppService.GetAllEmpresaViewModel().AsEnumerable();
             return View(vagas);
         }
 
@@ -32,14 +25,14 @@ namespace Fatec.Mvc.Controllers
         {
 
             ViewBag.Title = "Cadastro";
-            var vagas = _vagaEstagioAppService.GetAllVagaEstagioViewModel().AsEnumerable();
+            var vagas = _empresaAppService.GetAllEmpresaViewModel().AsEnumerable();
             return View(vagas);
         }
 
         public ActionResult Cadastrar()
         {
             ViewBag.Title = "Cadastrar Vaga de Estágio";
-            //var vagas = _vagaEstagioAppService.GetAllVagaEstagioViewModel().AsEnumerable();
+            //var vagas = _empresaAppService.GetAllVagaEstagioViewModel().AsEnumerable();
             //return View(vagas);
             return View();
         }

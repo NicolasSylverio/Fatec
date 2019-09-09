@@ -1,4 +1,5 @@
-﻿using Fatec.Domain.Models.Vagas;
+﻿using Fatec.Domain.Models.Empresas;
+using Fatec.Domain.Models.Vagas;
 using MySql.Data.Entity;
 using System;
 using System.Data.Entity;
@@ -26,5 +27,6 @@ namespace Fatec.Infra.DataBase.Context
         }
 
         public DbSet<VagaEstagio> VagaEstagio { get; set; }
+        public DbSet<Empresa> Empresa { get; set; }
     }
 }

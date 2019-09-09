@@ -1,6 +1,6 @@
-﻿namespace Fatec.Mvc.Models
+﻿namespace Fatec.Application.ViewModels
 {
-    public class VagaEstagioViewModel
+    public class VagaEmpregoViewModel
     {
         public int Id { get; set; }
         public string Titulo { get; set; }

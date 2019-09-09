@@ -50,12 +50,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interface\IAppServiceBase.cs" />
+    <Compile Include="Interface\IVagaEmpregoAppService.cs" />
+    <Compile Include="Interface\IEmpresaAppService.cs" />
     <Compile Include="Interface\IVagaEstagioAppService.cs" />
     <Compile Include="Mapper\AutoMapperConfig.cs" />
     <Compile Include="Mapper\DomainToViewModelMappingProfile.cs" />
     <Compile Include="Mapper\ViewModelToDomainMappingProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\VagaEmpregoAppService.cs" />
+    <Compile Include="Services\EmpresaAppService.cs" />
     <Compile Include="Services\VagaEstagioAppService.cs" />
+    <Compile Include="ViewModels\VagaEmpregoViewModel.cs" />
+    <Compile Include="ViewModels\EmpresaViewModel.cs" />
     <Compile Include="ViewModels\VagaEstagioViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

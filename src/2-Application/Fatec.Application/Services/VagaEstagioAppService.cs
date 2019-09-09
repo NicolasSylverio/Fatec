@@ -10,7 +10,7 @@ namespace Fatec.Application.Services
 {
     public class VagaEstagioAppService : IVagaEstagioAppService
     {
-        private readonly IVagaEstagioRepository _vagaEstagioRepository;
+        private readonly IVagaEstagioRepository _empresaRepository;
         private readonly IMapper _mapper;
 
         public VagaEstagioAppService
@@ -19,7 +19,7 @@ namespace Fatec.Application.Services
             IMapper mapper
         )
         {
-            _vagaEstagioRepository = vagaEstagioRepository;
+            _empresaRepository = vagaEstagioRepository;
             _mapper = mapper;
         }
 
@@ -27,12 +27,12 @@ namespace Fatec.Application.Services
         {
             var usuario = _mapper.Map<VagaEstagio>(vagaEstagioViewModel);
 
-            _vagaEstagioRepository.Add(usuario);
+            _empresaRepository.Add(usuario);
         }
 
         public IEnumerable<VagaEstagioViewModel> GetAllVagaEstagioViewModel()
         {
-            var vagaEstagios = _vagaEstagioRepository.GetAll().ToList();
+            var vagaEstagios = _empresaRepository.GetAll().ToList();
 
             var usuariosViewModel = new List<VagaEstagioViewModel>();
 
@@ -45,32 +45,32 @@ namespace Fatec.Application.Services
         }
         public void Add(VagaEstagio obj)
         {
-            _vagaEstagioRepository.Add(obj);
+            _empresaRepository.Add(obj);
         }
 
         public VagaEstagio GetById(int id)
         {
-            return _vagaEstagioRepository.GetById(id);
+            return _empresaRepository.GetById(id);
         }
 
         public void Remove(VagaEstagio obj)
         {
-            _vagaEstagioRepository.Remove(obj);
+            _empresaRepository.Remove(obj);
         }
 
         public void Update(VagaEstagio obj)
         {
-            _vagaEstagioRepository.Update(obj);
+            _empresaRepository.Update(obj);
         }
 
         public void Dispose()
         {
-            _vagaEstagioRepository.Dispose();
+            _empresaRepository.Dispose();
         }
 
         public IEnumerable<VagaEstagio> GetAll()
         {
-            return _vagaEstagioRepository.GetAll();
+            return _empresaRepository.GetAll();
         }
     }
 }

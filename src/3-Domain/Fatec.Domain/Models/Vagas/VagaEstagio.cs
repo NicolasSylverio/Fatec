@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fatec.Domain.Models.Empresas;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,10 +12,9 @@ namespace Fatec.Domain.Models.Vagas
         public string Titulo { get; set; }
         public string Subtitulo { get; set; }
         public string Descricao { get; set; }
-        public string Empresa { get; set; }
-        public string Email { get; set; }
-        public string Telefone { get; set; }
-        public string URLImagem { get; set; }
-        public string URLSite { get; set; }
+        public virtual Empresa Empresa { get; set; }
+        public string UrlImagem { get; set; }
+        public DateTime DataHoraCadastro { get; set; }
+        public DateTime DataValidade { get; set; }
     }
 }

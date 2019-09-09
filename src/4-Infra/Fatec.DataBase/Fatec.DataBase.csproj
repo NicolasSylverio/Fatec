@@ -71,17 +71,10 @@
     <Compile Include="Context\IDbContext.cs" />
     <Compile Include="Context\IntranetFatecContext.cs" />
     <Compile Include="Context\Context.cs" />
-    <Compile Include="Migrations\201908250253173_inicial.cs" />
-    <Compile Include="Migrations\201908250253173_inicial.Designer.cs">
-      <DependentUpon>201908250253173_inicial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201909011650101_urlsite vagaEstagio.cs" />
-    <Compile Include="Migrations\201909011650101_urlsite vagaEstagio.Designer.cs">
-      <DependentUpon>201909011650101_urlsite vagaEstagio.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\RepositoryBase.cs" />
+    <Compile Include="Repository\EmpresaRepository.cs" />
     <Compile Include="Repository\VagaEstagioRepository.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -99,14 +92,6 @@
       <Project>{CBD67C1C-A4FB-4C6A-B16F-229D34882312}</Project>
       <Name>Fatec.CrossCutting</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201908250253173_inicial.resx">
-      <DependentUpon>201908250253173_inicial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909011650101_urlsite vagaEstagio.resx">
-      <DependentUpon>201909011650101_urlsite vagaEstagio.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

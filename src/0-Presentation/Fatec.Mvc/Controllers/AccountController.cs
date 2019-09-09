@@ -1,5 +1,6 @@
-﻿using Fatec.CrossCutting.Models;
-using Fatec.Domain.Identity;
+﻿using Fatec.Identity;
+using Fatec.Identity.Identity;
+using Fatec.Identity.Models;
 using Fatec.Mvc.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;

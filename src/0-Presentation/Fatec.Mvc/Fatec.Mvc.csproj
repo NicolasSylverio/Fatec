@@ -320,6 +320,10 @@
       <Project>{579CEEC6-F0B7-48D4-9BA2-1BC8CF577DE0}</Project>
       <Name>Fatec.DataBase</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\4-Infra\Fatec.Identity\Fatec.Identity.csproj">
+      <Project>{2B0A8808-4E9F-4EA3-BCC1-DE616A308E5E}</Project>
+      <Name>Fatec.Identity</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

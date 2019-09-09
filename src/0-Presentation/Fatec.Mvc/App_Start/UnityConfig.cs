@@ -2,6 +2,7 @@ using AutoMapper;
 using Fatec.Application.AutoMapper;
 using Fatec.Application.Interface;
 using Fatec.Application.Services;
+using Fatec.CrossCutting.Interfaces;
 using Fatec.Domain.Interfaces.Repositories;
 using Fatec.Infra.Data.Repositories;
 using Fatec.Infra.DataBase.Context;

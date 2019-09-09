@@ -3,7 +3,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace Fatec.CrossCutting.Models
+namespace Fatec.Identity.Models
 {
     public class ApplicationUser : IdentityUser
     {

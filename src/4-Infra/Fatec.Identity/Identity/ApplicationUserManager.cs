@@ -1,12 +1,12 @@
-﻿using Fatec.CrossCutting.Models;
-using Fatec.Infra.CrossCutting.Context;
+﻿using Fatec.Identity.Data;
+using Fatec.Identity.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using System;
 
-namespace Fatec.Domain.Identity
+namespace Fatec.Identity
 {
     /// <summary>
     /// Configure o gerenciador de usuários do aplicativo usado nesse aplicativo. O UserManager está definido no ASP.NET Identity e é usado pelo aplicativo.

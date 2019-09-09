@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Fatec.Domain.Models.Empresas
 {
+    [Table("Empresa")]
     public class Empresa
     {
         public int Id { get; set; }

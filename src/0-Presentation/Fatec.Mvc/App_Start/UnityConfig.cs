@@ -5,6 +5,9 @@ using Fatec.Application.Services;
 using Fatec.Domain.Interfaces.Repositories;
 using Fatec.Infra.Data.Repositories;
 using Fatec.Infra.DataBase.Context;
+using Fatec.Mvc.Controllers;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Web.Mvc;
 using Unity;
@@ -51,9 +54,6 @@ namespace Fatec.Mvc
 
             // TODO: Register your type's mappings here.
             // container.RegisterType<IProductRepository, ProductRepository>();
-
-
-
         }
 
         public static void RegisterComponents()
@@ -62,8 +62,11 @@ namespace Fatec.Mvc
             // register all your components with the container here
             // it is NOT necessary to register your controllers
 
+            // Identity
+            container.RegisterType<AccountController>(new InjectionConstructor());
+            container.RegisterType<IUserStore<IdentityUser>, UserStore<IdentityUser>>();
 
-           // container.RegisterType<DbContext, IntranetFatecContext>(new HierarchicalLifetimeManager(), new InjectionConstructor("server=xxx.com;port=3306;database=intranet;uid=xxxx;password=xxxxx"));
+            // container.RegisterType<DbContext, IntranetFatecContext>(new HierarchicalLifetimeManager(), new InjectionConstructor("server=xxx.com;port=3306;database=intranet;uid=xxxx;password=xxxxx"));
 
             container.RegisterType<IVagaEstagioRepository, VagaEstagioRepository>();
             container.RegisterType<IVagaEstagioAppService, VagaEstagioAppService>();

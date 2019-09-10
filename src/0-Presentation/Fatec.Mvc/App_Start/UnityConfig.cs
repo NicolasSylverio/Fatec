@@ -4,6 +4,7 @@ using Fatec.Application.Interface;
 using Fatec.Application.Services;
 using Fatec.CrossCutting.Interfaces;
 using Fatec.Domain.Interfaces.Repositories;
+using Fatec.Identity.Context;
 using Fatec.Infra.Data.Repositories;
 using Fatec.Infra.DataBase.Context;
 using Fatec.Mvc.Controllers;
@@ -82,6 +83,7 @@ namespace Fatec.Mvc
             //container.RegisterInstance(mapper, Activator.CreateInstance<T>());
 
             container.RegisterType<IDbContext, IntranetFatecContext>();
+            container.RegisterType<IDbContext, ApplicationDbContext>();
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }

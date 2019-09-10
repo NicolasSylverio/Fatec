@@ -1,4 +1,4 @@
-﻿using Fatec.Identity.Data;
+﻿using Fatec.Identity.Context;
 using Fatec.Identity.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;

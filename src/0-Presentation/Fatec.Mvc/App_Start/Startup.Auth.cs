@@ -1,5 +1,5 @@
 ﻿using Fatec.Identity;
-using Fatec.Identity.Data;
+using Fatec.Identity.Context;
 using Fatec.Identity.Identity;
 using Fatec.Identity.Models;
 using Microsoft.AspNet.Identity;

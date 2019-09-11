@@ -75,10 +75,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Identity\ApplicationSignInManager.cs" />
-    <Compile Include="Identity\ApplicationUserManager.cs" />
-    <Compile Include="Identity\IdentityEmailService.cs" />
-    <Compile Include="Identity\IdentitySmsService.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoryBase.cs" />
     <Compile Include="Interfaces\Repositories\IEmpresaRepository.cs" />
     <Compile Include="Interfaces\Repositories\IVagaEstagioRepository.cs" />
@@ -88,9 +84,7 @@
     <Compile Include="Services\EmailService.cs" />
     <Compile Include="Services\SmsService.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Abstraction\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

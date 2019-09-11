@@ -2,7 +2,7 @@
 using System.Data.Entity;
 using System.Threading.Tasks;
 
-namespace Fatec.Infra.DataBase.Context
+namespace Fatec.CrossCutting.Interfaces
 {
     public interface IDbContext : IDisposable
     {

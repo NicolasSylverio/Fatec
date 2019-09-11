@@ -1,7 +1,6 @@
-﻿using Fatec.Domain.Models.Empresas;
+﻿using Fatec.CrossCutting.Interfaces;
+using Fatec.Domain.Models.Empresas;
 using Fatec.Domain.Models.Vagas;
-using MySql.Data.Entity;
-using System;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 

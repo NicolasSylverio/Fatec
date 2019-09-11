@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNet.Identity;
 using System.Threading.Tasks;
 
-namespace Fatec.Domain.Identity
+namespace Fatec.Identity
 {
-    class IdentityEmailService : IIdentityMessageService
+    class IdentitySmsService : IIdentityMessageService
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // Conecte o seu serviço de email aqui para enviar um email.
+            // Conecte seu serviço de SMS aqui para enviar uma mensagem de texto.
             return Task.FromResult(0);
         }
     }

@@ -302,6 +302,8 @@
     <Content Include="Views\VagasEstagio\Cadastrar.cshtml" />
     <Content Include="Views\VagasEstagio\Index2.cshtml" />
     <Content Include="Views\Empresas\Index.cshtml" />
+    <Content Include="Views\Shared\_preloader.cshtml" />
+    <Content Include="Views\Empresas\Cadastro.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\2-Application\Fatec.Application\Fatec.Application.csproj">

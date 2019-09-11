@@ -35,6 +35,15 @@ html {
     box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
+.loader {
+    position: absolute !important;
+    margin: auto;
+    top: 50vh;
+    bottom: 50vh;
+    left: 0;
+    right: 0;
+}
+
 button.accept-policy {
     font-size: 1rem;
     line-height: inherit;

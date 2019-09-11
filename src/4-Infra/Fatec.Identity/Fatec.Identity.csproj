@@ -94,10 +94,6 @@
     <Compile Include="Identity\ApplicationUserManager.cs" />
     <Compile Include="Identity\IdentityEmailService.cs" />
     <Compile Include="Identity\IdentitySmsService.cs" />
-    <Compile Include="Migrations\201909100157202_initial-migration.cs" />
-    <Compile Include="Migrations\201909100157202_initial-migration.Designer.cs">
-      <DependentUpon>201909100157202_initial-migration.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -111,11 +107,6 @@
       <Project>{CBD67C1C-A4FB-4C6A-B16F-229D34882312}</Project>
       <Name>Fatec.CrossCutting</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201909100157202_initial-migration.resx">
-      <DependentUpon>201909100157202_initial-migration.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

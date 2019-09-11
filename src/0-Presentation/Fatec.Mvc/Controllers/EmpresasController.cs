@@ -31,7 +31,7 @@ namespace Fatec.Mvc.Controllers
 
         public ActionResult Cadastrar()
         {
-            ViewBag.Title = "Cadastrar Vaga de Estágio";
+            ViewBag.Title = "Cadastrar Empresa";
             //var vagas = _empresaAppService.GetAllVagaEstagioViewModel().AsEnumerable();
             //return View(vagas);
             return View();

@@ -1,8 +1,32 @@
-﻿<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<style type="text/css">
+    #fadeTela {
+        display: none;
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 100%;
+        background-color: #ababab;
+        z-index: 1001;
+        -moz-opacity: 0.8;
+        opacity: .70;
+        filter: alpha(opacity=80);
+    }
+</style>
 <script>
+
+    function abrirLinkMenu(vUrl) {
+        var elem = document.querySelector('#slide_menu');
+        var instance = M.Sidenav.getInstance(elem);
+        instance.close();
+        $(".preloader-wrapper").show();
+        $("#fadeTela").show();
+        window.location.href = vUrl;
+    };
     //paste this code under the head tag or in a separate js file.
     // Wait for window load
-    $(window).load(function () {
+    $(window).on('load', function () {
         // Animate loader off screen
         $(".preloader-wrapper").fadeOut("slow");;
     });
@@ -48,4 +72,4 @@
         </div>
     </div>
 </div>
-
+<div id="fadeTela" style="display: none;"></div>

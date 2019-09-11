@@ -85,8 +85,22 @@
         <div class="divider"></div>
     </li>
     <li>
-        <a href="@Url.Action("Index", "Empresas")" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">business</i>Empresas</a>
-    </li>
+        <ul class="collapsible collapsible-accordion">
+            <li>
+                <a class="collapsible-header waves-effect waves-teal">Empresas<i class="material-icons">arrow_drop_down</i></a>
+                <div class="collapsible-body">
+                    <ul>
+                        <li>
+                            <a href="@Url.Action("Index", "Empresas")" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">business</i>Listar Empresas</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Cadastro", "Empresas")" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">business</i>Cadastro de Empresas</a>
+                        </li>
+                    </ul>
+                </div>
+            <li>
+        </ul>
+    <li>
     <li>
         <div class="divider"></div>
     </li>
@@ -97,13 +111,13 @@
                 <div class="collapsible-body">
                     <ul>
                         <li>
-                            <a href="@Url.Action("Index", "VagasEstagio")" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">next_week</i>Vagas de Estágio</a>
+                            <a href="@Url.Action("Index", "VagasEstagio")" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">next_week</i>Listar Vagas</a>
                         </li>
                         <li>
-                            <a href="@Url.Action("Index2", "VagasEstagio")" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">next_week</i>Vagas de Estágio v2</a>
+                            <a href="@Url.Action("Index2", "VagasEstagio")" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">next_week</i>Listar Vagas v2</a>
                         </li>
                         <li>
-                            <a href="@Url.Action("Cadastro", "VagasEstagio")" class="collapsible-header waves-effect waves-teal"><i class="material-icons left"></i>Cadastro</a>
+                            <a href="@Url.Action("Cadastro", "VagasEstagio")" class="collapsible-header waves-effect waves-teal"><i class="material-icons left"></i>Cadastro de Vagas</a>
                         </li>
                     </ul>
                 </div>
@@ -153,7 +167,7 @@
                         </li>
                         <li>
                             <a href="http://www.fatecjd.edu.br/intranetAlunos/temas.php" target="_blank" rel="noopener" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">insert_drive_file</i>TCC/ICT orientadores</a>
-                        </li>                     
+                        </li>
                         <li>
                             <a href="@Url.Action("", "")" target="_blank" rel="noopener" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">local_library</i>Tabelas Prof. João Carlos</a>
                         </li>
@@ -170,7 +184,7 @@
 <script language="javascript">
 
     document.addEventListener('DOMContentLoaded', function () {
-        const menuOptions = {};
+        const menuOptions = { hover: true, closeOnClick: true };
         const loginOptions = { edge: 'right' };
         const collapsibleOptions = { inDuration: 50, outDuration: 50 };
 

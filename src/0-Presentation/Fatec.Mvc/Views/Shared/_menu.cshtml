@@ -184,8 +184,8 @@
 <script language="javascript">
 
     function abrirLinkMenu(vUrl) {
-        var elem = document.querySelector('#slide_menu');
-        var instance = M.Sidenav.getInstance(elem);
+        const elem = document.querySelector('#slide_menu');
+        const instance = M.Sidenav.getInstance(elem);
         instance.close();
         window.location.href = vUrl;
        };

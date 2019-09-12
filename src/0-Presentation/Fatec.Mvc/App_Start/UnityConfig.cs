@@ -66,6 +66,7 @@ namespace Fatec.Mvc
 
             // Identity
             container.RegisterType<AccountController>(new InjectionConstructor());
+            container.RegisterType<ManageController>(new InjectionConstructor());
             container.RegisterType<IUserStore<IdentityUser>, UserStore<IdentityUser>>();
 
             // container.RegisterType<DbContext, IntranetFatecContext>(new HierarchicalLifetimeManager(), new InjectionConstructor("server=xxx.com;port=3306;database=intranet;uid=xxxx;password=xxxxx"));

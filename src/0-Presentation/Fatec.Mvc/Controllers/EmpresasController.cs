@@ -1,9 +1,12 @@
 ﻿using Fatec.Application.Interface;
+using Fatec.Application.ViewModels;
+using Fatec.Domain.Models.Empresas;
 using System.Linq;
 using System.Web.Mvc;
 
 namespace Fatec.Mvc.Controllers
 {
+    [Authorize]
     public class EmpresasController : Controller
     {
         private readonly IEmpresaAppService _empresaAppService;
@@ -37,50 +40,51 @@ namespace Fatec.Mvc.Controllers
             return View();
         }
 
-
-        // GET: Estagio/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Estagio/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Estagio/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Cadastrar(EmpresaViewModel model)
         {
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    model.DataHoraCadastro = System.DateTime.Now;
+                    _empresaAppService.Cadastrar(model);
+                    return RedirectToAction("Cadastro");
+                }
+                return View();
             }
             catch
             {
                 return View();
             }
         }
-
-        // GET: Estagio/Edit/5
-        public ActionResult Edit(int id)
+               
+        // GET: Estagio/Details/5
+        public ActionResult Details(int id)
         {
             return View();
         }
 
-        // POST: Estagio/Edit/5
+        // GET: Estagio/Edit/5
+        public ActionResult Alterar(int id)
+        {
+            EmpresaViewModel empresaViewModel = _empresaAppService.GetViewModel(id);
+            return View(empresaViewModel);
+        }
+
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Alterar(EmpresaViewModel model)
         {
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    _empresaAppService.Alterar(model);
+                    return RedirectToAction("Cadastro");
+                }
+                return View();
             }
             catch
             {
@@ -91,23 +95,10 @@ namespace Fatec.Mvc.Controllers
         // GET: Estagio/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            Empresa empresa = _empresaAppService.GetById(id);
+            _empresaAppService.Remove(empresa);
+            return RedirectToAction("Cadastro");
         }
-
-        // POST: Estagio/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+               
     }
 }

@@ -23,25 +23,25 @@ namespace Fatec.Application.Services
             _mapper = mapper;
         }
 
-        public void Cadastrar(EmpresaViewModel EmpresaViewModel)
+        public void Cadastrar(EmpresaViewModel empresaViewModel)
         {
-            var usuario = _mapper.Map<Empresa>(EmpresaViewModel);
+            var empresa = _mapper.Map<Empresa>(empresaViewModel);
 
-            _empresaRepository.Add(usuario);
+            _empresaRepository.Add(empresa);
         }
 
         public IEnumerable<EmpresaViewModel> GetAllEmpresaViewModel()
         {
             var empresas = _empresaRepository.GetAll().ToList();
 
-            var usuariosViewModel = new List<EmpresaViewModel>();
+            var empresasViewModel = new List<EmpresaViewModel>();
 
             foreach (var empresa in empresas)
             {
-                usuariosViewModel.Add(_mapper.Map<EmpresaViewModel>(empresa));
+                empresasViewModel.Add(_mapper.Map<EmpresaViewModel>(empresa));
             }
 
-            return usuariosViewModel;
+            return empresasViewModel;
         }
         public void Add(Empresa obj)
         {
@@ -71,6 +71,18 @@ namespace Fatec.Application.Services
         public IEnumerable<Empresa> GetAll()
         {
             return _empresaRepository.GetAll();
+        }
+
+        public EmpresaViewModel GetViewModel(int id)
+        {
+            var empresa = _empresaRepository.GetById(id);
+            return _mapper.Map<EmpresaViewModel>(empresa);
+        }
+
+        public void Alterar(EmpresaViewModel obj)
+        {
+            var empresa = _mapper.Map<Empresa>(obj);
+            _empresaRepository.Update(empresa);
         }
     }
 }

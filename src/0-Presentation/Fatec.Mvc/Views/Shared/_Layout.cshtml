@@ -33,12 +33,11 @@
             @RenderBody()
             @Html.Partial("_preloader")
         </div>
-
+        
+        @Html.Partial("_toasts")
         <noscript class="center">JavaScript não é suportado ou está desativado no navegador!</noscript>
 
     </main>
-
-    @Html.Partial("_toasts")
 
     @Html.Partial("_footer")
 

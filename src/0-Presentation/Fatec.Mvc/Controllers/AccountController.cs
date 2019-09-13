@@ -145,7 +145,8 @@ namespace Fatec.Mvc.Controllers
                     return View("Lockout");
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Código inválido.");
+                    ModelState.AddModelError("", @"Código inválido.");
+                    ViewBag.Error("Código inválido.");
                     return View(model);
             }
         }
@@ -180,7 +181,7 @@ namespace Fatec.Mvc.Controllers
 
                     // Para obter mais informações sobre como habilitar a confirmação da conta e redefinição de senha, visite https://go.microsoft.com/fwlink/?LinkID=320771
                     // Enviar um email com este link
-                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code }, protocol: Request.Url.Scheme);
                     await UserManager.SendEmailAsync(user.Id, "Confirmar sua conta", "Confirme sua conta clicando <a href=\"" + callbackUrl + "\">aqui</a>");
 
@@ -230,25 +231,23 @@ namespace Fatec.Mvc.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
-            if (ModelState.IsValid)
-            {
-                var user = await UserManager.FindByNameAsync(model.Email);
-                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
-                {
-                    // Não revelar que o usuário não existe ou não está confirmado
-                    return View("ForgotPasswordConfirmation");
-                }
+            if (!ModelState.IsValid) return View(model);
 
-                // Para obter mais informações sobre como habilitar a confirmação da conta e redefinição de senha, visite https://go.microsoft.com/fwlink/?LinkID=320771
-                // Enviar um email com este link
-                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code }, protocol: Request.Url.Scheme);
-                await UserManager.SendEmailAsync(user.Id, "Redefinir senha", "Redefina sua senha, clicando <a href=\"" + callbackUrl + "\">aqui</a>");
-                return RedirectToAction("ForgotPasswordConfirmation", "Account");
+            var user = await UserManager.FindByNameAsync(model.Email);
+            if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+            {
+                // Não revelar que o usuário não existe ou não está confirmado
+                return View("ForgotPasswordConfirmation");
             }
 
+            // Para obter mais informações sobre como habilitar a confirmação da conta e redefinição de senha, visite https://go.microsoft.com/fwlink/?LinkID=320771
+            // Enviar um email com este link
+            var code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+            var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code }, protocol: Request.Url.Scheme);
+            await UserManager.SendEmailAsync(user.Id, "Redefinir senha", "Redefina sua senha, clicando <a href=\"" + callbackUrl + "\">aqui</a>");
+            return RedirectToAction("ForgotPasswordConfirmation", "Account");
+
             // Se chegamos até aqui e houver alguma falha, exiba novamente o formulário
-            return View(model);
         }
 
         /// <summary>

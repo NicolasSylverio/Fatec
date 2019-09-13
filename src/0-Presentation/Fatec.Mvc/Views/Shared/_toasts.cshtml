@@ -1,0 +1,29 @@
+﻿<input type="hidden" id="success" value="@ViewBag.Sucess" />
+<input type="hidden" id="error" value="@ViewBag.Erro" />
+<input type="hidden" id="warning" value="@ViewBag.Warning" />
+<input type="hidden" id="info" value="@ViewBag.Info" />
+
+<script type="text/javascript">
+    $(function () {
+        const displayMessage = function (message, color) {
+            M.toast({
+                html: message,
+                activationPercent: 0.5,
+                classes: `${color}`
+            });
+        };
+
+        if ($('#success').val()) {
+            displayMessage($('#success').val(), "green lighten-1 white-text");
+        }
+        if ($('#info').val()) {
+            displayMessage($('#info').val(), "blue lighten-1 white-text");
+        }
+        if ($('#warning').val()) {
+            displayMessage($('#warning').val(), "yellow lighten-1 black-text");
+        }
+        if ($('#error').val()) {
+            displayMessage($('#error').val(), "red lighten-1 white-text");
+        }
+    });
+</script>

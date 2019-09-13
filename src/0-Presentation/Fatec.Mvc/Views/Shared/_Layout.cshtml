@@ -21,7 +21,7 @@
     <title>@ViewBag.Title - Fatec</title>
 
     @Styles.Render("~/bundles/css")
-
+    @Scripts.Render("~/bundles/js")
 </head>
 <body style="padding: 0">
 
@@ -38,9 +38,9 @@
 
     </main>
 
-    @Html.Partial("_footer")
+    @Html.Partial("_toasts")
 
-    @Scripts.Render("~/bundles/js")
+    @Html.Partial("_footer")
 
     @RenderSection("scripts", false)
 </body>

@@ -13,7 +13,7 @@ namespace Fatec.Domain.Models.Vagas
         public string Descricao { get; set; }
         public virtual Empresa Empresa { get; set; }
         public string UrlImagem { get; set; }
-        public DateTime DataHoraCadastro { get; set; }
+        public DateTime DataHoraCadastro { get; set; } = DateTime.Now;
         public DateTime DataValidade { get; set; }
     }
 }

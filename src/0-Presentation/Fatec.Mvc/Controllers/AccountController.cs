@@ -93,7 +93,8 @@ namespace Fatec.Mvc.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Tentativa de login inválida.");
+                    ModelState.AddModelError("", @"Tentativa de login inválida.");
+                    ViewBag.Erro = "Tentativa de login inválida.";
                     return View(model);
             }
         }

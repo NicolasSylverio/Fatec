@@ -1,10 +1,9 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <style type="text/css">
     #fadeTela {
         display: none;
         position: absolute;
-        top: 0%;
-        left: 0%;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
         background-color: #ababab;
@@ -17,8 +16,8 @@
 <script>
 
     function abrirLinkMenu(vUrl) {
-        var elem = document.querySelector('#slide_menu');
-        var instance = M.Sidenav.getInstance(elem);
+        const  elem = document.querySelector('#slide_menu');
+        const instance = M.Sidenav.getInstance(elem);
         instance.close();
         $(".preloader-wrapper").show();
         $("#fadeTela").show();

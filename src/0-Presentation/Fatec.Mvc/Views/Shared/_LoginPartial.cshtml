@@ -57,11 +57,15 @@ else
         <li>
             <div class="divider"></div>
         </li>
-        <li>@Html.ActionLink("Registrar", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>
+            <a id="registerLink" href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Register", "Account")')"><i class="material-icons left"></i>Registrar</a>
+        </li>
         <li>
             <div class="divider"></div>
         </li>
-        <li>@Html.ActionLink("Logon", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li>
+            <a id="loginLink" href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Login", "Account")')"><i class="material-icons left"></i>Logon</a>
+        </li>
         <li>
             <div class="divider"></div>
         </li>

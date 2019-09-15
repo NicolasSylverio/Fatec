@@ -6,9 +6,9 @@ namespace Fatec.Mvc
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
-
             bundles.Add(new ScriptBundle("~/bundles/js").Include(
                             "~/Scripts/materialize.min.js",
+                            "~/Scripts/jquery-3.4.1.min.js",
                             "~/Scripts/site.js"));
 
             bundles.Add(new StyleBundle("~/bundles/css").Include(

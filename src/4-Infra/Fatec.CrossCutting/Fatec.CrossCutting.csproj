@@ -69,13 +69,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\ApplicationDbContext.cs" />
-    <Compile Include="Migrations\201908251543392_iniia.cs" />
-    <Compile Include="Migrations\201908251543392_iniia.Designer.cs">
-      <DependentUpon>201908251543392_iniia.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Interfaces\IDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -83,9 +77,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201908251543392_iniia.resx">
-      <DependentUpon>201908251543392_iniia.cs</DependentUpon>
-    </EmbeddedResource>
+    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

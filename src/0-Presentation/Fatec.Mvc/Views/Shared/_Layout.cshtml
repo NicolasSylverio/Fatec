@@ -21,7 +21,7 @@
     <title>@ViewBag.Title - Fatec</title>
 
     @Styles.Render("~/bundles/css")
-
+    @Scripts.Render("~/bundles/js")
 </head>
 <body style="padding: 0">
 
@@ -31,15 +31,15 @@
 
         <div class="container">
             @RenderBody()
+            @Html.Partial("_preloader")
         </div>
-
+        
+        @Html.Partial("_toasts")
         <noscript class="center">JavaScript não é suportado ou está desativado no navegador!</noscript>
 
     </main>
 
     @Html.Partial("_footer")
-
-    @Scripts.Render("~/bundles/js")
 
     @RenderSection("scripts", false)
 </body>

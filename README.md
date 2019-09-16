@@ -10,8 +10,10 @@ Curso: **Gestão da Tecnologia da Informação**
  - [ASP.NET MVC](https://dotnet.microsoft.com/apps/aspnet/mvc)
  - [Entity Framework](https://docs.microsoft.com/pt-br/ef/)
  - [Microsoft .Net Identity](https://docs.microsoft.com/pt-br/aspnet/identity/overview/getting-started/introduction-to-aspnet-identity)
+ - [Unity IoC](https://github.com/unitycontainer)
 - [AutoMapper](https://automapper.org/)
 - [Materialize](https://materializecss.com/)
+- [MySql](https://www.mysql.com/)
 
 
 ## Arquitetura

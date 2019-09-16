@@ -215,6 +215,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\OfflineController.cs" />
     <Compile Include="Controllers\EmpresasController.cs" />
+    <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Controllers\VagasEstagioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -224,7 +225,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\VagaEmpresaViewModel.cs" />
+    <Compile Include="Models\VagaEmpregoViewModel.cs" />
     <Compile Include="Models\VagaEstagioViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -237,6 +238,8 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\css\site.css" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\materialize.js" />
     <Content Include="Scripts\materialize.min.js" />
     <Content Include="service-worker.js" />
@@ -279,6 +282,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_footer.cshtml" />
     <Content Include="Views\Shared\_menu.cshtml" />
+    <Content Include="Views\Shared\_toasts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -302,6 +306,13 @@
     <Content Include="Views\VagasEstagio\Cadastrar.cshtml" />
     <Content Include="Views\VagasEstagio\Index2.cshtml" />
     <Content Include="Views\Empresas\Index.cshtml" />
+    <Content Include="Views\Shared\_preloader.cshtml" />
+    <Content Include="Views\Empresas\Cadastro.cshtml" />
+    <Content Include="Views\Empresas\Cadastrar.cshtml" />
+    <Content Include="Views\Empresas\Alterar.cshtml" />
+    <Content Include="Views\Tags\Index.cshtml" />
+    <Content Include="Views\Tags\Cadastrar.cshtml" />
+    <Content Include="Views\Tags\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\2-Application\Fatec.Application\Fatec.Application.csproj">
@@ -319,6 +330,10 @@
     <ProjectReference Include="..\..\4-Infra\Fatec.DataBase\Fatec.DataBase.csproj">
       <Project>{579CEEC6-F0B7-48D4-9BA2-1BC8CF577DE0}</Project>
       <Name>Fatec.DataBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\4-Infra\Fatec.Identity\Fatec.Identity.csproj">
+      <Project>{2B0A8808-4E9F-4EA3-BCC1-DE616A308E5E}</Project>
+      <Name>Fatec.Identity</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

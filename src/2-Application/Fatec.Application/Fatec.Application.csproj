@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interface\IAppServiceBase.cs" />
+    <Compile Include="Interface\ITagsAppService.cs" />
     <Compile Include="Interface\IVagaEmpregoAppService.cs" />
     <Compile Include="Interface\IEmpresaAppService.cs" />
     <Compile Include="Interface\IVagaEstagioAppService.cs" />
@@ -57,9 +58,12 @@
     <Compile Include="Mapper\DomainToViewModelMappingProfile.cs" />
     <Compile Include="Mapper\ViewModelToDomainMappingProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AppServiceBase.cs" />
+    <Compile Include="Services\TagsAppService.cs" />
     <Compile Include="Services\VagaEmpregoAppService.cs" />
     <Compile Include="Services\EmpresaAppService.cs" />
     <Compile Include="Services\VagaEstagioAppService.cs" />
+    <Compile Include="ViewModels\TagsViewModel.cs" />
     <Compile Include="ViewModels\VagaEmpregoViewModel.cs" />
     <Compile Include="ViewModels\EmpresaViewModel.cs" />
     <Compile Include="ViewModels\VagaEstagioViewModel.cs" />
@@ -71,6 +75,10 @@
     <ProjectReference Include="..\..\3-Domain\Fatec.Domain\Fatec.Domain.csproj">
       <Project>{04fe369a-4054-4ce3-99c6-1ed80a313ac4}</Project>
       <Name>Fatec.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\4-Infra\Fatec.DataBase\Fatec.DataBase.csproj">
+      <Project>{579CEEC6-F0B7-48D4-9BA2-1BC8CF577DE0}</Project>
+      <Name>Fatec.DataBase</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

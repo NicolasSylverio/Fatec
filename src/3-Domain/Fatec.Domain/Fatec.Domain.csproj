@@ -75,22 +75,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Identity\ApplicationSignInManager.cs" />
-    <Compile Include="Identity\ApplicationUserManager.cs" />
-    <Compile Include="Identity\IdentityEmailService.cs" />
-    <Compile Include="Identity\IdentitySmsService.cs" />
     <Compile Include="Interfaces\Repositories\IRepositoryBase.cs" />
     <Compile Include="Interfaces\Repositories\IEmpresaRepository.cs" />
+    <Compile Include="Interfaces\Repositories\ITagsRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IVagaEmpregoRepository.cs" />
     <Compile Include="Interfaces\Repositories\IVagaEstagioRepository.cs" />
     <Compile Include="Models\Empresas\Empresa.cs" />
+    <Compile Include="Models\Tags\Tags.cs" />
+    <Compile Include="Models\Vagas\VagaEmpresa.cs" />
     <Compile Include="Models\Vagas\VagaEstagio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\EmailService.cs" />
     <Compile Include="Services\SmsService.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Abstraction\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

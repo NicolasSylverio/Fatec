@@ -9,5 +9,7 @@ namespace Fatec.Application.Interface
         void Cadastrar(EmpresaViewModel empresaViewModel);
 
         IEnumerable<EmpresaViewModel> GetAllEmpresaViewModel();
+        EmpresaViewModel GetViewModel(int id);
+        void Alterar(EmpresaViewModel model);
     }
 }

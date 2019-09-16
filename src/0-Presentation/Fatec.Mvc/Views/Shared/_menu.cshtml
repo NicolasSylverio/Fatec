@@ -25,8 +25,8 @@
 
             <a href="#" class="sidenav-trigger left" data-target="slide_menu"><i class="material-icons left">menu</i></a>
 
-            @Html.ActionLink("Fatec", "Index", "Home", new { area = "" }, new { @class = "brand-logo center" })
-
+            <a href="#" class="brand-logo center" onclick="abrirLinkMenu('@Url.Action("Index", "Home")')">Fatec</a>
+            
             @if (User.Identity.IsAuthenticated)
             {
                 <a href="#" class="sidenav-trigger right" data-target="slide_login"><i class="material-icons right">person</i></a>
@@ -67,25 +67,39 @@
         <div class="divider"></div>
     </li>
     <li>
-        <a href="@Url.Action("Index", "Home")" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">layers</i>Início</a>
+        <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Index", "Home")')"><i class="material-icons left">layers</i>Início</a>
     </li>
     <li>
         <div class="divider"></div>
     </li>
     <li>
-        <a href="@Url.Action("Contact", "Home")" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">question_answer</i>Contato</a>
+        <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Contact", "Home")')"><i class="material-icons left">question_answer</i>Contato</a>
     </li>
     <li>
         <div class="divider"></div>
     </li>
     <li>
-        <a href="@Url.Action("Privacy", "Home")" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">lock_open</i>Politica de Privacidade</a>
+        <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Privacy", "Home")')"><i class="material-icons left">lock_open</i>Politica de Privacidade</a>
     </li>
     <li>
         <div class="divider"></div>
     </li>
     <li>
-        <a href="@Url.Action("Index", "Empresas")" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">business</i>Empresas</a>
+        <ul class="collapsible collapsible-accordion">
+            <li>
+                <a class="collapsible-header waves-effect waves-teal">Empresas<i class="material-icons">arrow_drop_down</i></a>
+                <div class="collapsible-body">
+                    <ul>
+                        <li>
+                            <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Index", "Empresas")')"><i class="material-icons left">business</i>Lista Empresas</a>
+                        </li>
+                        <li>
+                            <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Cadastro", "Empresas")')"><i class="material-icons left">business</i>Cadastro de Empresas</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
     </li>
     <li>
         <div class="divider"></div>
@@ -97,13 +111,13 @@
                 <div class="collapsible-body">
                     <ul>
                         <li>
-                            <a href="@Url.Action("Index", "VagasEstagio")" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">next_week</i>Vagas de Estágio</a>
+                            <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Index", "VagasEstagio")')"><i class="material-icons left">next_week</i>Listar Vagas</a>
                         </li>
                         <li>
-                            <a href="@Url.Action("Index2", "VagasEstagio")" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">next_week</i>Vagas de Estágio v2</a>
+                            <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Index2", "VagasEstagio")')"><i class="material-icons left">next_week</i>Listar Vagas v2</a>
                         </li>
                         <li>
-                            <a href="@Url.Action("Cadastro", "VagasEstagio")" class="collapsible-header waves-effect waves-teal"><i class="material-icons left"></i>Cadastro</a>
+                            <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Cadastro", "VagasEstagio")')"><i class="material-icons left"></i>Cadastro de Vagas</a>
                         </li>
                     </ul>
                 </div>
@@ -120,16 +134,36 @@
                 <div class="collapsible-body">
                     <ul>
                         <li>
-                            <a href="@Url.Action("Index", "VagasEmprego")" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">work</i>Vagas de Emprego</a>
+                            <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Index", "VagasEmprego")')"><i class="material-icons left">work</i>Vagas de Emprego</a>
                         </li>
                         <li>
-                            <a href="@Url.Action("", "VagasEmprego")" class="collapsible-header waves-effect waves-teal"><i class="material-icons left"></i>Cadastro</a>
+                            <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("", "VagasEmprego")')"><i class="material-icons left"></i>Cadastro</a>
                         </li>
                     </ul>
                 </div>
             </li>
         </ul>
     </li>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <li>
+        <ul class="collapsible collapsible-accordion">
+            <li>
+                <a class="collapsible-header waves-effect waves-teal">Tags<i class="material-icons">arrow_drop_down</i></a>
+                <div class="collapsible-body">
+                    <ul>
+                        <li>
+                            <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Index", "Tags")')"><i class="material-icons left">star_border</i>Lista Tags</a>
+                        </li>
+                        <li>
+                            <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Cadastrar", "Tags")')"><i class="material-icons left">star_border</i>Cadastro de Tags</a>
+                        </li>
+                    </ul>
+                </div>
+            <li>
+        </ul>
+    <li>
     <li>
         <div class="divider"></div>
     </li>
@@ -153,7 +187,7 @@
                         </li>
                         <li>
                             <a href="http://www.fatecjd.edu.br/intranetAlunos/temas.php" target="_blank" rel="noopener" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">insert_drive_file</i>TCC/ICT orientadores</a>
-                        </li>                     
+                        </li>
                         <li>
                             <a href="@Url.Action("", "")" target="_blank" rel="noopener" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">local_library</i>Tabelas Prof. João Carlos</a>
                         </li>
@@ -169,8 +203,15 @@
 
 <script language="javascript">
 
+    function abrirLinkMenu(vUrl) {
+        const elem = document.querySelector('#slide_menu');
+        const instance = M.Sidenav.getInstance(elem);
+        instance.close();
+        window.location.href = vUrl;
+       };
+
     document.addEventListener('DOMContentLoaded', function () {
-        const menuOptions = {};
+        const menuOptions = { };
         const loginOptions = { edge: 'right' };
         const collapsibleOptions = { inDuration: 50, outDuration: 50 };
 

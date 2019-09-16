@@ -4,12 +4,13 @@
     ViewBag.Title = "Gerenciar seus logons externos";
 }
 
-<h4>@ViewBag.Title.</h4>
+<br />
+<h4 class="center">@ViewBag.Title</h4>
 
 @{
     var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
     if (loginProviders.Count() == 0) {
-        <div>
+        <div class="center">
             <p>
                 Não há nenhum serviço de autenticação externo configurado.
             </p>

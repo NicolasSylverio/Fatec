@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Gerenciar";
 }
+<br />
 
 <div class="center-align">
     <h3 class="">Alterar as configurações de conta</h3>
@@ -11,7 +12,7 @@
     <br />
 
     <div>
-        <span>Senha:</span>
+        <span>Senha: </span>
 
         @if (Model.HasPassword)
         {
@@ -38,7 +39,7 @@
     <div>
         <span>Número de Telefone:</span>
 
-        @(Model.PhoneNumber ?? "None")
+        @(Model.PhoneNumber ?? "Nenhum")
         @if (Model.PhoneNumber != null)
         {
             <br />
@@ -51,7 +52,7 @@
         }
         else
         {
-            @Html.ActionLink("Add", "AddPhoneNumber")
+            @Html.ActionLink("Adicionar", "AddPhoneNumber")
         }
     </div>
 

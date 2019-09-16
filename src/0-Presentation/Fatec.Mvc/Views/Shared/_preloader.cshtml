@@ -1,0 +1,103 @@
+<style type="text/css">
+    #fadeTela {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #fafafa;
+        z-index: 1001;
+        -moz-opacity: 0.8;
+        opacity: .70;
+        filter: alpha(opacity=80);
+    }
+
+    #preloader {
+        display: none;
+        z-index: 1002;
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        margin-left: -32px;
+        margin-top: -32px;
+        padding: 0;     
+    }
+</style>
+<script>
+
+    function abrirLinkMenu(vUrl) {
+        const elem = document.querySelector('#slide_menu');
+        const instance = M.Sidenav.getInstance(elem);
+        instance.close();
+
+        const elemLogin = document.querySelector('#slide_login');
+        const instanceLogin = M.Sidenav.getInstance(elemLogin);
+        instanceLogin.close();
+
+        $("#fadeTela").show();
+        $("#preloader").show();
+        window.location.href = vUrl;
+    };
+
+    //paste this code under the head tag or in a separate js file.
+    // Wait for window load
+    $(window).on('load', function () {
+        $("#fadeTela").fadeOut("slow");
+        $("#preloade").fadeOut("slow");
+    });
+</script>
+
+<div id="fadeTela"></div>
+<div id="preloader">
+    <div class="preloader-wrapper big active loader">
+        <div class="spinner-layer spinner-blue">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+                <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+        </div>
+
+        <div class="spinner-layer spinner-red">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+                <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+        </div>
+
+        <div class="spinner-layer spinner-yellow">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+                <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+        </div>
+
+        <div class="spinner-layer spinner-green">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+                <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+        </div>
+    </div>
+</div>

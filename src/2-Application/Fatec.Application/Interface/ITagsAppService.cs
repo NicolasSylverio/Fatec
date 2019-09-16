@@ -2,8 +2,7 @@
 
 namespace Fatec.Application.Interface
 {
-    public interface IVagaEmpregoAppService : IAppServiceBase<VagaEmpregoViewModel>
+    public interface ITagsAppService : IAppServiceBase<TagsViewModel>
     {
-
     }
 }

@@ -15,10 +15,9 @@ namespace Fatec.Mvc.Controllers
         // GET: VagasEmprego
         public ActionResult Index()
         {
-            //ViewBag.Title = "Vagas de Emprego";
-            //var vagas = _vagaEmpregoAppService.GetAllVagaEmpregoViewModel().AsEnumerable();
-            //return View(vagas);
-            return View();
+            ViewBag.Title = "Vagas de Emprego";
+            var vagas = _vagaEmpregoAppService.GetAll();
+            return View(vagas);
         }
     }
 }

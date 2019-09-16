@@ -1,0 +1,40 @@
+﻿@using Fatec.Application.ViewModels;
+@model IEnumerable<TagsViewModel>
+
+<h2 class="center">Tags</h2>
+
+@if (Model != null)
+{
+    <div class="row">
+        @foreach (var item in Model)
+        {
+        <div class="col s12 m6 l4 xl4">
+            <div class="card blue-grey lighten-3">
+                <div class="card-content ">
+                    <span class="card-title">@item.Nome</span>
+                    <p>@item.Descricao</p>
+                </div>
+                <div class="card-action">
+                    <span class="card-title"></span>
+                    <a href="Tags/Edit/@item.Id" class="white-text">Alterar</a>
+                    <a href="Tags/Delete/@item.Id" class="white-text">Excluir</a>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="center">
+            <h4>Nenhuma Tag cadastrada no momento</h4>
+        </div>
+    </div>
+}
+
+<div class="fixed-action-btn">
+    <a class="btn-floating btn-large green" href='@Url.Action("Cadastrar", "Tags")'>
+        <i class="large material-icons">add</i>
+    </a>
+</div>

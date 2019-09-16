@@ -17,14 +17,14 @@ namespace Fatec.Mvc.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Vagas de Estágio";
-            var vagas = _vagaEstagioAppService.GetAllVagaEstagioViewModel().AsEnumerable();
+            var vagas = _vagaEstagioAppService.GetAll().AsEnumerable();
             return View(vagas);
         }
 
         public ActionResult Index2()
         {
             ViewBag.Title = "Vagas de Estágio v2";
-            var vagas = _vagaEstagioAppService.GetAllVagaEstagioViewModel().AsEnumerable();
+            var vagas = _vagaEstagioAppService.GetAll().AsEnumerable();
             return View(vagas);
         }
 
@@ -32,7 +32,7 @@ namespace Fatec.Mvc.Controllers
         {
 
             ViewBag.Title = "Cadastro";
-            var vagas = _vagaEstagioAppService.GetAllVagaEstagioViewModel().AsEnumerable();
+            var vagas = _vagaEstagioAppService.GetAll().AsEnumerable();
             return View(vagas);
         }
 

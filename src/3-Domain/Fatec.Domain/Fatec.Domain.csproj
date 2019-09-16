@@ -77,8 +77,12 @@
   <ItemGroup>
     <Compile Include="Interfaces\Repositories\IRepositoryBase.cs" />
     <Compile Include="Interfaces\Repositories\IEmpresaRepository.cs" />
+    <Compile Include="Interfaces\Repositories\ITagsRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IVagaEmpregoRepository.cs" />
     <Compile Include="Interfaces\Repositories\IVagaEstagioRepository.cs" />
     <Compile Include="Models\Empresas\Empresa.cs" />
+    <Compile Include="Models\Tags\Tags.cs" />
+    <Compile Include="Models\Vagas\VagaEmpresa.cs" />
     <Compile Include="Models\Vagas\VagaEstagio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\EmailService.cs" />

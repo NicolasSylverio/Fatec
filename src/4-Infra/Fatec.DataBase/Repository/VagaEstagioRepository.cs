@@ -3,6 +3,7 @@ using Fatec.Domain.Models.Vagas;
 using Fatec.Infra.DataBase.Context;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 
 namespace Fatec.Infra.Data.Repositories
@@ -42,13 +43,13 @@ namespace Fatec.Infra.Data.Repositories
 
         public void Remove(VagaEstagio obj)
         {
-            Db.Entry(obj).State = System.Data.Entity.EntityState.Deleted;
+            Db.Entry(obj).State = EntityState.Deleted;
             Db.SaveChanges();
         }
 
         public void Update(VagaEstagio obj)
         {
-            Db.Entry(obj).State = System.Data.Entity.EntityState.Modified;
+            Db.Entry(obj).State = EntityState.Modified;
             Db.SaveChanges();
         }
     }

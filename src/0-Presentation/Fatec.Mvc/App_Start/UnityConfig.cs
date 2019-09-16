@@ -3,6 +3,7 @@ using Fatec.Application.AutoMapper;
 using Fatec.Application.Interface;
 using Fatec.Application.Services;
 using Fatec.CrossCutting.Interfaces;
+using Fatec.DataBase.Repository;
 using Fatec.Domain.Interfaces.Repositories;
 using Fatec.Identity.Context;
 using Fatec.Infra.Data.Repositories;
@@ -50,38 +51,32 @@ namespace Fatec.Mvc
         /// </remarks>
         public static void RegisterTypes(IUnityContainer container)
         {
-            // NOTE: To load from web.config uncomment the line below.
-            // Make sure to add a Unity.Configuration to the using statements.
-            // container.LoadConfiguration();
-
-            // TODO: Register your type's mappings here.
-            // container.RegisterType<IProductRepository, ProductRepository>();
         }
 
         public static void RegisterComponents()
         {
             var container = new UnityContainer();
-            // register all your components with the container here
-            // it is NOT necessary to register your controllers
 
-            // Identity
             container.RegisterType<AccountController>(new InjectionConstructor());
             container.RegisterType<ManageController>(new InjectionConstructor());
-            container.RegisterType<IUserStore<IdentityUser>, UserStore<IdentityUser>>();
 
-            // container.RegisterType<DbContext, IntranetFatecContext>(new HierarchicalLifetimeManager(), new InjectionConstructor("server=xxx.com;port=3306;database=intranet;uid=xxxx;password=xxxxx"));
+            container.RegisterType<IUserStore<IdentityUser>, UserStore<IdentityUser>>();
 
             container.RegisterType<IVagaEstagioRepository, VagaEstagioRepository>();
             container.RegisterType<IVagaEstagioAppService, VagaEstagioAppService>();
+
+            container.RegisterType<IVagaEmpregoRepository, VagaEmpregoRepository>();
+            container.RegisterType<IVagaEmpregoAppService, VagaEmpregoAppService>();
+
             container.RegisterType<IEmpresaRepository, EmpresaRepository>();
             container.RegisterType<IEmpresaAppService, EmpresaAppService>();
 
-            container.RegisterType<IVagaEmpregoAppService, VagaEmpregoAppService>();
+            container.RegisterType<ITagsAppService, TagsAppService>();
+            container.RegisterType<ITagsRepository, TagsRepository>();
 
             var mapperConfig = AutoMapperConfig.RegisterMappings();
-            var mapper = mapperConfig.CreateMapper();
+            _ = mapperConfig.CreateMapper();
             container.RegisterType<IMapper, Mapper>(new InjectionConstructor(mapperConfig));
-            //container.RegisterInstance(mapper, Activator.CreateInstance<T>());
 
             container.RegisterType<IDbContext, IntranetFatecContext>();
             container.RegisterType<IDbContext, ApplicationDbContext>();

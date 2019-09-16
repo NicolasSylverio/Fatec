@@ -31,17 +31,8 @@ namespace Fatec.Application.Services
         }
 
         public IEnumerable<EmpresaViewModel> GetAllEmpresaViewModel()
-        {
-            var empresas = _empresaRepository.GetAll().ToList();
-
-            var empresasViewModel = new List<EmpresaViewModel>();
-
-            foreach (var empresa in empresas)
-            {
-                empresasViewModel.Add(_mapper.Map<EmpresaViewModel>(empresa));
-            }
-
-            return empresasViewModel;
+        {           
+            return _mapper.Map<List<EmpresaViewModel>>(_empresaRepository.GetAll());
         }
         public void Add(Empresa obj)
         {

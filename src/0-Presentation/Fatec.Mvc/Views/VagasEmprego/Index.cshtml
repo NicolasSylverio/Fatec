@@ -9,107 +9,39 @@
 <br />
 
 <div class="row">
-    <div class="col s12 m6 l6 xl4">
-        <div class="card hoverable">
-            <div class="card-image">
-                <img class="materialboxed" src="http://fatecjd.edu.br/intranetAlunos/wp-content/uploads/2019/08/Cartaz-181449.pdf-Gam-768x1086.jpg">
+    @if (Model.Any())
+    {
+        foreach (var item in Model)
+        {
+            <div class="col s12 m6 l6 xl4">
+                <div class="card hoverable">
+                    <div class="card-image">
+                        <img class="materialboxed" src="http://fatecjd.edu.br/intranetAlunos/wp-content/uploads/2019/08/Cartaz-181449.pdf-Gam-768x1086.jpg">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">@item.Titulo<i class="material-icons right">more_vert</i></span>
+                        <p>Contato: <a href="#">@item.Email</a></p>
+                    </div>
+                    <div class="card-reveal hoverable">
+                        <span class="card-title grey-text text-darken-4">@item.Titulo<i class="material-icons right">close</i></span>
+                        <p>@item.Descricao</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="#">@item.URLSite</a>
+                        <a href="#">Mais Detalhes..</a>
+                    </div>
+                </div>
             </div>
-            <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-                <p>Contato: <a href="#">contato@hotmail.com</a></p>
-            </div>
-            <div class="card-reveal hoverable">
-                <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                <p>
-                    Estamos compondo nossa equipe de suporte/ Infraestrutura e buscamos alunos com potencial para crescimento
-
-                    Oferecemos bolsa auxilio, refeição, vale transporte, seguro de vida
-
-                    É imprescindível que o candidato resida ou tenha fácil acesso a região de Cajamar (Lapa, Barueri, Osasco, Carapicuíba, Campo Limpo Paulista, Franco da Rocha, Francisco Morato e Jundiaí)
-
-                    Os interessados deverão encaminhar curriculum para: recrutamentoblue@bgdigital.com.br
-
-                    Mencionar no assunto do e- mail (Vaga Estágio FATEC)
-                </p>
-            </div>
-            <div class="card-action">
-                <a href="#">Empresa</a>
-                <a href="#">Mais Detalhes..</a>
-            </div>
+        }
+    }
+    else
+    {
+        <div class="center">
+            <h4>Nenhuma vaga de emprego disponível no momento</h4>
         </div>
-    </div>
-    <div class="col s12 m6 l6 xl4">
-        <div class="card hoverable">
-            <div class="card-image">
-                <img class="materialboxed" src="http://fatecjd.edu.br/intranetAlunos/wp-content/uploads/2019/08/Cartaz-181449.pdf-Gam-768x1086.jpg">
-            </div>
-            <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-                <p>Contato: <a href="#">contato@hotmail.com</a></p>
-            </div>
-            <div class="card-reveal hoverable">
-                <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                <p>
-                    Estamos compondo nossa equipe de suporte/ Infraestrutura e buscamos alunos com potencial para crescimento
-
-                    Oferecemos bolsa auxilio, refeição, vale transporte, seguro de vida
-
-                    É imprescindível que o candidato resida ou tenha fácil acesso a região de Cajamar (Lapa, Barueri, Osasco, Carapicuíba, Campo Limpo Paulista, Franco da Rocha, Francisco Morato e Jundiaí)
-
-                    Os interessados deverão encaminhar curriculum para: recrutamentoblue@bgdigital.com.br
-
-                    Mencionar no assunto do e- mail (Vaga Estágio FATEC)
-                </p>
-            </div>
-            <div class="card-action">
-                <a href="#">Empresa</a>
-                <a href="#">Mais Detalhes..</a>
-            </div>
-        </div>
-    </div>
-    <div class="col s12 m6 l6 xl4">
-        <div class="card hoverable">
-            <div class="card-image">
-                <img class="materialboxed" src="http://fatecjd.edu.br/intranetAlunos/wp-content/uploads/2019/08/Cartaz-181449.pdf-Gam-768x1086.jpg">
-            </div>
-            <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-                <p>Contato: <a href="#">contato@hotmail.com</a></p>
-            </div>
-            <div class="card-reveal hoverable">
-                <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                <p>
-                    Estamos compondo nossa equipe de suporte/ Infraestrutura e buscamos alunos com potencial para crescimento
-
-                    Oferecemos bolsa auxilio, refeição, vale transporte, seguro de vida
-
-                    É imprescindível que o candidato resida ou tenha fácil acesso a região de Cajamar (Lapa, Barueri, Osasco, Carapicuíba, Campo Limpo Paulista, Franco da Rocha, Francisco Morato e Jundiaí)
-
-                    Os interessados deverão encaminhar curriculum para: recrutamentoblue@bgdigital.com.br
-
-                    Mencionar no assunto do e- mail (Vaga Estágio FATEC)
-                </p>
-            </div>
-            <div class="card-action">
-                <a href="#">Empresa</a>
-                <a href="#">Mais Detalhes..</a>
-            </div>
-        </div>
-    </div>
+    }
 </div>
 
-@*<div class="row">
-        @if (Model != null)
-        {
-
-        }
-        else
-        {
-            <div class="center">
-                <h4>Nenhuma vaga de emprego disponível no momento</h4>
-            </div>
-        }
-    </div>*@
 
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function () {

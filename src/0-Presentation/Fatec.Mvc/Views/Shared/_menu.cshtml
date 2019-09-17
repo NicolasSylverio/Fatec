@@ -25,8 +25,8 @@
 
             <a href="#" class="sidenav-trigger left" data-target="slide_menu"><i class="material-icons left">menu</i></a>
 
-            @Html.ActionLink("Fatec", "Index", "Home", new { area = "" }, new { @class = "brand-logo center" })
-
+            <a href="#" class="brand-logo center" onclick="abrirLinkMenu('@Url.Action("Index", "Home")')">Fatec</a>
+            
             @if (User.Identity.IsAuthenticated)
             {
                 <a href="#" class="sidenav-trigger right" data-target="slide_login"><i class="material-icons right">person</i></a>
@@ -91,7 +91,7 @@
                 <div class="collapsible-body">
                     <ul>
                         <li>
-                            <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Index", "Empresas")')"><i class="material-icons left">business</i>Listar Empresas</a>
+                            <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Index", "Empresas")')"><i class="material-icons left">business</i>Lista Empresas</a>
                         </li>
                         <li>
                             <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Cadastro", "Empresas")')"><i class="material-icons left">business</i>Cadastro de Empresas</a>
@@ -143,6 +143,12 @@
                 </div>
             </li>
         </ul>
+    </li>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <li>
+        <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Index", "Tags")')"><i class="material-icons left">star_border</i>Lista Tags</a>
     </li>
     <li>
         <div class="divider"></div>

@@ -11,17 +11,17 @@ namespace Fatec.Infra.DataBase.Repositories
     public class RepositoryBase<TEntity> : IDisposable, IRepositoryBase<TEntity> where TEntity : class
     {
         protected readonly IntranetFatecContext Db;
-        protected readonly DbSet<TEntity> DbSet;
 
         public RepositoryBase(IntranetFatecContext context)
         {
             Db = context;
-            DbSet = Db.Set<TEntity>();
         }
 
         public virtual void Add(TEntity obj)
         {
+            Db.Entry(obj).State = EntityState.Added;
             Db.Set<TEntity>().Add(obj);
+            Db.SaveChanges();
         }
 
         public virtual IEnumerable<TEntity> GetAll()
@@ -34,19 +34,17 @@ namespace Fatec.Infra.DataBase.Repositories
             return Db.Set<TEntity>().Find(id);
         }
 
-        public virtual void Remove(TEntity obj)
+        public virtual void Remove(int id)
         {
-            Db.Set<TEntity>().Remove(obj);
+            var obj = Db.Set<TEntity>().Find(id);
+            Db.Entry(obj).State = EntityState.Deleted;
+            Db.SaveChanges();
         }
 
         public virtual void Update(TEntity obj)
         {
             Db.Entry(obj).State = EntityState.Modified;
-        }
-
-        public int SaveChanges()
-        {
-            return Db.SaveChanges();
+            Db.SaveChanges();
         }
 
         public void Dispose()

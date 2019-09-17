@@ -77,6 +77,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\RepositoryBase.cs" />
     <Compile Include="Repository\EmpresaRepository.cs" />
+    <Compile Include="Repository\TagsRepository.cs" />
+    <Compile Include="Repository\VagaEmpregoRepository.cs" />
     <Compile Include="Repository\VagaEstagioRepository.cs" />
   </ItemGroup>
   <ItemGroup>

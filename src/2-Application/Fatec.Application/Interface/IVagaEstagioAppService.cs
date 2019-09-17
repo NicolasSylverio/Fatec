@@ -1,13 +1,9 @@
-﻿using System.Collections.Generic;
-using Fatec.Domain.Models.Vagas;
-using Fatec.Application.ViewModels;
+﻿using Fatec.Application.ViewModels;
 
 namespace Fatec.Application.Interface
 {
-    public interface IVagaEstagioAppService : IAppServiceBase<VagaEstagio> 
+    public interface IVagaEstagioAppService : IAppServiceBase<VagaEstagioViewModel> 
     {
-        void Cadastrar(VagaEstagioViewModel vagaEstagioViewModel);
 
-        IEnumerable<VagaEstagioViewModel> GetAllVagaEstagioViewModel();
     }
 }

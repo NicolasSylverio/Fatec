@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
 using Fatec.Application.ViewModels;
+using Fatec.Domain.Models.Empresas;
+using Fatec.Domain.Models.Tags;
+using Fatec.Domain.Models.Vagas;
 
 namespace Fatec.Application.AutoMapper
 {
@@ -7,7 +10,10 @@ namespace Fatec.Application.AutoMapper
     {
         public DomainToViewModelMappingProfile()
         {
-            CreateMap<Domain.Models.Vagas.VagaEstagio, VagaEstagioViewModel>();
+            CreateMap<VagaEstagio, VagaEstagioViewModel>();
+            CreateMap<VagaEmprego, VagaEmpregoViewModel>();
+            CreateMap<Tags, TagsViewModel>();
+            CreateMap<Empresa, EmpresaViewModel>();
         }
     }
 }

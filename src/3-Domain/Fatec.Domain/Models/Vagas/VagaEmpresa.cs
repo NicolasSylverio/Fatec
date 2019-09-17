@@ -5,8 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Fatec.Domain.Models.Vagas
 {
-    [Table("VagaEstagio")]
-    public class VagaEstagio
+    [Table("VagaEmprego")]
+    public class VagaEmprego
     {
         [Key]
         public int Id { get; set; }

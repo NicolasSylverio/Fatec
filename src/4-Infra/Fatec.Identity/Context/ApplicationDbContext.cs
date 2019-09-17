@@ -1,4 +1,5 @@
 ﻿using Fatec.CrossCutting.Interfaces;
+using Fatec.Domain.Models.Tags;
 using Fatec.Identity.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
@@ -35,5 +36,6 @@ namespace Fatec.Identity.Context
         public DbSet<IdentityUserLogin> UserLogins { get; set; }
         public DbSet<IdentityUserClaim> UserClaims { get; set; }
         public DbSet<IdentityUserRole> UserRoles { get; set; }
+        public DbSet<Tags> Tags { get; set; }
     }
 }

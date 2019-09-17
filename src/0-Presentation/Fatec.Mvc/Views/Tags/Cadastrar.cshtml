@@ -1,0 +1,63 @@
+﻿@using Fatec.Application.ViewModels
+@model TagsViewModel
+@{
+    ViewBag.Title = "Cadastro de Tags";
+}
+
+<h3 class="center">Cadastro de Tags</h3>
+
+@using (Html.BeginForm("Cadastrar", "Tags", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <br />
+
+    <div class="row">
+        <div class="input-field col s12 m6 l6 xl4 center">
+            @Html.LabelFor(m => m.Nome, new { @class = "validate" })
+            @Html.TextBoxFor(m => m.Nome, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Nome, "", new { @class = "helper-text" })
+        </div>
+        <div class="input-field col s12 m6 l6 xl8 center">
+            @Html.LabelFor(m => m.Descricao, new { @class = "validate" })
+            @Html.TextBoxFor(m => m.Descricao, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Descricao, "", new { @class = "helper-text" })
+        </div>
+        <div class="col s12 m3 l3 xl2 center">
+            <label class="validate">
+                <input type="checkbox" checked="checked" />
+                <span>Tag Ativa?</span>
+            </label>
+
+            @Html.CheckBoxFor(m => m.Ativo, new { @class = "checkbox", @checked = "checked" })
+        </div>
+
+        <br />
+        <br />
+    </div>
+    <div class="row">
+        <div class="col s12 m12 l12 xl12 center">
+            <input type="submit" value="Cadastrar" class="btn teal-2 waves-light" />
+        </div>
+    </div>
+}
+
+@section Scripts
+{
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            const elems = document.querySelectorAll('select');
+            const options = {};
+            M.FormSelect.init(elems, options);
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const elems = document.querySelectorAll('.fixed-action-btn');
+            const _ = M.FloatingActionButton.init(elems, {
+                direction: 'left',
+                hoverEnabled: false
+            });
+        });
+
+    </script>
+}

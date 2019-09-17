@@ -10,29 +10,34 @@ namespace Fatec.Application.Services
 {
     public class VagaEstagioAppService : IVagaEstagioAppService
     {
-        private readonly IVagaEstagioRepository _empresaRepository;
+        private readonly IVagaEstagioRepository _estagioRepository;
         private readonly IMapper _mapper;
 
         public VagaEstagioAppService
         (
             IVagaEstagioRepository vagaEstagioRepository,
             IMapper mapper
-        )
+        ) 
         {
-            _empresaRepository = vagaEstagioRepository;
+            _estagioRepository = vagaEstagioRepository;
             _mapper = mapper;
         }
 
-        public void Cadastrar(VagaEstagioViewModel vagaEstagioViewModel)
+        public void Add(VagaEstagioViewModel obj)
         {
-            var usuario = _mapper.Map<VagaEstagio>(vagaEstagioViewModel);
+            var usuario = _mapper.Map<VagaEstagio>(obj);
 
-            _empresaRepository.Add(usuario);
+            _estagioRepository.Add(usuario);
         }
 
-        public IEnumerable<VagaEstagioViewModel> GetAllVagaEstagioViewModel()
+        public void Dispose()
         {
-            var vagaEstagios = _empresaRepository.GetAll().ToList();
+            throw new System.NotImplementedException();
+        }
+
+        public IEnumerable<VagaEstagioViewModel> GetAll()
+        {
+            var vagaEstagios = _estagioRepository.GetAll().ToList();
 
             var usuariosViewModel = new List<VagaEstagioViewModel>();
 
@@ -43,34 +48,20 @@ namespace Fatec.Application.Services
 
             return usuariosViewModel;
         }
-        public void Add(VagaEstagio obj)
+
+        public VagaEstagioViewModel GetById(int id)
         {
-            _empresaRepository.Add(obj);
+            throw new System.NotImplementedException();
         }
 
-        public VagaEstagio GetById(int id)
+        public void Remove(int obj)
         {
-            return _empresaRepository.GetById(id);
+            throw new System.NotImplementedException();
         }
 
-        public void Remove(VagaEstagio obj)
+        public void Update(VagaEstagioViewModel obj)
         {
-            _empresaRepository.Remove(obj);
-        }
-
-        public void Update(VagaEstagio obj)
-        {
-            _empresaRepository.Update(obj);
-        }
-
-        public void Dispose()
-        {
-            _empresaRepository.Dispose();
-        }
-
-        public IEnumerable<VagaEstagio> GetAll()
-        {
-            return _empresaRepository.GetAll();
+            throw new System.NotImplementedException();
         }
     }
 }

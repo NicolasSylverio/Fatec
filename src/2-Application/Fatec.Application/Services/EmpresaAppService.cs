@@ -4,7 +4,6 @@ using Fatec.Application.ViewModels;
 using Fatec.Domain.Interfaces.Repositories;
 using Fatec.Domain.Models.Empresas;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Fatec.Application.Services
 {
@@ -31,17 +30,8 @@ namespace Fatec.Application.Services
         }
 
         public IEnumerable<EmpresaViewModel> GetAllEmpresaViewModel()
-        {
-            var empresas = _empresaRepository.GetAll().ToList();
-
-            var empresasViewModel = new List<EmpresaViewModel>();
-
-            foreach (var empresa in empresas)
-            {
-                empresasViewModel.Add(_mapper.Map<EmpresaViewModel>(empresa));
-            }
-
-            return empresasViewModel;
+        {           
+            return _mapper.Map<List<EmpresaViewModel>>(_empresaRepository.GetAll());
         }
         public void Add(Empresa obj)
         {
@@ -53,9 +43,9 @@ namespace Fatec.Application.Services
             return _empresaRepository.GetById(id);
         }
 
-        public void Remove(Empresa obj)
+        public void Remove(int id)
         {
-            _empresaRepository.Remove(obj);
+            _empresaRepository.Remove(id);
         }
 
         public void Update(Empresa obj)

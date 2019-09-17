@@ -2,9 +2,7 @@
 using Fatec.Domain.Models.Tags;
 using Fatec.Infra.DataBase.Context;
 using Fatec.Infra.DataBase.Repositories;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
 
 namespace Fatec.DataBase.Repository
 {
@@ -14,33 +12,15 @@ namespace Fatec.DataBase.Repository
         {
         }
 
-        public override void Remove(Tags obj)
-        {
-            Db.Entry(obj).State = EntityState.Deleted;
-            Db.SaveChanges();
-        }
-
-        public override void Add(Tags obj)
-        {
-            Db.Set<Tags>().Add(obj);
-            Db.SaveChanges();
-        }
-
-        public override IEnumerable<Tags> GetAll()
-        {
-            return Db.Tags
-                .ToList();
-        }
-
-        public override Tags GetById(int id)
-        {
-            return Db.Set<Tags>()
-                .Find(id);
-        }
-
         public override void Update(Tags obj)
         {
-            Db.Entry(obj).State = EntityState.Modified;
+            var objeto = Db.Set<Tags>().Find(obj.Id);
+
+            objeto.Nome = obj.Nome;
+            objeto.Descricao = obj.Descricao;
+            objeto.Ativo = obj.Ativo;
+
+            Db.Entry(objeto).State = EntityState.Modified;
             Db.SaveChanges();
         }
 

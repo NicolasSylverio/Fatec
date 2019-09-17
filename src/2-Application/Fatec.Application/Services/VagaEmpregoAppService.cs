@@ -48,7 +48,7 @@ namespace Fatec.Application.Services
             return usuariosViewModel;
         }
 
-        public void Remove(VagaEmpregoViewModel obj)
+        public void Remove(int obj)
         {
             throw new NotImplementedException();
         }

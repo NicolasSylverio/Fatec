@@ -44,12 +44,11 @@ namespace Fatec.Mvc.Controllers
 
         // POST: Estagio/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(TagsViewModel model)
         {
             try
             {
-                var tags = _tagsAppService.GetById(id);
-                _tagsAppService.Update(tags);
+                _tagsAppService.Update(model);
 
                 return RedirectToAction("Index");
             }
@@ -84,8 +83,7 @@ namespace Fatec.Mvc.Controllers
         {
             try
             {
-                var tag = _tagsAppService.GetById(id);
-                _tagsAppService.Remove(tag);
+                _tagsAppService.Remove(id);
 
                 ViewBag.Sucess = "Tags excluida com sucesso.";
 

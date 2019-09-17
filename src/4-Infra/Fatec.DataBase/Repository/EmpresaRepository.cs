@@ -41,7 +41,7 @@ namespace Fatec.Infra.Data.Repositories
                 .Find(id);
         }
 
-        public void Remove(Empresa obj)
+        public void Remove(int obj)
         {
             Db.Entry(obj).State = EntityState.Deleted;
             Db.SaveChanges();
@@ -51,6 +51,11 @@ namespace Fatec.Infra.Data.Repositories
         {
             Db.Entry(obj).State = EntityState.Modified;
             Db.SaveChanges();
+        }
+
+        public void Update(int obj)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -54,7 +54,7 @@ namespace Fatec.Application.Services
             throw new System.NotImplementedException();
         }
 
-        public void Remove(VagaEstagioViewModel obj)
+        public void Remove(int obj)
         {
             throw new System.NotImplementedException();
         }

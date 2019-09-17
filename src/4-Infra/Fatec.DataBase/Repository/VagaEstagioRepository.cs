@@ -47,6 +47,11 @@ namespace Fatec.Infra.Data.Repositories
             Db.SaveChanges();
         }
 
+        public void Remove(int obj)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update(VagaEstagio obj)
         {
             Db.Entry(obj).State = EntityState.Modified;

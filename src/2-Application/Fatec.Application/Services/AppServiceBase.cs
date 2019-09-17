@@ -33,7 +33,7 @@ namespace Fatec.Application.Services
             return _entity.GetById(id);
         }
 
-        public void Remove(TEntity obj)
+        public void Remove(int obj)
         {
             _entity.Remove(obj);
         }

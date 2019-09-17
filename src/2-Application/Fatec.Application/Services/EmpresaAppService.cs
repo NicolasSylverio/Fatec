@@ -4,7 +4,6 @@ using Fatec.Application.ViewModels;
 using Fatec.Domain.Interfaces.Repositories;
 using Fatec.Domain.Models.Empresas;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Fatec.Application.Services
 {
@@ -44,9 +43,9 @@ namespace Fatec.Application.Services
             return _empresaRepository.GetById(id);
         }
 
-        public void Remove(Empresa obj)
+        public void Remove(int id)
         {
-            _empresaRepository.Remove(obj);
+            _empresaRepository.Remove(id);
         }
 
         public void Update(Empresa obj)

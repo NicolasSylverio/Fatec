@@ -1,6 +1,5 @@
 ﻿using Fatec.Application.Interface;
 using Fatec.Application.ViewModels;
-using Fatec.Domain.Models.Empresas;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -95,8 +94,7 @@ namespace Fatec.Mvc.Controllers
         // GET: Estagio/Delete/5
         public ActionResult Delete(int id)
         {
-            Empresa empresa = _empresaAppService.GetById(id);
-            _empresaAppService.Remove(empresa);
+            _empresaAppService.Remove(id);
             return RedirectToAction("Cadastro");
         }
                

@@ -81,10 +81,11 @@
     <Compile Include="Interfaces\Repositories\IVagaEmpregoRepository.cs" />
     <Compile Include="Interfaces\Repositories\IVagaEstagioRepository.cs" />
     <Compile Include="Models\Empresas\Empresa.cs" />
-    <Compile Include="Models\Tags\Tags.cs" />
-    <Compile Include="Models\Vagas\VagaEmpresa.cs" />
+    <Compile Include="Models\Tags.cs" />
+    <Compile Include="Models\Vagas\VagaEmprego.cs" />
     <Compile Include="Models\Vagas\VagaEstagio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\DateService.cs" />
     <Compile Include="Services\EmailService.cs" />
     <Compile Include="Services\SmsService.cs" />
   </ItemGroup>

@@ -1,4 +1,4 @@
-﻿using Fatec.Domain.Models.Tags;
+﻿using Fatec.Domain.Models;
 
 namespace Fatec.Domain.Interfaces.Repositories
 {

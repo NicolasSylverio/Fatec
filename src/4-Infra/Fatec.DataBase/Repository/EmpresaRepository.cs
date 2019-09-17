@@ -1,12 +1,12 @@
-﻿using Fatec.Domain.Interfaces.Repositories;
-using Fatec.Domain.Models.Empresas;
-using Fatec.Infra.DataBase.Context;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using Fatec.DataBase.Context;
+using Fatec.Domain.Interfaces.Repositories;
+using Fatec.Domain.Models.Empresas;
 
-namespace Fatec.Infra.Data.Repositories
+namespace Fatec.DataBase.Repository
 {
     public class EmpresaRepository : IEmpresaRepository
     {
@@ -41,8 +41,9 @@ namespace Fatec.Infra.Data.Repositories
                 .Find(id);
         }
 
-        public void Remove(int obj)
+        public void Remove(int id)
         {
+            var obj = Db.Set<Empresa>().Find(id);
             Db.Entry(obj).State = EntityState.Deleted;
             Db.SaveChanges();
         }

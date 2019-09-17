@@ -69,9 +69,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\IntranetFatecContext.cs" />
-    <Compile Include="Migrations\201909080412357_Initial-Migration.cs" />
-    <Compile Include="Migrations\201909080412357_Initial-Migration.Designer.cs">
-      <DependentUpon>201909080412357_Initial-Migration.cs</DependentUpon>
+    <Compile Include="Map\EmpresaMap.cs" />
+    <Compile Include="Map\TagsMap.cs" />
+    <Compile Include="Map\VagaEmpregoMap.cs" />
+    <Compile Include="Map\VagaEstagioMap.cs" />
+    <Compile Include="Migrations\201909171405155_Initial-Migration.cs" />
+    <Compile Include="Migrations\201909171405155_Initial-Migration.Designer.cs">
+      <DependentUpon>201909171405155_Initial-Migration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -98,8 +102,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201909080412357_Initial-Migration.resx">
-      <DependentUpon>201909080412357_Initial-Migration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201909171405155_Initial-Migration.resx">
+      <DependentUpon>201909171405155_Initial-Migration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

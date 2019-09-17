@@ -1,12 +1,12 @@
-﻿using Fatec.Domain.Interfaces.Repositories;
-using Fatec.Domain.Models.Vagas;
-using Fatec.Infra.DataBase.Context;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using Fatec.DataBase.Context;
+using Fatec.Domain.Interfaces.Repositories;
+using Fatec.Domain.Models.Vagas;
 
-namespace Fatec.Infra.Data.Repositories
+namespace Fatec.DataBase.Repository
 {
     public class VagaEstagioRepository : IVagaEstagioRepository
     {

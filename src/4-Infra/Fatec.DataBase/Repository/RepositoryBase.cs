@@ -34,8 +34,9 @@ namespace Fatec.Infra.DataBase.Repositories
             return Db.Set<TEntity>().Find(id);
         }
 
-        public virtual void Remove(TEntity obj)
+        public virtual void Remove(int id)
         {
+            var obj = Db.Set<TEntity>().Find(id);
             Db.Entry(obj).State = EntityState.Deleted;
             Db.SaveChanges();
         }

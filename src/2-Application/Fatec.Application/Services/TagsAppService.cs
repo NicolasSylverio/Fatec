@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using AutoMapper;
+﻿using AutoMapper;
 using Fatec.Application.Interface;
 using Fatec.Application.ViewModels;
 using Fatec.Domain.Interfaces.Repositories;
 using Fatec.Domain.Models.Tags;
+using System.Collections.Generic;
 
 namespace Fatec.Application.Services
 {
@@ -39,18 +39,14 @@ namespace Fatec.Application.Services
             return _mapper.Map<TagsViewModel>(_tagsRepository.GetById(id));
         }
 
-        public void Remove(TagsViewModel obj)
+        public void Remove(int id)
         {
-            _tagsRepository.Remove(_mapper.Map<Tags>(obj));
+            _tagsRepository.Remove(id);
         }
 
         public void Update(TagsViewModel obj)
         {
-            var tag = _mapper.Map<Tags>(_tagsRepository.GetById(obj.Id));
-
-            tag.Descricao = obj.Descricao;
-            tag.Nome = obj.Nome;
-            tag.Ativo = obj.Ativo;
+            var tag = _mapper.Map<Tags>(obj);
 
             _tagsRepository.Update(tag);
         }

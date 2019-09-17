@@ -1,7 +1,6 @@
-﻿using Fatec.Domain.Interfaces.Repositories;
+﻿using Fatec.DataBase.Context;
+using Fatec.Domain.Interfaces.Repositories;
 using Fatec.Domain.Models.Vagas;
-using Fatec.Infra.DataBase.Context;
-using Fatec.Infra.DataBase.Repositories;
 
 namespace Fatec.DataBase.Repository
 {

@@ -2,6 +2,9 @@
 
 namespace Fatec.Domain.Services
 {
+    /// <summary>
+    ///     Classe para serviços de E-mail
+    /// </summary>
     public class EmailService
     {
         public Task SendAsync(string message)

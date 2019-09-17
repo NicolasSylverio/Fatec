@@ -3,11 +3,11 @@ using Fatec.Domain.Services;
 using System;
 using System.Collections.Generic;
 
-namespace Fatec.Domain.Models.Empresas
+namespace Fatec.Domain.Models
 {
-    public class Empresa
+    public class Tags
     {
-        public Empresa()
+        public Tags()
         {
             VagaEmprego = new HashSet<VagaEmprego>();
             VagaEstagio = new HashSet<VagaEstagio>();
@@ -17,14 +17,12 @@ namespace Fatec.Domain.Models.Empresas
 
         public string Nome { get; set; }
 
-        public string Email { get; set; }
-
-        public string Telefone { get; set; }
-
-        public string UrlSite { get; set; }
+        public string Descricao { get; set; }
 
         public DateTime DataCadastro { get; set; } = DateService.PegaHoraBrasilia();
 
+        public bool Ativo { get; set; }
+        
         public virtual ICollection<VagaEmprego> VagaEmprego { get; set; }
         public virtual ICollection<VagaEstagio> VagaEstagio { get; set; }
     }

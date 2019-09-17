@@ -1,8 +1,7 @@
 ﻿using Fatec.Domain.Interfaces.Repositories;
-using Fatec.Domain.Models.Tags;
-using Fatec.Infra.DataBase.Context;
-using Fatec.Infra.DataBase.Repositories;
+using Fatec.Domain.Models;
 using System.Data.Entity;
+using Fatec.DataBase.Context;
 
 namespace Fatec.DataBase.Repository
 {

@@ -2,7 +2,7 @@
 using Fatec.Application.Interface;
 using Fatec.Application.ViewModels;
 using Fatec.Domain.Interfaces.Repositories;
-using Fatec.Domain.Models.Tags;
+using Fatec.Domain.Models;
 using System.Collections.Generic;
 
 namespace Fatec.Application.Services

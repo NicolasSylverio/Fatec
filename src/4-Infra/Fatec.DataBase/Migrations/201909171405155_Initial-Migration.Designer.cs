@@ -13,7 +13,7 @@ namespace Fatec.DataBase.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201909080412357_Initial-Migration"; }
+            get { return "201909171405155_Initial-Migration"; }
         }
         
         string IMigrationMetadata.Source

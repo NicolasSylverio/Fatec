@@ -1,15 +1,13 @@
 ﻿using Fatec.Domain.Models.Empresas;
+using Fatec.Domain.Services;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Fatec.Domain.Services;
 
 namespace Fatec.Domain.Models.Vagas
 {
-    public class VagaEstagio
+    public class VagaEmprego
     {
-        public VagaEstagio()
+        public VagaEmprego()
         {
             Tags = new HashSet<Tags>();
         }

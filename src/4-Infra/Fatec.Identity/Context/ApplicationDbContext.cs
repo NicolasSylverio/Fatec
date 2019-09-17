@@ -1,5 +1,5 @@
 ﻿using Fatec.CrossCutting.Interfaces;
-using Fatec.Domain.Models.Tags;
+using Fatec.Domain.Models;
 using Fatec.Identity.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;

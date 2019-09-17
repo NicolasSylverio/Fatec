@@ -1,14 +1,14 @@
-﻿using Fatec.Domain.Interfaces.Repositories;
-using Fatec.Infra.DataBase.Context;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Data.Entity;
+using System.Linq;
+using Fatec.DataBase.Context;
+using Fatec.Domain.Interfaces.Repositories;
 
-namespace Fatec.Infra.DataBase.Repositories
+namespace Fatec.DataBase.Repository
 {
 
-    public class RepositoryBase<TEntity> : IDisposable, IRepositoryBase<TEntity> where TEntity : class
+    public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : class
     {
         protected readonly IntranetFatecContext Db;
 

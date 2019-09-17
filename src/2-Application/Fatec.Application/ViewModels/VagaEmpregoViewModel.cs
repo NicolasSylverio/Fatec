@@ -38,12 +38,12 @@ namespace Fatec.Application.ViewModels
         [StringLength(100, ErrorMessage = "O {0} deve ter no mínimo {2} e no máximo {1} caracteres.", MinimumLength = 3)]
         [DataType(DataType.EmailAddress)]
         [Display(Name = "Url da Imagem")]
-        public string URLImagem { get; set; }
+        public string UrlImagem { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "O {0} deve ter no mínimo {2} e no máximo {1} caracteres.", MinimumLength = 3)]
         [DataType(DataType.EmailAddress)]
         [Display(Name = "Url do Site")]
-        public string URLSite { get; set; }
+        public string UrlSite { get; set; }
     }
 }

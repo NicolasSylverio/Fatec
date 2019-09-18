@@ -25,7 +25,9 @@ namespace Fatec.Application.ViewModels
         [Display(Name = "Descrição da Vaga")]
         public string Descricao { get; set; }
 
-        public Empresa Empresa { get; set; }
+        [Required]
+        [Display(Name = "Empresa")]
+        public int EmpresaId { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "O {0} deve ter no mínimo {2} e no máximo {1} caracteres.", MinimumLength = 3)]

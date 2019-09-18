@@ -2,6 +2,7 @@
 using Fatec.Application.Interface;
 using Fatec.Application.ViewModels;
 using Fatec.Domain.Interfaces.Repositories;
+using Fatec.Domain.Models.Vagas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,33 +11,28 @@ namespace Fatec.Application.Services
 {
     public class VagaEmpregoAppService : IVagaEmpregoAppService
     {
-        private readonly IVagaEmpregoRepository _empresaRepository;
+        private readonly IVagaEmpregoRepository _vagaEmpregoRepository;
         private readonly IMapper _mapper;
 
-        public VagaEmpregoAppService(IVagaEmpregoRepository empresaRepository, IMapper mapper)
+        public VagaEmpregoAppService(IVagaEmpregoRepository vagaEmpregoRepository, IMapper mapper)
         {
-            _empresaRepository = empresaRepository;
+            _vagaEmpregoRepository = vagaEmpregoRepository;
             _mapper = mapper;
         }
 
         public void Add(VagaEmpregoViewModel obj)
         {
-            throw new NotImplementedException();
-        }
-
-        public void Cadastrar(VagaEmpregoViewModel vagaEstagioViewModel)
-        {
-            throw new NotImplementedException();
+            _vagaEmpregoRepository.Add(_mapper.Map<VagaEmprego>(obj));
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _vagaEmpregoRepository.Dispose();
         }
 
         public IEnumerable<VagaEmpregoViewModel> GetAll()
         {
-            var vagaEstagios = _empresaRepository.GetAll().ToList();
+            var vagaEstagios = _vagaEmpregoRepository.GetAll().ToList();
 
             var usuariosViewModel = new List<VagaEmpregoViewModel>();
 
@@ -50,17 +46,17 @@ namespace Fatec.Application.Services
 
         public void Remove(int obj)
         {
-            throw new NotImplementedException();
+            _vagaEmpregoRepository.Remove(obj);
         }
 
         public void Update(VagaEmpregoViewModel obj)
         {
-            throw new NotImplementedException();
+            _vagaEmpregoRepository.Update(_mapper.Map<VagaEmprego>(obj));
         }
 
         VagaEmpregoViewModel IAppServiceBase<VagaEmpregoViewModel>.GetById(int id)
         {
-            throw new NotImplementedException();
+            return _mapper.Map<VagaEmpregoViewModel>(_vagaEmpregoRepository.GetById(id));
         }
     }
 }

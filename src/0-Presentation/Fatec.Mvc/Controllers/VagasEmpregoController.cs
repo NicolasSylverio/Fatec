@@ -8,10 +8,16 @@ namespace Fatec.Mvc.Controllers
     public class VagasEmpregoController : Controller
     {
         private readonly IVagaEmpregoAppService _vagaEmpregoAppService;
+        private readonly IEmpresaAppService _empresaAppService;
 
-        public VagasEmpregoController(IVagaEmpregoAppService vagaEmpregoAppService)
+        public VagasEmpregoController
+        (
+            IVagaEmpregoAppService vagaEmpregoAppService,
+            IEmpresaAppService empresaAppService
+        )
         {
             _vagaEmpregoAppService = vagaEmpregoAppService;
+            _empresaAppService = empresaAppService;
         }
 
         // GET: VagasEmprego
@@ -24,6 +30,8 @@ namespace Fatec.Mvc.Controllers
 
         public ActionResult Cadastrar()
         {
+            ViewBag.EmpresaId = _empresaAppService.GetAll();
+
             return View();
         }
 
@@ -72,10 +80,10 @@ namespace Fatec.Mvc.Controllers
 
                 return RedirectToAction("Index");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 ViewBag.Error = "Erro ao cadastrar nova Vaga Emprego";
-                return RedirectToAction("Index");
+                return View();
             }
         }
 

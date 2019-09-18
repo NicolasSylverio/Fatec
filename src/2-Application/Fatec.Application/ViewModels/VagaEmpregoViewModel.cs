@@ -1,4 +1,5 @@
-﻿using Fatec.Domain.Models.Empresas;
+﻿using Fatec.Domain.Services;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Fatec.Application.ViewModels
@@ -35,6 +36,7 @@ namespace Fatec.Application.ViewModels
         [Display(Name = "E-mail de Contato")]
         public string Email { get; set; }
 
+        [Display(Name = "Telefone")]
         public string Telefone { get; set; }
 
         [StringLength(100, ErrorMessage = "O {0} deve ter no mínimo {2} e no máximo {1} caracteres.", MinimumLength = 3)]
@@ -47,5 +49,13 @@ namespace Fatec.Application.ViewModels
         [DataType(DataType.EmailAddress)]
         [Display(Name = "Url do Site")]
         public string UrlSite { get; set; }
+
+        [DataType(DataType.DateTime)]
+        [Display(Name = "Data e Hora de Cadastro")]
+        public DateTime DataHoraCadastro { get; set; } = DateService.PegaHoraBrasilia();
+
+        [DataType(DataType.Date)]
+        [Display(Name = "Data de Validade da Vaga")]
+        public DateTime DataValidade { get; set; }
     }
 }

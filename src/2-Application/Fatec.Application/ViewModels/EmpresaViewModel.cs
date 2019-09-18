@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fatec.Domain.Services;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Fatec.Application.ViewModels
@@ -28,7 +29,7 @@ namespace Fatec.Application.ViewModels
         [Display(Name = "Endereço URl do site da empresa")]
         public string UrlSite { get; set; }
 
-        public DateTime DataHoraCadastro { get; set; }
-      
+        public DateTime DataHoraCadastro { get; set; } = DateService.PegaHoraBrasilia();
+
     }
 }

@@ -1,6 +1,8 @@
 ﻿using Fatec.Domain.Services;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Fatec.Domain.Models;
 
 namespace Fatec.Application.ViewModels
 {
@@ -25,10 +27,6 @@ namespace Fatec.Application.ViewModels
         [DataType(DataType.Text)]
         [Display(Name = "Descrição da Vaga")]
         public string Descricao { get; set; }
-
-        [Required]
-        [Display(Name = "Empresa")]
-        public int EmpresaId { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "O {0} deve ter no mínimo {2} e no máximo {1} caracteres.", MinimumLength = 3)]
@@ -57,5 +55,12 @@ namespace Fatec.Application.ViewModels
         [DataType(DataType.Date)]
         [Display(Name = "Data de Validade da Vaga")]
         public DateTime DataValidade { get; set; }
+
+        [Required]
+        [Display(Name = "Empresa")]
+        public int EmpresaId { get; set; }
+
+        [Display(Name = "Tags")]
+        public IEnumerable<Tags> Tags { get; set; }
     }
 }

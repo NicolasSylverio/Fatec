@@ -2,6 +2,15 @@
 @model VagaEmpregoViewModel
 @{
     ViewBag.Title = "Vagas Emprego";
+
+    ViewBag.Tags = new List<object>
+    {
+    new {Value = 1, Text = "C#"},
+    new {Value = 2, Text = "C#"},
+    new {Value = 3, Text = "Java"},
+    new {Value = 4, Text = "PHP"},
+    new {Value = 5, Text = "C#"}
+    };
 }
 
 <h3 class="center">Cadastro de Vagas Emprego</h3>
@@ -9,6 +18,13 @@
 @using (Html.BeginForm("Cadastrar", "VagasEmprego", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="input-field col s12 m12 l12 xl12 center">
+            @Html.ListBoxFor(m => m.Tags, new SelectList(ViewBag.Tags, "Value", "Text", "Selecione"), new { @class = "form-control", multiple = "multiple", id = "chooseTag" })
+            @Html.ValidationMessageFor(m => m.Tags, "", new { @class = "helper-text" })
+        </div>
+    </div>
 
     <br />
     <br />

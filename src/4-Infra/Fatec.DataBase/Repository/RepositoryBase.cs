@@ -10,17 +10,18 @@ namespace Fatec.DataBase.Repository
 
     public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : class
     {
+        protected readonly DbSet<TEntity> DbSet;
         protected readonly IntranetFatecContext Db;
 
         public RepositoryBase(IntranetFatecContext context)
         {
             Db = context;
+            DbSet = Db.Set<TEntity>();
         }
 
         public virtual void Add(TEntity obj)
         {
-            Db.Entry(obj).State = EntityState.Added;
-            Db.Set<TEntity>().Add(obj);
+            DbSet.Add(obj);
             Db.SaveChanges();
         }
 

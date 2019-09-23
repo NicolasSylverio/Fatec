@@ -1,8 +1,8 @@
-﻿using Fatec.Domain.Services;
+﻿using Fatec.Domain.Models;
+using Fatec.Domain.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Fatec.Domain.Models;
 
 namespace Fatec.Application.ViewModels
 {
@@ -61,6 +61,6 @@ namespace Fatec.Application.ViewModels
         public int EmpresaId { get; set; }
 
         [Display(Name = "Tags")]
-        public IEnumerable<Tags> Tags { get; set; }
+        public IEnumerable<int> TagsId { get; set; }
     }
 }

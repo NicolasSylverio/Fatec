@@ -1,6 +1,7 @@
 ﻿using Fatec.Application.Interface;
 using Fatec.Application.ViewModels;
 using System;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace Fatec.Mvc.Controllers
@@ -9,15 +10,18 @@ namespace Fatec.Mvc.Controllers
     {
         private readonly IVagaEmpregoAppService _vagaEmpregoAppService;
         private readonly IEmpresaAppService _empresaAppService;
+        private readonly ITagsAppService _tagsAppService;
 
         public VagasEmpregoController
         (
             IVagaEmpregoAppService vagaEmpregoAppService,
-            IEmpresaAppService empresaAppService
+            IEmpresaAppService empresaAppService,
+            ITagsAppService tagsAppService
         )
         {
             _vagaEmpregoAppService = vagaEmpregoAppService;
             _empresaAppService = empresaAppService;
+            _tagsAppService = tagsAppService;
         }
 
         // GET: VagasEmprego
@@ -31,6 +35,7 @@ namespace Fatec.Mvc.Controllers
         public ActionResult Cadastrar()
         {
             ViewBag.EmpresaId = _empresaAppService.GetAll();
+            ViewBag.Tags = _tagsAppService.GetAll().Select(x => new { x.Id, x.Nome });
 
             return View();
         }
@@ -82,6 +87,9 @@ namespace Fatec.Mvc.Controllers
             }
             catch (Exception ex)
             {
+                ViewBag.EmpresaId = _empresaAppService.GetAll();
+                ViewBag.Tags = _tagsAppService.GetAll();
+
                 ViewBag.Error = "Erro ao cadastrar nova Vaga Emprego";
                 return View();
             }

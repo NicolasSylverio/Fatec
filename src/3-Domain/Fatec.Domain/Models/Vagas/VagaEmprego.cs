@@ -30,6 +30,10 @@ namespace Fatec.Domain.Models.Vagas
 
         public virtual Empresa Empresa { get; set; }
 
+
+
+        public IEnumerable<int> TagsId { get; set; } = new List<int>();
+
         public virtual ICollection<Tags> Tags { get; set; }
     }
 }

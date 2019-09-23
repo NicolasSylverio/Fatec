@@ -35,6 +35,8 @@ namespace Fatec.Mvc.Controllers
         public ActionResult Cadastrar()
         {
             ViewBag.EmpresaId = _empresaAppService.GetAll();
+            ViewBag.Tags = new MultiSelectList(_tagsAppService.GetAll(), "Id", "Nome");
+
             ViewBag.Tags = _tagsAppService.GetAll().Select(x => new { x.Id, x.Nome });
 
             return View();
@@ -79,7 +81,7 @@ namespace Fatec.Mvc.Controllers
         {
             try
             {
-                if (!ModelState.IsValid) return View();
+                if (!ModelState.IsValid) return RedirectToAction("Cadastrar");
 
                 _vagaEmpregoAppService.Add(model);
 
@@ -91,7 +93,7 @@ namespace Fatec.Mvc.Controllers
                 ViewBag.Tags = _tagsAppService.GetAll();
 
                 ViewBag.Error = "Erro ao cadastrar nova Vaga Emprego";
-                return View();
+                return RedirectToAction("Cadastrar");
             }
         }
 

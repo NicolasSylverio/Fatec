@@ -1,6 +1,6 @@
-﻿using Fatec.Domain.Models.Vagas;
+﻿using Fatec.CrossCutting.Models.Vagas;
 
-namespace Fatec.Domain.Interfaces.Repositories
+namespace Fatec.DataBase.Interfaces
 {
     public interface IVagaEmpregoRepository : IRepositoryBase<VagaEmprego>
     {

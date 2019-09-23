@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Fatec.Application.Interface;
 using Fatec.Application.ViewModels;
-using Fatec.Domain.Interfaces.Repositories;
-using Fatec.Domain.Models;
+using Fatec.CrossCutting.Models;
+using Fatec.DataBase.Interfaces;
 using System.Collections.Generic;
 
 namespace Fatec.Application.Services
@@ -12,7 +12,11 @@ namespace Fatec.Application.Services
         private readonly ITagsRepository _tagsRepository;
         private readonly IMapper _mapper;
 
-        public TagsAppService(ITagsRepository tagsRepository, IMapper mapper)
+        public TagsAppService
+        (
+            ITagsRepository tagsRepository, 
+            IMapper mapper
+        )
         {
             _tagsRepository = tagsRepository;
             _mapper = mapper;

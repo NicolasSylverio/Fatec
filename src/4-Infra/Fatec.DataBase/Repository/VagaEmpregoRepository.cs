@@ -1,6 +1,6 @@
-﻿using Fatec.DataBase.Context;
-using Fatec.Domain.Interfaces.Repositories;
-using Fatec.Domain.Models.Vagas;
+﻿using Fatec.CrossCutting.Models.Vagas;
+using Fatec.DataBase.Context;
+using Fatec.DataBase.Interfaces;
 using System.Linq;
 
 namespace Fatec.DataBase.Repository

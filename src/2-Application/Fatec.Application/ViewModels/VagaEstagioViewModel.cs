@@ -1,6 +1,5 @@
-﻿using Fatec.Domain.Services;
+﻿using Fatec.CrossCutting.Helper;
 using System;
-using System.Collections.Generic;
 
 namespace Fatec.Application.ViewModels
 {
@@ -12,7 +11,7 @@ namespace Fatec.Application.ViewModels
         public string Descricao { get; set; }
         public EmpresaViewModel Empresa { get; set; }
         public string UrlImagem { get; set; }
-        public DateTime DataHoraCadastro { get; set; } = DateService.PegaHoraBrasilia();
+        public DateTime DataHoraCadastro { get; set; } = DataHelper.GetHoraBrasilia();
         public DateTime DataValidade { get; set; }
     }
 }

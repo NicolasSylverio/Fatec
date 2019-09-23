@@ -1,4 +1,4 @@
-﻿using Fatec.Domain.Models;
+﻿using Fatec.CrossCutting.Models;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.Infrastructure.Annotations;
 using System.Data.Entity.ModelConfiguration;

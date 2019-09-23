@@ -1,8 +1,8 @@
 ﻿using Fatec.CrossCutting.Interfaces;
+using Fatec.CrossCutting.Models;
+using Fatec.CrossCutting.Models.Empresas;
+using Fatec.CrossCutting.Models.Vagas;
 using Fatec.DataBase.Map;
-using Fatec.Domain.Models;
-using Fatec.Domain.Models.Empresas;
-using Fatec.Domain.Models.Vagas;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 

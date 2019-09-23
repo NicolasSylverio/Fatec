@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Fatec.Application.Interface;
 using Fatec.Application.ViewModels;
-using Fatec.Domain.Interfaces.Repositories;
-using Fatec.Domain.Models.Empresas;
+using Fatec.CrossCutting.Models.Empresas;
+using Fatec.DataBase.Interfaces;
 using System.Collections.Generic;
 
 namespace Fatec.Application.Services

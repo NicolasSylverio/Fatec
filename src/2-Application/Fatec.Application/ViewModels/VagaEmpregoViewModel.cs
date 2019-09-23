@@ -1,8 +1,8 @@
-﻿using Fatec.Domain.Models;
-using Fatec.Domain.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Fatec.CrossCutting.Models;
+using Fatec.CrossCutting.Helper;
 
 namespace Fatec.Application.ViewModels
 {
@@ -50,7 +50,7 @@ namespace Fatec.Application.ViewModels
 
         [DataType(DataType.DateTime)]
         [Display(Name = "Data e Hora de Cadastro")]
-        public DateTime DataHoraCadastro { get; set; } = DateService.PegaHoraBrasilia();
+        public DateTime DataHoraCadastro { get; set; } = DataHelper.GetHoraBrasilia();
 
         [DataType(DataType.Date)]
         [Display(Name = "Data de Validade da Vaga")]
@@ -62,5 +62,8 @@ namespace Fatec.Application.ViewModels
 
         [Display(Name = "Tags")]
         public IEnumerable<int> TagsId { get; set; }
+
+        [Display(Name = "Tags")]
+        public IEnumerable<Tags> Tags { get; set; }
     }
 }

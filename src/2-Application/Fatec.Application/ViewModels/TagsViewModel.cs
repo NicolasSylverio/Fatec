@@ -1,4 +1,4 @@
-﻿using Fatec.Domain.Services;
+﻿using Fatec.CrossCutting.Helper;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -20,7 +20,7 @@ namespace Fatec.Application.ViewModels
         [Display(Name = "Descrição da Tag")]
         public string Descricao { get; set; }
 
-        public DateTime DataHoraCadastro { get; set; } = DateService.PegaHoraBrasilia();
+        public DateTime DataHoraCadastro { get; set; } = DataHelper.GetHoraBrasilia();
 
         [Display(Name = "Tag")]
         public bool Ativo { get; set; }

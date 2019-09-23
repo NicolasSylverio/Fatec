@@ -9,11 +9,7 @@
 @using (Html.BeginForm("Cadastrar", "VagasEmprego", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-
-    <div class="row">
-
-    </div>
-
+    
     <br />
     <br />
     <div class="row">
@@ -33,7 +29,6 @@
             @Html.ValidationMessageFor(m => m.Descricao, "", new { @class = "helper-text" })
         </div>
         <div class="input-field col s12 m12 l12 xl12 center">
-            @Html.Label("Tags", new { @class = "validate" })
             @Html.ListBoxFor(m => m.TagsId, new SelectList(ViewBag.Tags, "Id", "Nome", "Selecione"), new { @class = "form-control", multiple = "multiple"})
             @Html.ValidationMessageFor(m => m.TagsId, "", new { @class = "helper-text" })
         </div>

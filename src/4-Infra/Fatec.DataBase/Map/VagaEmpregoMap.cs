@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.Infrastructure.Annotations;
-using Fatec.Domain.Models.Vagas;
 using System.Data.Entity.ModelConfiguration;
+using Fatec.CrossCutting.Models.Vagas;
 
 namespace Fatec.DataBase.Map
 {

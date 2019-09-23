@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Fatec.Application.ViewModels;
-using Fatec.Domain.Models.Empresas;
+using Fatec.CrossCutting.Models.Empresas;
 
 namespace Fatec.Application.Interface
 {

@@ -1,6 +1,7 @@
 ﻿using Fatec.Application.Interface;
 using Fatec.Application.ViewModels;
 using System;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace Fatec.Mvc.Controllers
@@ -8,10 +9,19 @@ namespace Fatec.Mvc.Controllers
     public class VagasEmpregoController : Controller
     {
         private readonly IVagaEmpregoAppService _vagaEmpregoAppService;
+        private readonly IEmpresaAppService _empresaAppService;
+        private readonly ITagsAppService _tagsAppService;
 
-        public VagasEmpregoController(IVagaEmpregoAppService vagaEmpregoAppService)
+        public VagasEmpregoController
+        (
+            IVagaEmpregoAppService vagaEmpregoAppService,
+            IEmpresaAppService empresaAppService,
+            ITagsAppService tagsAppService
+        )
         {
             _vagaEmpregoAppService = vagaEmpregoAppService;
+            _empresaAppService = empresaAppService;
+            _tagsAppService = tagsAppService;
         }
 
         // GET: VagasEmprego
@@ -24,6 +34,11 @@ namespace Fatec.Mvc.Controllers
 
         public ActionResult Cadastrar()
         {
+            ViewBag.EmpresaId = _empresaAppService.GetAll();
+            ViewBag.Tags = new MultiSelectList(_tagsAppService.GetAll(), "Id", "Nome");
+
+            ViewBag.Tags = _tagsAppService.GetAll().Select(x => new { x.Id, x.Nome });
+
             return View();
         }
 
@@ -66,16 +81,19 @@ namespace Fatec.Mvc.Controllers
         {
             try
             {
-                if (!ModelState.IsValid) return View();
+                if (!ModelState.IsValid) return RedirectToAction("Cadastrar");
 
                 _vagaEmpregoAppService.Add(model);
 
                 return RedirectToAction("Index");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                ViewBag.EmpresaId = _empresaAppService.GetAll();
+                ViewBag.Tags = _tagsAppService.GetAll();
+
                 ViewBag.Error = "Erro ao cadastrar nova Vaga Emprego";
-                return RedirectToAction("Index");
+                return RedirectToAction("Cadastrar");
             }
         }
 

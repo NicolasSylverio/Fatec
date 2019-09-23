@@ -1,9 +1,9 @@
-﻿using Fatec.Domain.Models.Vagas;
-using Fatec.Domain.Services;
+﻿using Fatec.CrossCutting.Helper;
+using Fatec.CrossCutting.Models.Vagas;
 using System;
 using System.Collections.Generic;
 
-namespace Fatec.Domain.Models.Empresas
+namespace Fatec.CrossCutting.Models.Empresas
 {
     public class Empresa
     {
@@ -23,7 +23,7 @@ namespace Fatec.Domain.Models.Empresas
 
         public string UrlSite { get; set; }
 
-        public DateTime DataCadastro { get; set; } = DateService.PegaHoraBrasilia();
+        public DateTime DataCadastro { get; set; } = DataHelper.GetHoraBrasilia();
 
         public virtual ICollection<VagaEmprego> VagaEmprego { get; set; }
         public virtual ICollection<VagaEstagio> VagaEstagio { get; set; }

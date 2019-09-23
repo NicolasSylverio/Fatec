@@ -1,7 +1,8 @@
-﻿using Fatec.Domain.Interfaces.Repositories;
-using Fatec.Domain.Models;
+﻿using Fatec.CrossCutting.Models;
 using System.Data.Entity;
 using Fatec.DataBase.Context;
+
+using Fatec.DataBase.Interfaces;
 
 namespace Fatec.DataBase.Repository
 {

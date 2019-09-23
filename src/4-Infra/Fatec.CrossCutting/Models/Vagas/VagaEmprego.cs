@@ -1,15 +1,13 @@
-﻿using Fatec.Domain.Models.Empresas;
+﻿using Fatec.CrossCutting.Helper;
+using Fatec.CrossCutting.Models.Empresas;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Fatec.Domain.Services;
 
-namespace Fatec.Domain.Models.Vagas
+namespace Fatec.CrossCutting.Models.Vagas
 {
-    public class VagaEstagio
+    public class VagaEmprego
     {
-        public VagaEstagio()
+        public VagaEmprego()
         {
             Tags = new HashSet<Tags>();
         }
@@ -24,13 +22,15 @@ namespace Fatec.Domain.Models.Vagas
 
         public string UrlImagem { get; set; }
 
-        public DateTime DataHoraCadastro { get; set; } = DateService.PegaHoraBrasilia();
+        public DateTime DataHoraCadastro { get; set; } = DataHelper.GetHoraBrasilia();
 
         public DateTime DataValidade { get; set; }
 
         public int EmpresaId { get; set; }
 
         public virtual Empresa Empresa { get; set; }
+
+        public virtual ICollection<int> TagsId { get; set; }
 
         public virtual ICollection<Tags> Tags { get; set; }
     }

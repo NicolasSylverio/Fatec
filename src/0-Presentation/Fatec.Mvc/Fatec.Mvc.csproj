@@ -225,8 +225,6 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\VagaEmpregoViewModel.cs" />
-    <Compile Include="Models\VagaEstagioViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -319,10 +317,6 @@
     <ProjectReference Include="..\..\2-Application\Fatec.Application\Fatec.Application.csproj">
       <Project>{56ECEF12-6F4B-442A-9B02-815DDD0F8639}</Project>
       <Name>Fatec.Application</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\3-Domain\Fatec.Domain\Fatec.Domain.csproj">
-      <Project>{04FE369A-4054-4CE3-99C6-1ED80A313AC4}</Project>
-      <Name>Fatec.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\4-Infra\Fatec.CrossCutting\Fatec.CrossCutting.csproj">
       <Project>{CBD67C1C-A4FB-4C6A-B16F-229D34882312}</Project>

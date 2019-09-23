@@ -1,5 +1,5 @@
 ﻿using Fatec.Application.Interface;
-using Fatec.Domain.Interfaces.Repositories;
+using Fatec.DataBase.Interfaces;
 using System.Collections.Generic;
 
 namespace Fatec.Application.Services

@@ -1,6 +1,6 @@
-﻿using Fatec.Domain.Models;
+﻿using Fatec.CrossCutting.Models;
 
-namespace Fatec.Domain.Interfaces.Repositories
+namespace Fatec.DataBase.Interfaces
 {
     public interface ITagsRepository : IRepositoryBase<Tags>
     {

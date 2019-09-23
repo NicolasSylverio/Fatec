@@ -1,9 +1,9 @@
-﻿using Fatec.Domain.Models.Vagas;
-using Fatec.Domain.Services;
+﻿using Fatec.CrossCutting.Helper;
+using Fatec.CrossCutting.Models.Vagas;
 using System;
 using System.Collections.Generic;
 
-namespace Fatec.Domain.Models
+namespace Fatec.CrossCutting.Models
 {
     public class Tags
     {
@@ -19,10 +19,10 @@ namespace Fatec.Domain.Models
 
         public string Descricao { get; set; }
 
-        public DateTime DataCadastro { get; set; } = DateService.PegaHoraBrasilia();
+        public DateTime DataCadastro { get; set; } = DataHelper.GetHoraBrasilia();
 
         public bool Ativo { get; set; }
-        
+
         public virtual ICollection<VagaEmprego> VagaEmprego { get; set; }
         public virtual ICollection<VagaEstagio> VagaEstagio { get; set; }
     }

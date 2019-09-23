@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using Fatec.CrossCutting.Models.Empresas;
 using Fatec.DataBase.Context;
-using Fatec.Domain.Interfaces.Repositories;
-using Fatec.Domain.Models.Empresas;
+using Fatec.DataBase.Interfaces;
 
 namespace Fatec.DataBase.Repository
 {

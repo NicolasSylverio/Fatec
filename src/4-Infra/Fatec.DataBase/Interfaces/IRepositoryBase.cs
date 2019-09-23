@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Fatec.Domain.Interfaces.Repositories
+namespace Fatec.DataBase.Interfaces
 {
     public interface IRepositoryBase<TEntity> : IDisposable where TEntity : class
     {

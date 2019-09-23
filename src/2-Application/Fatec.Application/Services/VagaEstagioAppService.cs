@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Fatec.Application.Interface;
 using Fatec.Application.ViewModels;
-using Fatec.Domain.Interfaces.Repositories;
-using Fatec.Domain.Models.Vagas;
+using Fatec.CrossCutting.Models.Vagas;
+using Fatec.DataBase.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 

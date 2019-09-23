@@ -69,6 +69,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\IntranetFatecContext.cs" />
+    <Compile Include="Interfaces\IEmpresaRepository.cs" />
+    <Compile Include="Interfaces\IRepositoryBase.cs" />
+    <Compile Include="Interfaces\ITagsRepository.cs" />
+    <Compile Include="Interfaces\IVagaEmpregoRepository.cs" />
+    <Compile Include="Interfaces\IVagaEstagioRepository.cs" />
     <Compile Include="Map\EmpresaMap.cs" />
     <Compile Include="Map\TagsMap.cs" />
     <Compile Include="Map\VagaEmpregoMap.cs" />
@@ -92,19 +97,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\3-Domain\Fatec.Domain\Fatec.Domain.csproj">
-      <Project>{04fe369a-4054-4ce3-99c6-1ed80a313ac4}</Project>
-      <Name>Fatec.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Fatec.CrossCutting\Fatec.CrossCutting.csproj">
-      <Project>{CBD67C1C-A4FB-4C6A-B16F-229D34882312}</Project>
-      <Name>Fatec.CrossCutting</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Migrations\201909171405155_Initial-Migration.resx">
       <DependentUpon>201909171405155_Initial-Migration.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Fatec.CrossCutting\Fatec.CrossCutting.csproj">
+      <Project>{cbd67c1c-a4fb-4c6a-b16f-229d34882312}</Project>
+      <Name>Fatec.CrossCutting</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

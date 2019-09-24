@@ -312,6 +312,7 @@
     <Content Include="Views\Tags\Cadastrar.cshtml" />
     <Content Include="Views\Tags\Edit.cshtml" />
     <Content Include="Views\VagasEmprego\Cadastrar.cshtml" />
+    <Content Include="Views\VagasEmprego\Detalhes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\2-Application\Fatec.Application\Fatec.Application.csproj">

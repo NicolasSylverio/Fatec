@@ -24,7 +24,7 @@ namespace Fatec.Mvc.Controllers
             _tagsAppService = tagsAppService;
         }
 
-        // GET: VagasEmprego
+        [Route("Index")]
         public ActionResult Index()
         {
             ViewBag.Title = "Vagas de Emprego";
@@ -32,6 +32,15 @@ namespace Fatec.Mvc.Controllers
             return View(vagas);
         }
 
+        [Route("Detalhes/{id}")]
+        public ActionResult Detalhes(int id)
+        {
+            ViewBag.Title = "Vagas de Emprego - Detalhes";
+            var vagas = _vagaEmpregoAppService.GetById(id);
+            return View(vagas);
+        }
+
+        [Route("Cadastrar")]
         public ActionResult Cadastrar()
         {
             ViewBag.EmpresaId = _empresaAppService.GetAll();
@@ -42,7 +51,7 @@ namespace Fatec.Mvc.Controllers
             return View();
         }
 
-        // GET: Tags/Edit/id
+        [Route("Edit/{id}")]
         public ActionResult Edit(int id)
         {
             try
@@ -58,8 +67,9 @@ namespace Fatec.Mvc.Controllers
             }
         }
 
-        // POST: Estagio/Edit/5
         [HttpPost]
+        [Route("Edit/{id}")]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(VagaEmpregoViewModel model)
         {
             try
@@ -76,6 +86,7 @@ namespace Fatec.Mvc.Controllers
         }
 
         [HttpPost]
+        [Route("Cadastrar")]
         [ValidateAntiForgeryToken]
         public ActionResult Cadastrar(VagaEmpregoViewModel model)
         {
@@ -97,6 +108,8 @@ namespace Fatec.Mvc.Controllers
             }
         }
 
+        [Route("Delete/{id}")]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {
             try

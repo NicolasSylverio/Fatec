@@ -12,3 +12,10 @@ if ('serviceWorker' in navigator) {
             console.log('Service worker registration failed, error:', error);
         });
 }
+
+function abrirLinkMenu(vUrl) {
+    const elem = document.querySelector('#slide_menu');
+    const instance = M.Sidenav.getInstance(elem);
+    instance.close();
+    window.location.href = vUrl;
+};

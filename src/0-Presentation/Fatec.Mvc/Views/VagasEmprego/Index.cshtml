@@ -1,5 +1,5 @@
 ﻿@using Fatec.Application.ViewModels;
-@model IEnumerable<VagaEmpregoViewModel>
+@model VagasFiltroViewModel<VagaEmpregoViewModel>
 @{
     ViewBag.Title = "Vagas Emprego";
 }
@@ -7,11 +7,34 @@
 <br />
 <h3 class="center">Vagas de Emprego</h3>
 <br />
+@using (Html.BeginForm("Index", "VagasEmprego", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="input-field col s12 m5 l5 xl5 center">
+            <i class="material-icons prefix">search</i>
+            @Html.TextBoxFor(m => m.Pesquisa, new { @class = "form-control" })
+            @Html.LabelFor(m => m.Pesquisa, new { @class = "validate" })
+        </div>
+        <div class="input-field col s12 m5 l5 xl5 center">
+            @Html.ListBoxFor(m => m.Tags, new SelectList(ViewBag.Tags, "Id", "Nome", "Selecione"), new { @class = "form-control", multiple = "multiple" })
+            @Html.LabelFor(m => m.Tags, new { @class = "validate" })
+        </div>
+        <div class="row">
+            <div class="col s12 m2 l2 xl2 center">
+                <input type="submit" value="Pesquisar" class="btn teal-2 waves-light" />
+            </div>
+        </div>
+    </div>
+}
+
+<br />
 
 <div class="row">
-    @if (Model.Any())
+    @if (Model?.Objeto != null)
     {
-        foreach (var item in Model)
+        foreach (var item in Model.Objeto)
         {
             <div class="col s12 m6 l6 xl4">
                 <div class="card hoverable">
@@ -42,6 +65,21 @@
     }
 </div>
 
+<br />
+
+<div class="row">
+    <div class="col s12 m12 offset-l9 l3 offset-xl9 xl3 center">
+        <ul class="pagination">
+            <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+            <li class="active"><a href="#!">1</a></li>
+            <li class="waves-effect"><a href="#!">2</a></li>
+            <li class="waves-effect"><a href="#!">3</a></li>
+            <li class="waves-effect"><a href="#!">4</a></li>
+            <li class="waves-effect"><a href="#!">5</a></li>
+            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+        </ul>
+    </div>
+</div>
 
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function () {
@@ -49,5 +87,11 @@
         const options = {};
 
         M.Materialbox.init(elems, options);
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const elems = document.querySelectorAll('select');
+        const options = {};
+        M.FormSelect.init(elems, options);
     });
 </script>

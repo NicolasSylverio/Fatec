@@ -24,12 +24,47 @@ namespace Fatec.Mvc.Controllers
             _tagsAppService = tagsAppService;
         }
 
+        [HttpGet]
         [Route("Index")]
         public ActionResult Index()
         {
-            ViewBag.Title = "Vagas de Emprego";
-            var vagas = _vagaEmpregoAppService.GetAll();
-            return View(vagas);
+            try
+            {
+                ViewBag.Title = "Vagas de Emprego";
+                ViewBag.Tags = _tagsAppService.GetAll().Select(x => new { x.Id, x.Nome });
+
+                var vagas = _vagaEmpregoAppService.GetAll();
+                var viewModel = new VagasFiltroViewModel<VagaEmpregoViewModel>
+                {
+                    Objeto = vagas
+                };
+
+                return View(viewModel);
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Erro");
+            }
+        }
+
+        [HttpPost]
+        [Route("Index")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(VagasFiltroViewModel<VagaEmpregoViewModel> view)
+        {
+            try
+            {
+                ViewBag.Tags = _tagsAppService.GetAll().Select(x => new { x.Id, x.Nome });
+
+                view.Objeto = _vagaEmpregoAppService.GetAllByTituloTags(view.Pesquisa, view.Tags);
+
+                return View(view);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = $"Erro ao pesquisar vaga. Erro: {ex.Message}";
+                return RedirectToAction("Index");
+            }
         }
 
         [Route("Detalhes/{id}")]
@@ -44,7 +79,6 @@ namespace Fatec.Mvc.Controllers
         public ActionResult Cadastrar()
         {
             ViewBag.EmpresaId = _empresaAppService.GetAll();
-            ViewBag.Tags = new MultiSelectList(_tagsAppService.GetAll(), "Id", "Nome");
 
             ViewBag.Tags = _tagsAppService.GetAll().Select(x => new { x.Id, x.Nome });
 
@@ -98,7 +132,7 @@ namespace Fatec.Mvc.Controllers
 
                 return RedirectToAction("Index");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 ViewBag.EmpresaId = _empresaAppService.GetAll();
                 ViewBag.Tags = _tagsAppService.GetAll();

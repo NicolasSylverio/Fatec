@@ -43,6 +43,11 @@ namespace Fatec.Application.Services
             return usuariosViewModel;
         }
 
+        public IEnumerable<VagaEmpregoViewModel> GetAllByTituloTags(string titulo, IEnumerable<int> tags)
+        {
+            return _mapper.Map<List<VagaEmpregoViewModel>>(_vagaEmpregoRepository.GetAllByTituloTags(titulo, tags));
+        }
+
         public void Remove(int obj)
         {
             _vagaEmpregoRepository.Remove(obj);

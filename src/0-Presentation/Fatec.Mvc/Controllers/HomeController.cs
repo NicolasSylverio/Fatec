@@ -10,16 +10,19 @@ namespace Fatec.Mvc.Controllers
             return View();
         }
 
+        [Route("About")]
         public ActionResult About()
         {
             return View();
         }
 
+        [Route("Contact")]
         public ActionResult Contact()
         {
             return View();
         }
 
+        [Route("Privacy")]
         public ActionResult Privacy()
         {
             return View();

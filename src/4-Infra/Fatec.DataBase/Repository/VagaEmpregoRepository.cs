@@ -1,6 +1,8 @@
 ﻿using Fatec.CrossCutting.Models.Vagas;
 using Fatec.DataBase.Context;
 using Fatec.DataBase.Interfaces;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Fatec.DataBase.Repository
@@ -21,6 +23,23 @@ namespace Fatec.DataBase.Repository
                 .ToList();
 
             base.Add(obj);
+        }
+
+        public IEnumerable<VagaEmprego> GetAllByTituloTags(string titulo, IEnumerable<int> tags)
+        {
+            var query = Db.VagaEmprego.Where(x => x.DataValidade < DateTime.Now);
+
+            if (!string.IsNullOrWhiteSpace(titulo))
+            {
+                query = query.Where(x => x.Titulo.ToLower().Contains(titulo));
+            }
+
+            if (tags.Any())
+            {
+                query = query.Where(x => x.Tags.Any(a => tags.Contains(a.Id)));
+            }
+
+            return query.ToList();
         }
     }
 }

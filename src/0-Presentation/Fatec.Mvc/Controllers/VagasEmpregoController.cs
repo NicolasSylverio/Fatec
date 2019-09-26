@@ -1,5 +1,7 @@
 ﻿using Fatec.Application.Interface;
 using Fatec.Application.ViewModels;
+using Fatec.CrossCutting.Models.PaginacaoHelper;
+using PagedList;
 using System;
 using System.Linq;
 using System.Web.Mvc;
@@ -33,11 +35,15 @@ namespace Fatec.Mvc.Controllers
                 ViewBag.Title = "Vagas de Emprego";
                 ViewBag.Tags = _tagsAppService.GetAll().Select(x => new { x.Id, x.Nome });
 
-                var vagas = _vagaEmpregoAppService.GetAll();
-                var viewModel = new VagasFiltroViewModel<VagaEmpregoViewModel>
-                {
-                    Objeto = vagas
-                };
+                var viewModel = _vagaEmpregoAppService.GetAll(new Paginacao(1, 10));
+
+                ViewBag.PagedList = new StaticPagedList<VagaEmpregoViewModel>
+                (
+                    viewModel.Objeto.Resultados,
+                    viewModel.Objeto.Pagina,
+                    viewModel.Objeto.TotalPorPagina,
+                    viewModel.Objeto.Total
+                );
 
                 return View(viewModel);
             }
@@ -57,9 +63,22 @@ namespace Fatec.Mvc.Controllers
             {
                 ViewBag.Tags = _tagsAppService.GetAll().Select(x => new { x.Id, x.Nome });
 
-                view.Objeto = _vagaEmpregoAppService.GetAllByTituloTags(view.Pesquisa, view.Tags);
+                var result = _vagaEmpregoAppService.GetAllByTituloTags
+                (
+                    view.PesquisaTitulo,
+                    view.Tags,
+                    new Paginacao(view.Objeto.Pagina, view.Objeto.TotalPorPagina)
+                );
 
-                return View(view);
+                ViewBag.PagedList = new StaticPagedList<VagaEmpregoViewModel>
+                (
+                    result.Objeto.Resultados,
+                    result.Objeto.Pagina,
+                    result.Objeto.TotalPorPagina,
+                    result.Objeto.Total
+                );
+
+                return View("Index", result);
             }
             catch (Exception ex)
             {
@@ -159,6 +178,37 @@ namespace Fatec.Mvc.Controllers
             {
                 ViewBag.Error = $"Erro ao deletar Vaga. Erro: {ex.Message}";
                 return RedirectToAction("Index");
+            }
+        }
+
+        [Route("Paginacao")]
+        public ActionResult Paginacao(VagasFiltroViewModel<VagaEmpregoViewModel> view)
+        {
+            try
+            {
+                ViewBag.Tags = _tagsAppService.GetAll().Select(x => new { x.Id, x.Nome });
+
+                var result = _vagaEmpregoAppService.GetAllByTituloTags
+                (
+                    view.PesquisaTitulo,
+                    view.Tags,
+                    new Paginacao(view.Objeto.Pagina, view.Objeto.TotalPorPagina)
+                );
+
+                ViewBag.PagedList = new StaticPagedList<VagaEmpregoViewModel>
+                (
+                    result.Objeto.Resultados,
+                    result.Objeto.Pagina,
+                    result.Objeto.TotalPorPagina,
+                    result.Objeto.Total
+                );
+
+                return View("Index", result);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = $"Erro ao pesquisar vaga. Erro: {ex.Message}";
+                return View("Index");
             }
         }
     }

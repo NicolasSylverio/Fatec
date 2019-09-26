@@ -1,10 +1,13 @@
 ﻿using Fatec.Application.ViewModels;
 using System.Collections.Generic;
+using Fatec.CrossCutting.Models.PaginacaoHelper;
 
 namespace Fatec.Application.Interface
 {
     public interface IVagaEmpregoAppService : IAppServiceBase<VagaEmpregoViewModel>
     {
-        IEnumerable<VagaEmpregoViewModel> GetAllByTituloTags(string titulo, IEnumerable<int> tags);
+        VagasFiltroViewModel<VagaEmpregoViewModel> GetAll(Paginacao paginacao);
+
+        VagasFiltroViewModel<VagaEmpregoViewModel> GetAllByTituloTags(string titulo, IEnumerable<int> tags, Paginacao paginacao);
     }
 }

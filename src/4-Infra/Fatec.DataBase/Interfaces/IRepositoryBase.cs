@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Fatec.CrossCutting.Models.PaginacaoHelper;
 
 namespace Fatec.DataBase.Interfaces
 {

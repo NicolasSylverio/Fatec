@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using Fatec.CrossCutting.Models.Empresas;
+using Fatec.CrossCutting.Models.PaginacaoHelper;
 using Fatec.DataBase.Context;
 using Fatec.DataBase.Interfaces;
 
@@ -33,6 +34,11 @@ namespace Fatec.DataBase.Repository
         {
             return Db.Empresa
                 .ToList();
+        }
+
+        public ResultadoPaginacao<Empresa> GetAll(Paginacao paginacao)
+        {
+            throw new NotImplementedException();
         }
 
         public Empresa GetById(int id)  

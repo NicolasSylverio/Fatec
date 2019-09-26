@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
+using Fatec.CrossCutting.Models.PaginacaoHelper;
 using Fatec.DataBase.Context;
 using Fatec.DataBase.Interfaces;
 
@@ -52,6 +54,28 @@ namespace Fatec.DataBase.Repository
         {
             Db.Dispose();
             GC.SuppressFinalize(this);
+        }
+
+        public virtual ResultadoPaginacao<TEntity> GetAllByAsync<TKey>(Expression<Func<TEntity, bool>> predicate, Paginacao paginacao, Expression<Func<TEntity, TKey>> order)
+        {
+            var count = DbSet.Count(predicate);
+
+            var totalPorPagina = paginacao.TodosRegistros ? count : paginacao.TotalPorPagina;
+
+            var results = DbSet
+                .AsNoTracking()
+                .Where(predicate)
+                .OrderByDescending(order)
+                .Skip(paginacao.TotalPaginacao)
+                .Take(totalPorPagina)
+                .ToList();
+
+            return new ResultadoPaginacao<TEntity>(
+                resultados: results,
+                total: count,
+                pagina: paginacao.Pagina,
+                totalPagina: totalPorPagina
+            );
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using Fatec.CrossCutting.Models.PaginacaoHelper;
 using Fatec.CrossCutting.Models.Vagas;
 using Fatec.DataBase.Context;
 using Fatec.DataBase.Interfaces;
@@ -33,6 +34,11 @@ namespace Fatec.DataBase.Repository
         {
             return Db.VagaEstagio
                 .ToList();
+        }
+
+        public ResultadoPaginacao<VagaEstagio> GetAll(Paginacao paginacao)
+        {
+            throw new NotImplementedException();
         }
 
         public VagaEstagio GetById(int id)  

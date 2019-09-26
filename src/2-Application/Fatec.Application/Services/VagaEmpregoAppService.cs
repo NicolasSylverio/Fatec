@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using Fatec.Application.Interface;
 using Fatec.Application.ViewModels;
+using Fatec.CrossCutting.Models.PaginacaoHelper;
 using Fatec.CrossCutting.Models.Vagas;
 using Fatec.DataBase.Interfaces;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Fatec.Application.Services
 {
@@ -31,21 +31,59 @@ namespace Fatec.Application.Services
 
         public IEnumerable<VagaEmpregoViewModel> GetAll()
         {
-            var vagaEstagios = _vagaEmpregoRepository.GetAll().ToList();
+            var vagaEmpregos = _vagaEmpregoRepository.GetAll();
 
-            var usuariosViewModel = new List<VagaEmpregoViewModel>();
-
-            foreach (var vagaEstagio in vagaEstagios)
-            {
-                usuariosViewModel.Add(_mapper.Map<VagaEmpregoViewModel>(vagaEstagio));
-            }
-
-            return usuariosViewModel;
+            return _mapper.Map<List<VagaEmpregoViewModel>>(vagaEmpregos);
         }
 
-        public IEnumerable<VagaEmpregoViewModel> GetAllByTituloTags(string titulo, IEnumerable<int> tags)
+        public VagasFiltroViewModel<VagaEmpregoViewModel> GetAll(Paginacao paginacao)
         {
-            return _mapper.Map<List<VagaEmpregoViewModel>>(_vagaEmpregoRepository.GetAllByTituloTags(titulo, tags));
+            var result = _vagaEmpregoRepository.GetAll(paginacao);
+
+            var vagas = _mapper.Map<List<VagaEmpregoViewModel>>(result.Resultados);
+
+            var resultadoPaginacao = new ResultadoPaginacao<VagaEmpregoViewModel>
+            {
+                Direcao = result.Direcao,
+                OrdenarPor = result.OrdenarPor,
+                Pagina = result.Pagina,
+                Resultados = vagas,
+                Total = result.Total,
+                TotalPaginas = result.TotalPaginas,
+                TotalPorPagina = result.TotalPorPagina
+            };
+
+            return new VagasFiltroViewModel<VagaEmpregoViewModel>
+            {
+                Objeto = resultadoPaginacao,
+                Tags = null,
+                PesquisaTitulo = null
+            };
+        }
+
+        public VagasFiltroViewModel<VagaEmpregoViewModel> GetAllByTituloTags(string titulo, IEnumerable<int> tags, Paginacao paginacao)
+        {
+            var result = _vagaEmpregoRepository.GetAllByTituloTags(titulo, tags, paginacao);
+
+            var vagas = _mapper.Map<List<VagaEmpregoViewModel>>(result.Resultados);
+
+            var resultadoPaginacao = new ResultadoPaginacao<VagaEmpregoViewModel>
+            {
+                Direcao = result.Direcao,
+                OrdenarPor = result.OrdenarPor,
+                Pagina = result.Pagina,
+                Resultados = vagas,
+                Total = result.Total,
+                TotalPaginas = result.TotalPaginas,
+                TotalPorPagina = result.TotalPorPagina
+            };
+
+            return new VagasFiltroViewModel<VagaEmpregoViewModel>
+            {
+                Objeto = resultadoPaginacao,
+                Tags = null,
+                PesquisaTitulo = null
+            };
         }
 
         public void Remove(int obj)

@@ -1,4 +1,7 @@
 ﻿@using Fatec.Application.ViewModels;
+@using Fatec.CrossCutting.Models.PaginacaoHelper
+@using PagedList
+@using PagedList.Mvc
 @model VagasFiltroViewModel<VagaEmpregoViewModel>
 @{
     ViewBag.Title = "Vagas Emprego";
@@ -14,8 +17,8 @@
     <div class="row">
         <div class="input-field col s12 m5 l5 xl5 center">
             <i class="material-icons prefix">search</i>
-            @Html.TextBoxFor(m => m.Pesquisa, new { @class = "form-control" })
-            @Html.LabelFor(m => m.Pesquisa, new { @class = "validate" })
+            @Html.TextBoxFor(m => m.PesquisaTitulo, new { @class = "form-control" })
+            @Html.LabelFor(m => m.PesquisaTitulo, new { @class = "validate" })
         </div>
         <div class="input-field col s12 m5 l5 xl5 center">
             @Html.ListBoxFor(m => m.Tags, new SelectList(ViewBag.Tags, "Id", "Nome", "Selecione"), new { @class = "form-control", multiple = "multiple" })
@@ -32,14 +35,14 @@
 <br />
 
 <div class="row">
-    @if (Model?.Objeto != null)
+    @if (Model?.Objeto?.Resultados != null)
     {
-        foreach (var item in Model.Objeto)
+        foreach (var item in Model.Objeto.Resultados)
         {
             <div class="col s12 m6 l6 xl4">
                 <div class="card hoverable">
                     <div class="card-image">
-                        <img class="materialboxed" src="http://fatecjd.edu.br/intranetAlunos/wp-content/uploads/2019/08/Cartaz-181449.pdf-Gam-768x1086.jpg">
+                        <img class="materialboxed" src="http://fatecjd.edu.br/intranetAlunos/wp-content/uploads/2019/08/Cartaz-181449.pdf-Gam-768x1086.jpg" alt="Banner Vaga">
                     </div>
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">@item.Titulo<i class="material-icons right">more_vert</i></span>
@@ -51,7 +54,7 @@
                     </div>
                     <div class="card-action">
                         <a href="#">@item.UrlSite</a>
-                        <a href="#" onclick="abrirLinkMenu('@Url.Action($"Detalhes/{@item.Id}", "VagasEmprego")')">Mais Detalhes..</a>
+                        <a href="#" onclick="abrirLinkMenu('@Url.Action($"Detalhes/{item.Id}", "VagasEmprego")')">Mais Detalhes..</a>
                     </div>
                 </div>
             </div>
@@ -67,19 +70,31 @@
 
 <br />
 
-<div class="row">
-    <div class="col s12 m12 offset-l9 l3 offset-xl9 xl3 center">
-        <ul class="pagination">
-            <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-            <li class="active"><a href="#!">1</a></li>
-            <li class="waves-effect"><a href="#!">2</a></li>
-            <li class="waves-effect"><a href="#!">3</a></li>
-            <li class="waves-effect"><a href="#!">4</a></li>
-            <li class="waves-effect"><a href="#!">5</a></li>
-            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-        </ul>
+@if (ViewBag.PagedList != null)
+{
+    <div class="row">
+        @Html.PagedListPager((IPagedList<VagaEmpregoViewModel>
+        )ViewBag.PagedList, page => Url.Action("Paginacao", new VagasFiltroViewModel<VagaEmpregoViewModel>
+        {
+            Objeto = new ResultadoPaginacao<VagaEmpregoViewModel>(Model.Objeto.Resultados, 0, page, Model.Objeto.TotalPorPagina),
+            Tags = Model.Tags,
+            PesquisaTitulo = Model.PesquisaTitulo
+
+        }), new PagedListRenderOptions
+        {
+            ContainerDivClasses = new[] { "col s12 m12 offset-l9 l3 offset-xl9 xl3 center" },
+            UlElementClasses = new[] { "pagination" },
+            LiElementClasses = new[] { "waves-effect" },
+            ClassToApplyToFirstListItemInPager = null,
+            ClassToApplyToLastListItemInPager = null,
+            DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+            DisplayLinkToLastPage = PagedListDisplayMode.Never,
+            DisplayEllipsesWhenNotShowingAllPageNumbers = false,
+            LinkToPreviousPageFormat = "Anterior",
+            LinkToNextPageFormat = "Próximo"
+        })
     </div>
-</div>
+}
 
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function () {

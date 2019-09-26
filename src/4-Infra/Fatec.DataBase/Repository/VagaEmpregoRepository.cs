@@ -1,8 +1,10 @@
-﻿using Fatec.CrossCutting.Models.Vagas;
+﻿using Fatec.CrossCutting.Models.PaginacaoHelper;
+using Fatec.CrossCutting.Models.Vagas;
 using Fatec.DataBase.Context;
 using Fatec.DataBase.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 
 namespace Fatec.DataBase.Repository
@@ -25,21 +27,62 @@ namespace Fatec.DataBase.Repository
             base.Add(obj);
         }
 
-        public IEnumerable<VagaEmprego> GetAllByTituloTags(string titulo, IEnumerable<int> tags)
+        public virtual ResultadoPaginacao<VagaEmprego> GetAll(Paginacao paginacao)
         {
-            var query = Db.VagaEmprego.Where(x => x.DataValidade < DateTime.Now);
+            var obj = DbSet.AsQueryable();
+
+            var totalDeRegistros = obj.Count();
+
+            var totalPorPagina = paginacao.TodosRegistros ? totalDeRegistros : paginacao.TotalPorPagina;
+
+            var entity = obj.AsNoTracking()
+                .OrderByDescending(x => x.DataHoraCadastro)
+                .Skip(paginacao.TotalPaginacao)
+                .Take(totalPorPagina)
+                .ToList();
+
+            return new ResultadoPaginacao<VagaEmprego>
+            {
+                Resultados = entity,
+                Total = totalDeRegistros,
+                Pagina = paginacao.Pagina,
+                TotalPaginas = paginacao.TotalPaginacao,
+                TotalPorPagina = totalPorPagina > 0 ? totalPorPagina : 1
+            };
+        }
+
+        public ResultadoPaginacao<VagaEmprego> GetAllByTituloTags(string titulo, IEnumerable<int> tags, Paginacao paginacao)
+        {
+            var query = DbSet.Where(x => x.DataValidade < DateTime.Now);
 
             if (!string.IsNullOrWhiteSpace(titulo))
             {
                 query = query.Where(x => x.Titulo.ToLower().Contains(titulo));
             }
 
-            if (tags != null && tags.Any())
+            if (tags != null && !tags.Any())
             {
                 query = query.Where(x => x.Tags.Any(a => tags.Contains(a.Id)));
             }
 
-            return query.ToList();
+            var totalDeRegistros = query.Count();
+
+            var totalPorPagina = paginacao.TodosRegistros ? totalDeRegistros : paginacao.TotalPorPagina;
+
+            var entity = query.AsNoTracking()
+                .OrderBy(x => x.Titulo)
+                .Skip(paginacao.TotalPaginacao)
+                .Take(totalPorPagina)
+                .ToList();
+
+            return new ResultadoPaginacao<VagaEmprego>
+            {
+                Resultados = entity,
+                Total = totalDeRegistros,
+                Pagina = paginacao.Pagina,
+                TotalPaginas = paginacao.TotalPaginacao,
+                TotalPorPagina = totalPorPagina > 0 ? totalPorPagina : 1
+            };
         }
     }
 }

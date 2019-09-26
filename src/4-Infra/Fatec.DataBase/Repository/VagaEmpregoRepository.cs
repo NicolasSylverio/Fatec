@@ -34,7 +34,7 @@ namespace Fatec.DataBase.Repository
                 query = query.Where(x => x.Titulo.ToLower().Contains(titulo));
             }
 
-            if (tags.Any())
+            if (tags != null && tags.Any())
             {
                 query = query.Where(x => x.Tags.Any(a => tags.Contains(a.Id)));
             }

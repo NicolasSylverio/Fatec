@@ -41,9 +41,10 @@ namespace Fatec.Mvc.Controllers
 
                 return View(viewModel);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return RedirectToAction("Erro");
+                ViewBag.Error = $"Erro ao pesquisar vagas. Erro: {ex.Message}";
+                return View();
             }
         }
 
@@ -63,7 +64,7 @@ namespace Fatec.Mvc.Controllers
             catch (Exception ex)
             {
                 ViewBag.Error = $"Erro ao pesquisar vaga. Erro: {ex.Message}";
-                return RedirectToAction("Index");
+                return View("Index");
             }
         }
 

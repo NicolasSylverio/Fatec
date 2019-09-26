@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Fatec.CrossCutting.Models;
 using Fatec.CrossCutting.Helper;
+using Fatec.CrossCutting.Models.Empresas;
 
 namespace Fatec.Application.ViewModels
 {
@@ -59,6 +60,8 @@ namespace Fatec.Application.ViewModels
         [Required]
         [Display(Name = "Empresa")]
         public int EmpresaId { get; set; }
+
+        public Empresa Empresa { get; set; }
 
         [Display(Name = "Tags")]
         public IEnumerable<int> TagsId { get; set; }

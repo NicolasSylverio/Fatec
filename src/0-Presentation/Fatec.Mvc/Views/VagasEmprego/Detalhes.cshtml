@@ -1,5 +1,83 @@
-﻿
+﻿@using Fatec.Application.ViewModels;
+@model VagaEmpregoViewModel
+@{
+    ViewBag.Title = "Vagas Emprego - Detalhes";
+    if (Model == null)
+    {
+        ViewBag.Error = "Nenhuma vaga encontrada para o Id Especificado.";
+    }
+}
 
+@if (Model != null)
+{
+    <br />
+    <div class="row">
+        <div class="col s12 m12 l12 xl12 center">
+            <div class="card-panel white z-depth-3">
+                <h2 class="center">
+                    @Model.Titulo
+                </h2>
+                <br />
+            </div>
+        </div>
 
+        <div class="col s12 m12 l6 xl6">
+            <div class="card white z-depth-3">
+                <div class="card-content black-text">
+                    <span class="card-title">@Model.Empresa.Nome</span>
+                    <div class="col s12 m6 l6 xl6">
+                        <p>
+                            Site Empresa:
+                            <a href="@Model.UrlSite">@Model.Empresa.UrlSite</a>
+                        </p>
+                    </div>
+                    <div class="col s12 m6 l6 xl6">
+                        <p>
+                            Telefone Empresa: @Model.Empresa.Telefone
+                        </p>
+                    </div>
+                    <br />
+                </div>
+            </div>
+        </div>
 
-<h3 class="center">Vagas Emprego</h3>
+        <div class="col s12 m12 l6 xl6">
+            <div class="card white z-depth-3">
+                <div class="card-content black-text">
+                    <span class="card-title">Tags da Vaga</span>
+                    @foreach (var item in Model.Tags)
+                    {
+                        <div class="chip blue lighten-3">
+                            @item.Nome
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="col s12 m12 l12 xl12">
+            <div class="card white z-depth-3">
+                <div class="card-content black-text">
+                    <span class="card-title">Descrição da Vaga</span>
+                    <p>@Model.Descricao</p>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m6 l4 xl4">
+            <div class="card white z-depth-3">
+                <div class="card-content black-text">
+                    <span class="card-title">E-mail Contato</span>
+                    <p>@(Model.Email ?? "Sem E-mail Contato Cadastrado.")</p>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m6 l4 xl4">
+            <div class="card white z-depth-3">
+                <div class="card-content black-text">
+                    <span class="card-title">Telefone Contato</span>
+                    <p>@(Model.Telefone ?? "Sem Telefone Contato Cadastrado.")</p>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -3,8 +3,11 @@ using Fatec.Application.ViewModels;
 using Fatec.CrossCutting.Models.PaginacaoHelper;
 using PagedList;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using Fatec.Mvc.Models;
+using WebGrease.Css.Extensions;
 
 namespace Fatec.Mvc.Controllers
 {
@@ -28,60 +31,41 @@ namespace Fatec.Mvc.Controllers
 
         [HttpGet]
         [Route("Index")]
-        public ActionResult Index()
-        {
-            try
-            {
-                ViewBag.Title = "Vagas de Emprego";
-                ViewBag.Tags = _tagsAppService.GetAll().Select(x => new { x.Id, x.Nome });
-
-                var viewModel = _vagaEmpregoAppService.GetAll(new Paginacao(1, 10));
-
-                ViewBag.PagedList = new StaticPagedList<VagaEmpregoViewModel>
-                (
-                    viewModel.Objeto.Resultados,
-                    viewModel.Objeto.Pagina,
-                    viewModel.Objeto.TotalPorPagina,
-                    viewModel.Objeto.Total
-                );
-
-                return View(viewModel);
-            }
-            catch (Exception ex)
-            {
-                ViewBag.Error = $"Erro ao pesquisar vagas. Erro: {ex.Message}";
-                return View();
-            }
-        }
-
-        [HttpPost]
-        [Route("Index")]
-        [ValidateAntiForgeryToken]
         public ActionResult Index(VagasFiltroViewModel<VagaEmpregoViewModel> view)
         {
             try
             {
-                ViewBag.Tags = _tagsAppService.GetAll().Select(x => new { x.Id, x.Nome });
+                var teste = new List<DropDownDto> { new DropDownDto { Descricao = "Tag", Id = 0 } };
+
+                _tagsAppService.GetAll().ForEach(x => teste.Add(new DropDownDto { Descricao = x.Nome, Id = x.Id }));
+
+                ViewBag.Tags = teste;
+
+                var pesquisa = view.PesquisaTitulo;
+                var tags = view.Tags;
 
                 var result = _vagaEmpregoAppService.GetAllByTituloTags
                 (
-                    view.PesquisaTitulo,
-                    view.Tags,
-                    new Paginacao(view.Objeto.Pagina, view.Objeto.TotalPorPagina)
+                    pesquisa,
+                    tags,
+                    new Paginacao(view.Pagina, view.TotalPorPagina)
                 );
 
                 ViewBag.PagedList = new StaticPagedList<VagaEmpregoViewModel>
                 (
-                    result.Objeto.Resultados,
-                    result.Objeto.Pagina,
-                    result.Objeto.TotalPorPagina,
-                    result.Objeto.Total
+                    result.Resultado,
+                    result.Pagina,
+                    result.TotalPorPagina,
+                    result.Total
                 );
+
+                ViewBag.TotalItens = result.Total;
 
                 return View("Index", result);
             }
             catch (Exception ex)
             {
+                ViewBag.TotalItens = 0;
                 ViewBag.Error = $"Erro ao pesquisar vaga. Erro: {ex.Message}";
                 return View("Index");
             }
@@ -178,37 +162,6 @@ namespace Fatec.Mvc.Controllers
             {
                 ViewBag.Error = $"Erro ao deletar Vaga. Erro: {ex.Message}";
                 return RedirectToAction("Index");
-            }
-        }
-
-        [Route("Paginacao")]
-        public ActionResult Paginacao(VagasFiltroViewModel<VagaEmpregoViewModel> view)
-        {
-            try
-            {
-                ViewBag.Tags = _tagsAppService.GetAll().Select(x => new { x.Id, x.Nome });
-
-                var result = _vagaEmpregoAppService.GetAllByTituloTags
-                (
-                    view.PesquisaTitulo,
-                    view.Tags,
-                    new Paginacao(view.Objeto.Pagina, view.Objeto.TotalPorPagina)
-                );
-
-                ViewBag.PagedList = new StaticPagedList<VagaEmpregoViewModel>
-                (
-                    result.Objeto.Resultados,
-                    result.Objeto.Pagina,
-                    result.Objeto.TotalPorPagina,
-                    result.Objeto.Total
-                );
-
-                return View("Index", result);
-            }
-            catch (Exception ex)
-            {
-                ViewBag.Error = $"Erro ao pesquisar vaga. Erro: {ex.Message}";
-                return View("Index");
             }
         }
     }

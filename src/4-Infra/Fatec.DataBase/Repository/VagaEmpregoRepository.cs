@@ -51,7 +51,7 @@ namespace Fatec.DataBase.Repository
             };
         }
 
-        public ResultadoPaginacao<VagaEmprego> GetAllByTituloTags(string titulo, IEnumerable<int> tags, Paginacao paginacao)
+        public ResultadoPaginacao<VagaEmprego> GetAllByTituloTags(string titulo, int tags, Paginacao paginacao)
         {
             var query = DbSet.Where(x => x.DataValidade < DateTime.Now);
 
@@ -60,9 +60,9 @@ namespace Fatec.DataBase.Repository
                 query = query.Where(x => x.Titulo.ToLower().Contains(titulo));
             }
 
-            if (tags != null && !tags.Any())
+            if (tags != 0)
             {
-                query = query.Where(x => x.Tags.Any(a => tags.Contains(a.Id)));
+                query = query.Where(x => x.Tags.Any(a => a.Id == tags));
             }
 
             var totalDeRegistros = query.Count();

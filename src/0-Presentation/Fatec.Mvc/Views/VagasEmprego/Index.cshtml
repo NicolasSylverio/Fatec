@@ -1,5 +1,4 @@
 ﻿@using Fatec.Application.ViewModels;
-@using Fatec.CrossCutting.Models.PaginacaoHelper
 @using PagedList
 @using PagedList.Mvc
 @model VagasFiltroViewModel<VagaEmpregoViewModel>
@@ -10,9 +9,11 @@
 <br />
 <h3 class="center">Vagas de Emprego</h3>
 <br />
-@using (Html.BeginForm("Index", "VagasEmprego", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("Index", "VagasEmprego", FormMethod.Get, new { @class = "form-horizontal", id = "form-filtro-vagas" }))
 {
-    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.TotalPorPagina)
+    @Html.HiddenFor(x => x.OrdenarPor)
+    @Html.HiddenFor(x => x.Direcao)
 
     <div class="row">
         <div class="input-field col s12 m5 l5 xl5 center">
@@ -21,7 +22,7 @@
             @Html.LabelFor(m => m.PesquisaTitulo, new { @class = "validate" })
         </div>
         <div class="input-field col s12 m5 l5 xl5 center">
-            @Html.ListBoxFor(m => m.Tags, new SelectList(ViewBag.Tags, "Id", "Nome", "Selecione"), new { @class = "form-control", multiple = "multiple" })
+            @Html.DropDownListFor(m => m.Tags, new SelectList(ViewBag.Tags, "Id", "Nome", "Selecione"), new { @class = "form-control" })
             @Html.LabelFor(m => m.Tags, new { @class = "validate" })
         </div>
         <div class="row">
@@ -35,9 +36,9 @@
 <br />
 
 <div class="row">
-    @if (Model?.Objeto?.Resultados != null)
+    @if (Model?.Resultado != null)
     {
-        foreach (var item in Model.Objeto.Resultados)
+        foreach (var item in Model.Resultado)
         {
             <div class="col s12 m6 l6 xl4">
                 <div class="card hoverable">
@@ -73,26 +74,33 @@
 @if (ViewBag.PagedList != null)
 {
     <div class="row">
-        @Html.PagedListPager((IPagedList<VagaEmpregoViewModel>
-        )ViewBag.PagedList, page => Url.Action("Paginacao", new VagasFiltroViewModel<VagaEmpregoViewModel>
+        @if (Model != null)
         {
-            Objeto = new ResultadoPaginacao<VagaEmpregoViewModel>(Model.Objeto.Resultados, 0, page, Model.Objeto.TotalPorPagina),
-            Tags = Model.Tags,
-            PesquisaTitulo = Model.PesquisaTitulo
+            <div class="col l6">
+                Exibindo de @Model.ExibindoDe(ViewBag.TotalItens) até @Model.ExibindoAte(ViewBag.TotalItens) de @ViewBag.TotalItens
+            </div>
+        }
 
-        }), new PagedListRenderOptions
-        {
-            ContainerDivClasses = new[] { "col s12 m12 offset-l9 l3 offset-xl9 xl3 center" },
-            UlElementClasses = new[] { "pagination" },
-            LiElementClasses = new[] { "waves-effect" },
-            ClassToApplyToFirstListItemInPager = null,
-            ClassToApplyToLastListItemInPager = null,
-            DisplayLinkToFirstPage = PagedListDisplayMode.Never,
-            DisplayLinkToLastPage = PagedListDisplayMode.Never,
-            DisplayEllipsesWhenNotShowingAllPageNumbers = false,
-            LinkToPreviousPageFormat = "Anterior",
-            LinkToNextPageFormat = "Próximo"
-        })
+        @Html.PagedListPager((IPagedList<VagaEmpregoViewModel>
+            ) ViewBag.PagedList, page => Url.Action("Index", new
+            {
+                Pagina = page,
+                Model.TotalPorPagina,
+                Model.Tags,
+                Model.PesquisaTitulo
+            }), new PagedListRenderOptions
+            {
+                ContainerDivClasses = new[] {"col s12 m12 offset-l9 l3 offset-xl9 xl3 center"},
+                UlElementClasses = new[] {"pagination"},
+                LiElementClasses = new[] {"waves-effect"},
+                ClassToApplyToFirstListItemInPager = null,
+                ClassToApplyToLastListItemInPager = null,
+                DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+                DisplayLinkToLastPage = PagedListDisplayMode.Never,
+                DisplayEllipsesWhenNotShowingAllPageNumbers = false,
+                LinkToPreviousPageFormat = "<i class=\"material-icons\">chevron_left</i>",
+                LinkToNextPageFormat = "<i class=\"material-icons\">chevron_right</i>"
+            })
     </div>
 }
 

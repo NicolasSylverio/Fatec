@@ -8,6 +8,6 @@ namespace Fatec.Application.Interface
     {
         VagasFiltroViewModel<VagaEmpregoViewModel> GetAll(Paginacao paginacao);
 
-        VagasFiltroViewModel<VagaEmpregoViewModel> GetAllByTituloTags(string titulo, IEnumerable<int> tags, Paginacao paginacao);
+        VagasFiltroViewModel<VagaEmpregoViewModel> GetAllByTituloTags(string titulo, int tags, Paginacao paginacao);
     }
 }

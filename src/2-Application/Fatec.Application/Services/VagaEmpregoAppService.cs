@@ -5,6 +5,7 @@ using Fatec.CrossCutting.Models.PaginacaoHelper;
 using Fatec.CrossCutting.Models.Vagas;
 using Fatec.DataBase.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Fatec.Application.Services
 {
@@ -55,34 +56,26 @@ namespace Fatec.Application.Services
 
             return new VagasFiltroViewModel<VagaEmpregoViewModel>
             {
-                Objeto = resultadoPaginacao,
-                Tags = null,
-                PesquisaTitulo = null
+                Resultado = resultadoPaginacao.Resultados
             };
         }
 
-        public VagasFiltroViewModel<VagaEmpregoViewModel> GetAllByTituloTags(string titulo, IEnumerable<int> tags, Paginacao paginacao)
+        public VagasFiltroViewModel<VagaEmpregoViewModel> GetAllByTituloTags(string titulo, int tags, Paginacao paginacao)
         {
             var result = _vagaEmpregoRepository.GetAllByTituloTags(titulo, tags, paginacao);
 
             var vagas = _mapper.Map<List<VagaEmpregoViewModel>>(result.Resultados);
 
-            var resultadoPaginacao = new ResultadoPaginacao<VagaEmpregoViewModel>
+            return new VagasFiltroViewModel<VagaEmpregoViewModel>
             {
+                Resultado = vagas,
+                Tags = tags,
+                PesquisaTitulo = titulo,
                 Direcao = result.Direcao,
                 OrdenarPor = result.OrdenarPor,
                 Pagina = result.Pagina,
-                Resultados = vagas,
                 Total = result.Total,
-                TotalPaginas = result.TotalPaginas,
                 TotalPorPagina = result.TotalPorPagina
-            };
-
-            return new VagasFiltroViewModel<VagaEmpregoViewModel>
-            {
-                Objeto = resultadoPaginacao,
-                Tags = null,
-                PesquisaTitulo = null
             };
         }
 

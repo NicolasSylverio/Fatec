@@ -1,6 +1,5 @@
-﻿using Fatec.CrossCutting.Models.Vagas;
-using System.Collections.Generic;
-using Fatec.CrossCutting.Models.PaginacaoHelper;
+﻿using Fatec.CrossCutting.Models.PaginacaoHelper;
+using Fatec.CrossCutting.Models.Vagas;
 
 namespace Fatec.DataBase.Interfaces
 {
@@ -8,6 +7,6 @@ namespace Fatec.DataBase.Interfaces
     {
         ResultadoPaginacao<VagaEmprego> GetAll(Paginacao paginacao);
 
-        ResultadoPaginacao<VagaEmprego> GetAllByTituloTags(string titulo, IEnumerable<int> tags, Paginacao paginacao);
+        ResultadoPaginacao<VagaEmprego> GetAllByTituloTags(string titulo, int tags, Paginacao paginacao);
     }
 }

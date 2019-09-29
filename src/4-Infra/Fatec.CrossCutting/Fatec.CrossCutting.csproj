@@ -69,6 +69,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\Constants.cs" />
     <Compile Include="Helper\DataHelper.cs" />
     <Compile Include="Interfaces\IDbContext.cs" />
     <Compile Include="Models\Empresas\Empresa.cs" />

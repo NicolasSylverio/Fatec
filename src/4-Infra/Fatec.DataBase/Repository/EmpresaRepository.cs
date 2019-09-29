@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using Fatec.CrossCutting.Models.Empresas;
 using Fatec.CrossCutting.Models.PaginacaoHelper;
 using Fatec.DataBase.Context;
@@ -37,6 +38,11 @@ namespace Fatec.DataBase.Repository
         }
 
         public ResultadoPaginacao<Empresa> GetAll(Paginacao paginacao)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ResultadoPaginacao<Empresa> GetAll<TKey>(Paginacao paginacao, Expression<Func<Empresa, bool>> predicate, Expression<Func<Empresa, TKey>> order)
         {
             throw new NotImplementedException();
         }

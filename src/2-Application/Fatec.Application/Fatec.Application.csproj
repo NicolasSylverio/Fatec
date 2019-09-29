@@ -63,11 +63,11 @@
     <Compile Include="Services\VagaEmpregoAppService.cs" />
     <Compile Include="Services\EmpresaAppService.cs" />
     <Compile Include="Services\VagaEstagioAppService.cs" />
+    <Compile Include="ViewModels\PaginacaoViewModel.cs" />
     <Compile Include="ViewModels\TagsViewModel.cs" />
     <Compile Include="ViewModels\VagaEmpregoViewModel.cs" />
     <Compile Include="ViewModels\EmpresaViewModel.cs" />
     <Compile Include="ViewModels\VagaEstagioViewModel.cs" />
-    <Compile Include="ViewModels\VagasFiltro.cs" />
     <Compile Include="ViewModels\VagasFiltroViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

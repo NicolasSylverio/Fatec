@@ -22,7 +22,7 @@
             @Html.LabelFor(m => m.PesquisaTitulo, new { @class = "validate" })
         </div>
         <div class="input-field col s12 m5 l5 xl5 center">
-            @Html.DropDownListFor(m => m.Tags, new SelectList(ViewBag.Tags, "Id", "Nome", "Selecione"), new { @class = "form-control" })
+            @Html.DropDownListFor(m => m.Tags, new SelectList(ViewBag.Tags, "Id", "Descricao", "Selecione"), new { @class = "form-control" })
             @Html.LabelFor(m => m.Tags, new { @class = "validate" })
         </div>
         <div class="row">

@@ -1,63 +1,45 @@
 ﻿@using Fatec.Application.ViewModels;
 @model IEnumerable<VagaEstagioViewModel>
+<style>
+    teste {
+        -webkit-column-count: 3; /* Chrome, Safari, Opera */
+        -moz-column-count: 3; /* Firefox */
+        column-count: 3;
+    }
+</style>
+
 <br />
-<nav>
-    <div class="nav-wrapper">
-        <div class="col s12">
-            <a href="#!" class="breadcrumb">&nbsp; Vagas de Estágio</a>
-            <a href="#!" class="breadcrumb">@ViewBag.Title</a>
-        </div>
-    </div>
-</nav>
-<br />
 
-@*<div class="col s12 m12 push-l2 l8 push-xl2 xl8 center">
+<div class="row teste">
 
-        <div class="row">
-            <div class="col-4">
-                <h2>@ViewBag.Title</h2>
-            </div>
-        </div>
-    </div>*@
-
-@if (Model != null)
-{
-
-    @Html.Raw("<div class=\"row\">");
-
-    //foreach (var vaga in Model)
-    for (int i = 0; i < Model.Count(); i++)
+    @if (Model != null)
     {
-        string classeCard = "col s6";
-
-        VagaEstagioViewModel vaga = Model.ElementAt(i);
-
-        //if ((vaga.Descricao != null && vaga.Descricao.Length > 800) ||
-        //        (vaga.URLImagem != null && vaga.URLImagem != String.Empty))
-        //{
-        classeCard = "col s12";
-        //}
-
-        if (vaga != null)
+        //foreach (var vaga in Model)
+        for (int i = 0; i < Model.Count(); i++)
         {
-            <div class="@classeCard">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="@vaga.UrlImagem">
-                        @*<img src="https://www.prefeitura.sp.gov.br/cidade/secretarias/upload/planejamento/portal_do_servidor/portalestagio2.jpg">*@
-                        @*<a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>*@
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title">@vaga.Titulo</span>
-                        <p>@Html.Raw(@vaga.Descricao)</p>
-                    </div>
-                    @if (vaga.Empresa.Email != null || vaga.Empresa.UrlSite != null)
-                    {
-                        <div class="card-action">
+            VagaEstagioViewModel vaga = Model.ElementAt(i);
+
+            if (vaga != null)
+            {
+                <div class="col s12 m6 l6 xl4 ">
+                    <div class="card hoverable">
+                        <div class="card-image">
+                            <img class="materialboxed" src="@vaga.UrlImagem">
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4">@vaga.Titulo<i class="material-icons right">more_vert</i></span>
                             @if (vaga.Empresa.Email != null)
                             {
-                                <a href="mailto:@vaga.Empresa.Email"><i class="material-icons tiny">email</i>@vaga.Empresa.Email.ToLower()</a>
+                                <p>Contato: <a href="@vaga.Empresa.Email">@vaga.Empresa.Email.ToLower()</a></p>
                             }
+                        </div>
+                        <div class="card-reveal hoverable">
+                            <span class="card-title grey-text text-darken-4">@vaga.Titulo<i class="material-icons right">close</i></span>
+                            <p>
+                                @Html.Raw(@vaga.Descricao)
+                            </p>
+                        </div>
+                        <div class="card-action">
                             @if (vaga.Empresa.UrlSite != null)
                             {
                                 var url = vaga.Empresa.UrlSite;
@@ -68,19 +50,18 @@
 
                                 <a href="@url"><i class="material-icons tiny">open_in_browser</i>@vaga.Empresa.UrlSite.ToLower()</a>
                             }
+                            <a href="#">Mais Detalhes..</a>
                         </div>
-                    }
+                    </div>
                 </div>
-            </div>
+            }
         }
     }
-    @Html.Raw("</div>")
-}
-else
-{
-    <div class="row">
+    else
+    {
         <div class="center">
             <h4>Nenhuma vaga de Estágio disponível no momento</h4>
         </div>
-    </div>
-}
+    }
+
+</div>

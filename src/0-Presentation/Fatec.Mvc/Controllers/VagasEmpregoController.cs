@@ -1,16 +1,16 @@
 ﻿using Fatec.Application.Interface;
 using Fatec.Application.ViewModels;
 using Fatec.CrossCutting.Models.PaginacaoHelper;
+using Fatec.Mvc.Models;
 using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using Fatec.Mvc.Models;
-using WebGrease.Css.Extensions;
 
 namespace Fatec.Mvc.Controllers
 {
+    [Authorize]
     public class VagasEmpregoController : Controller
     {
         private readonly IVagaEmpregoAppService _vagaEmpregoAppService;
@@ -31,13 +31,14 @@ namespace Fatec.Mvc.Controllers
 
         [HttpGet]
         [Route("Index")]
+        [AllowAnonymous]
         public ActionResult Index(VagasFiltroViewModel<VagaEmpregoViewModel> view)
         {
             try
             {
                 var teste = new List<DropDownDto> { new DropDownDto { Descricao = "Tag", Id = 0 } };
 
-                _tagsAppService.GetAll().ForEach(x => teste.Add(new DropDownDto { Descricao = x.Nome, Id = x.Id }));
+                _tagsAppService.GetAll().ToList().ForEach(x => teste.Add(new DropDownDto { Descricao = x.Nome, Id = x.Id }));
 
                 ViewBag.Tags = teste;
 
@@ -71,6 +72,8 @@ namespace Fatec.Mvc.Controllers
             }
         }
 
+        [HttpGet]
+        [AllowAnonymous]
         [Route("Detalhes/{id}")]
         public ActionResult Detalhes(int id)
         {
@@ -79,6 +82,7 @@ namespace Fatec.Mvc.Controllers
             return View(vagas);
         }
 
+        [HttpGet]
         [Route("Cadastrar")]
         public ActionResult Cadastrar()
         {
@@ -89,6 +93,30 @@ namespace Fatec.Mvc.Controllers
             return View();
         }
 
+        [HttpPost]
+        [Route("Cadastrar")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Cadastrar(VagaEmpregoViewModel model)
+        {
+            try
+            {
+                if (!ModelState.IsValid) return RedirectToAction("Cadastrar");
+
+                _vagaEmpregoAppService.Add(model);
+
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                ViewBag.EmpresaId = _empresaAppService.GetAll();
+                ViewBag.Tags = _tagsAppService.GetAll();
+
+                ViewBag.Error = "Erro ao cadastrar nova Vaga Emprego";
+                return RedirectToAction("Cadastrar");
+            }
+        }
+
+        [HttpGet]
         [Route("Edit/{id}")]
         public ActionResult Edit(int id)
         {
@@ -124,28 +152,6 @@ namespace Fatec.Mvc.Controllers
         }
 
         [HttpPost]
-        [Route("Cadastrar")]
-        [ValidateAntiForgeryToken]
-        public ActionResult Cadastrar(VagaEmpregoViewModel model)
-        {
-            try
-            {
-                if (!ModelState.IsValid) return RedirectToAction("Cadastrar");
-
-                _vagaEmpregoAppService.Add(model);
-
-                return RedirectToAction("Index");
-            }
-            catch (Exception)
-            {
-                ViewBag.EmpresaId = _empresaAppService.GetAll();
-                ViewBag.Tags = _tagsAppService.GetAll();
-
-                ViewBag.Error = "Erro ao cadastrar nova Vaga Emprego";
-                return RedirectToAction("Cadastrar");
-            }
-        }
-
         [Route("Delete/{id}")]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)

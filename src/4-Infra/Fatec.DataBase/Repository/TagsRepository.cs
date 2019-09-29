@@ -23,6 +23,5 @@ namespace Fatec.DataBase.Repository
             Db.Entry(objeto).State = EntityState.Modified;
             Db.SaveChanges();
         }
-
     }
 }

@@ -56,26 +56,29 @@ namespace Fatec.DataBase.Repository
             GC.SuppressFinalize(this);
         }
 
-        public virtual ResultadoPaginacao<TEntity> GetAllByAsync<TKey>(Expression<Func<TEntity, bool>> predicate, Paginacao paginacao, Expression<Func<TEntity, TKey>> order)
+        public ResultadoPaginacao<TEntity> GetAll<TKey>(Paginacao paginacao, Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TKey>> order)
         {
-            var count = DbSet.Count(predicate);
+            var obj = DbSet.AsQueryable();
 
-            var totalPorPagina = paginacao.TodosRegistros ? count : paginacao.TotalPorPagina;
+            var totalDeRegistros = obj.Count();
 
-            var results = DbSet
-                .AsNoTracking()
+            var totalPorPagina = paginacao.TodosRegistros ? totalDeRegistros : paginacao.TotalPorPagina;
+
+            var entity = obj.AsNoTracking()
                 .Where(predicate)
                 .OrderByDescending(order)
                 .Skip(paginacao.TotalPaginacao)
                 .Take(totalPorPagina)
                 .ToList();
 
-            return new ResultadoPaginacao<TEntity>(
-                resultados: results,
-                total: count,
-                pagina: paginacao.Pagina,
-                totalPagina: totalPorPagina
-            );
+            return new ResultadoPaginacao<TEntity>
+            {
+                Resultados = entity,
+                Total = totalDeRegistros,
+                Pagina = paginacao.Pagina,
+                TotalPaginas = paginacao.TotalPaginacao,
+                TotalPorPagina = totalPorPagina > 0 ? totalPorPagina : 1
+            };
         }
     }
 }

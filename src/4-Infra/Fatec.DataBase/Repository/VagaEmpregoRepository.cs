@@ -3,7 +3,6 @@ using Fatec.CrossCutting.Models.Vagas;
 using Fatec.DataBase.Context;
 using Fatec.DataBase.Interfaces;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
@@ -27,7 +26,7 @@ namespace Fatec.DataBase.Repository
             base.Add(obj);
         }
 
-        public virtual ResultadoPaginacao<VagaEmprego> GetAll(Paginacao paginacao)
+        public ResultadoPaginacao<VagaEmprego> GetAll(Paginacao paginacao)
         {
             var obj = DbSet.AsQueryable();
 

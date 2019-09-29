@@ -15,7 +15,8 @@ namespace Fatec.Mvc.Controllers
             _empresaAppService = empresaAppService;
         }
 
-        // GET: Estagio
+        [HttpGet]
+        [Route("Index")]
         public ActionResult Index()
         {
             ViewBag.Title = "Empresas";
@@ -23,6 +24,8 @@ namespace Fatec.Mvc.Controllers
             return View(vagas);
         }
 
+        [HttpGet]
+        [Route("Cadastro")]
         public ActionResult Cadastro()
         {
 
@@ -31,6 +34,8 @@ namespace Fatec.Mvc.Controllers
             return View(vagas);
         }
 
+        [HttpGet]
+        [Route("Cadastrar")]
         public ActionResult Cadastrar()
         {
             ViewBag.Title = "Cadastrar Empresa";
@@ -40,6 +45,7 @@ namespace Fatec.Mvc.Controllers
         }
 
         [HttpPost]
+        [Route("Cadastrar")]
         [ValidateAntiForgeryToken]
         public ActionResult Cadastrar(EmpresaViewModel model)
         {
@@ -58,14 +64,16 @@ namespace Fatec.Mvc.Controllers
                 return View();
             }
         }
-               
-        // GET: Estagio/Details/5
+
+        [HttpGet]
+        [Route("Details/{id}")]
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Estagio/Edit/5
+        [HttpGet]
+        [Route("Alterar/{id}")]
         public ActionResult Alterar(int id)
         {
             EmpresaViewModel empresaViewModel = _empresaAppService.GetViewModel(id);
@@ -91,7 +99,9 @@ namespace Fatec.Mvc.Controllers
             }
         }
 
-        // GET: Estagio/Delete/5
+        [HttpPost]
+        [Route("Delete/{id}")]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {
             _empresaAppService.Remove(id);

@@ -8,7 +8,8 @@ namespace Fatec.DataBase.Repository
 {
     public class TagsRepository : RepositoryBase<Tags>, ITagsRepository
     {
-        public TagsRepository(IntranetFatecContext context) : base(context)
+        public TagsRepository(IntranetFatecContext context) 
+            : base(context)
         {
         }
 

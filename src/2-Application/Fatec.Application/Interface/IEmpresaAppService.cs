@@ -1,15 +1,10 @@
-﻿using System.Collections.Generic;
-using Fatec.Application.ViewModels;
-using Fatec.CrossCutting.Models.Empresas;
+﻿using Fatec.Application.ViewModels;
+using Fatec.CrossCutting.Models.PaginacaoHelper;
 
 namespace Fatec.Application.Interface
 {
-    public interface IEmpresaAppService : IAppServiceBase<Empresa> 
+    public interface IEmpresaAppService : IAppServiceBase<EmpresaViewModel>
     {
-        void Cadastrar(EmpresaViewModel empresaViewModel);
-
-        IEnumerable<EmpresaViewModel> GetAllEmpresaViewModel();
-        EmpresaViewModel GetViewModel(int id);
-        void Alterar(EmpresaViewModel model);
+        PaginacaoViewModel<EmpresaViewModel> GetAll(Paginacao paginacao);
     }
 }

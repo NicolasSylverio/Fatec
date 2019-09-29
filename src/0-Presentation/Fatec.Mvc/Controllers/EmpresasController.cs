@@ -1,6 +1,8 @@
 ﻿using Fatec.Application.Interface;
 using Fatec.Application.ViewModels;
-using System.Linq;
+using Fatec.CrossCutting.Models.PaginacaoHelper;
+using PagedList;
+using System;
 using System.Web.Mvc;
 
 namespace Fatec.Mvc.Controllers
@@ -17,30 +19,53 @@ namespace Fatec.Mvc.Controllers
 
         [HttpGet]
         [Route("Index")]
-        public ActionResult Index()
+        public ActionResult Index(PaginacaoViewModel<EmpresaViewModel> view)
         {
-            ViewBag.Title = "Empresas";
-            var vagas = _empresaAppService.GetAllEmpresaViewModel().AsEnumerable();
-            return View(vagas);
+            try
+            {
+                var result = _empresaAppService.GetAll(new Paginacao(view.Pagina, view.TotalPorPagina));
+
+                ViewBag.PagedList = new StaticPagedList<EmpresaViewModel>
+                (
+                    result.Resultado,
+                    result.Pagina,
+                    result.TotalPorPagina,
+                    result.Total
+                );
+
+                ViewBag.TotalItens = result.Total;
+
+                return View("Index", result);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.TotalItens = 0;
+                ViewBag.Error = $"Erro ao pesquisar vaga. Erro: {ex.Message}";
+                return View("Index");
+            }
         }
+
 
         [HttpGet]
         [Route("Cadastro")]
         public ActionResult Cadastro()
         {
-
-            ViewBag.Title = "Cadastro";
-            var vagas = _empresaAppService.GetAllEmpresaViewModel().AsEnumerable();
-            return View(vagas);
+            try
+            {
+                var vagas = _empresaAppService.GetAll();
+                return View(vagas);
+            }
+            catch
+            {
+                //todo: retornar erro.
+                return View();
+            }
         }
 
         [HttpGet]
         [Route("Cadastrar")]
         public ActionResult Cadastrar()
         {
-            ViewBag.Title = "Cadastrar Empresa";
-            //var vagas = _empresaAppService.GetAllVagaEstagioViewModel().AsEnumerable();
-            //return View(vagas);
             return View();
         }
 
@@ -53,15 +78,15 @@ namespace Fatec.Mvc.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    model.DataHoraCadastro = System.DateTime.Now;
-                    _empresaAppService.Cadastrar(model);
+                    _empresaAppService.Add(model);
                     return RedirectToAction("Cadastro");
                 }
-                return View();
+
+                return View(model);
             }
             catch
             {
-                return View();
+                return View(model);
             }
         }
 
@@ -69,14 +94,15 @@ namespace Fatec.Mvc.Controllers
         [Route("Details/{id}")]
         public ActionResult Details(int id)
         {
-            return View();
+            var empresa = _empresaAppService.GetById(id);
+            return View(empresa);
         }
 
         [HttpGet]
         [Route("Alterar/{id}")]
         public ActionResult Alterar(int id)
         {
-            EmpresaViewModel empresaViewModel = _empresaAppService.GetViewModel(id);
+            EmpresaViewModel empresaViewModel = _empresaAppService.GetById(id);
             return View(empresaViewModel);
         }
 
@@ -88,14 +114,14 @@ namespace Fatec.Mvc.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    _empresaAppService.Alterar(model);
+                    _empresaAppService.Update(model);
                     return RedirectToAction("Cadastro");
                 }
-                return View();
+                return View(model);
             }
             catch
             {
-                return View();
+                return View(model);
             }
         }
 
@@ -107,6 +133,6 @@ namespace Fatec.Mvc.Controllers
             _empresaAppService.Remove(id);
             return RedirectToAction("Cadastro");
         }
-               
+
     }
 }

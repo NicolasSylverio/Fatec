@@ -1,26 +1,29 @@
-﻿using Fatec.Domain.Interfaces.Repositories;
-using Fatec.Infra.DataBase.Context;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Data.Entity;
+using System.Linq;
+using System.Linq.Expressions;
+using Fatec.CrossCutting.Models.PaginacaoHelper;
+using Fatec.DataBase.Context;
+using Fatec.DataBase.Interfaces;
 
-namespace Fatec.Infra.DataBase.Repositories
+namespace Fatec.DataBase.Repository
 {
 
-    public class RepositoryBase<TEntity> : IDisposable, IRepositoryBase<TEntity> where TEntity : class
+    public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : class
     {
+        protected readonly DbSet<TEntity> DbSet;
         protected readonly IntranetFatecContext Db;
 
         public RepositoryBase(IntranetFatecContext context)
         {
             Db = context;
+            DbSet = Db.Set<TEntity>();
         }
 
         public virtual void Add(TEntity obj)
         {
-            Db.Entry(obj).State = EntityState.Added;
-            Db.Set<TEntity>().Add(obj);
+            DbSet.Add(obj);
             Db.SaveChanges();
         }
 
@@ -51,6 +54,31 @@ namespace Fatec.Infra.DataBase.Repositories
         {
             Db.Dispose();
             GC.SuppressFinalize(this);
+        }
+
+        public ResultadoPaginacao<TEntity> GetAll<TKey>(Paginacao paginacao, Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TKey>> order)
+        {
+            var obj = DbSet.AsQueryable();
+
+            var totalDeRegistros = obj.Count();
+
+            var totalPorPagina = paginacao.TodosRegistros ? totalDeRegistros : paginacao.TotalPorPagina;
+
+            var entity = obj.AsNoTracking()
+                .Where(predicate)
+                .OrderByDescending(order)
+                .Skip(paginacao.TotalPaginacao)
+                .Take(totalPorPagina)
+                .ToList();
+
+            return new ResultadoPaginacao<TEntity>
+            {
+                Resultados = entity,
+                Total = totalDeRegistros,
+                Pagina = paginacao.Pagina,
+                TotalPaginas = paginacao.TotalPaginacao,
+                TotalPorPagina = totalPorPagina > 0 ? totalPorPagina : 1
+            };
         }
     }
 }

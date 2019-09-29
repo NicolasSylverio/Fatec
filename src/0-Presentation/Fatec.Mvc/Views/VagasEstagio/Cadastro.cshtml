@@ -1,15 +1,5 @@
 ﻿@model IEnumerable<Fatec.Application.ViewModels.VagaEstagioViewModel>
 
-@*<script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var elems = document.querySelectorAll('.fixed-action-btn');
-            var instances = M.FloatingActionButton.init(elems, {
-                direction: 'left',
-                hoverEnabled: false
-            });
-        });
-
-    </script>*@
 <style>
     .fixed-action-btn {
         bottom: 80px;
@@ -26,12 +16,6 @@
     </div>
 </nav>
 <br />
-
-@*<div class="row">
-        <div class="col-4">
-            <h2>@ViewBag.Title</h2>
-        </div>
-    </div>*@
 
 <div class="fixed-action-btn">
     <a class="btn-floating btn-large green" href='@Url.Action("Cadastrar", "VagasEstagio")'>

@@ -86,6 +86,12 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel" />
     <Reference Include="System.Configuration.Install" />
@@ -224,9 +230,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\DropDownDto.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\VagaEmpregoViewModel.cs" />
-    <Compile Include="Models\VagaEstagioViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -235,6 +240,7 @@
     <Content Include="Content\css\materialize.css" />
     <Content Include="Content\css\materialize.min.css" />
     <Content Include="Content\images\logoPadrao.png" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\css\site.css" />
@@ -295,7 +301,6 @@
     <None Include="Properties\PublishProfiles\fatecjd - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\fatecjd - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\FatecOneSis - Web Deploy.pubxml" />
-    <Content Include="Views\VagasEstagio\Index.cshtml" />
     <Content Include="Views\VagasEmprego\Index.cshtml" />
     <Content Include="manifest.json" />
     <Content Include="Views\Offline\Index.cshtml" />
@@ -304,7 +309,7 @@
     <None Include="Properties\PublishProfiles\fatecjundiai - Web Deploy.pubxml" />
     <Content Include="Views\VagasEstagio\Cadastro.cshtml" />
     <Content Include="Views\VagasEstagio\Cadastrar.cshtml" />
-    <Content Include="Views\VagasEstagio\Index2.cshtml" />
+    <Content Include="Views\VagasEstagio\Index.cshtml" />
     <Content Include="Views\Empresas\Index.cshtml" />
     <Content Include="Views\Shared\_preloader.cshtml" />
     <Content Include="Views\Empresas\Cadastro.cshtml" />
@@ -313,15 +318,13 @@
     <Content Include="Views\Tags\Index.cshtml" />
     <Content Include="Views\Tags\Cadastrar.cshtml" />
     <Content Include="Views\Tags\Edit.cshtml" />
+    <Content Include="Views\VagasEmprego\Cadastrar.cshtml" />
+    <Content Include="Views\VagasEmprego\Detalhes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\2-Application\Fatec.Application\Fatec.Application.csproj">
       <Project>{56ECEF12-6F4B-442A-9B02-815DDD0F8639}</Project>
       <Name>Fatec.Application</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\3-Domain\Fatec.Domain\Fatec.Domain.csproj">
-      <Project>{04FE369A-4054-4CE3-99C6-1ED80A313AC4}</Project>
-      <Name>Fatec.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\4-Infra\Fatec.CrossCutting\Fatec.CrossCutting.csproj">
       <Project>{CBD67C1C-A4FB-4C6A-B16F-229D34882312}</Project>

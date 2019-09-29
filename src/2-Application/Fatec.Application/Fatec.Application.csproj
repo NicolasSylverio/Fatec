@@ -63,18 +63,20 @@
     <Compile Include="Services\VagaEmpregoAppService.cs" />
     <Compile Include="Services\EmpresaAppService.cs" />
     <Compile Include="Services\VagaEstagioAppService.cs" />
+    <Compile Include="ViewModels\PaginacaoViewModel.cs" />
     <Compile Include="ViewModels\TagsViewModel.cs" />
     <Compile Include="ViewModels\VagaEmpregoViewModel.cs" />
     <Compile Include="ViewModels\EmpresaViewModel.cs" />
     <Compile Include="ViewModels\VagaEstagioViewModel.cs" />
+    <Compile Include="ViewModels\VagasFiltroViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\3-Domain\Fatec.Domain\Fatec.Domain.csproj">
-      <Project>{04fe369a-4054-4ce3-99c6-1ed80a313ac4}</Project>
-      <Name>Fatec.Domain</Name>
+    <ProjectReference Include="..\..\4-Infra\Fatec.CrossCutting\Fatec.CrossCutting.csproj">
+      <Project>{CBD67C1C-A4FB-4C6A-B16F-229D34882312}</Project>
+      <Name>Fatec.CrossCutting</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\4-Infra\Fatec.DataBase\Fatec.DataBase.csproj">
       <Project>{579CEEC6-F0B7-48D4-9BA2-1BC8CF577DE0}</Project>

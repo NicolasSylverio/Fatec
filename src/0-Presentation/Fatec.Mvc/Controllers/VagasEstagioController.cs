@@ -4,6 +4,7 @@ using System.Web.Mvc;
 
 namespace Fatec.Mvc.Controllers
 {
+    [Authorize]
     public class VagasEstagioController : Controller
     {
         private readonly IVagaEstagioAppService _vagaEstagioAppService;
@@ -13,7 +14,9 @@ namespace Fatec.Mvc.Controllers
             _vagaEstagioAppService = vagaEstagioAppService;
         }
 
-        // GET: Estagio
+        [HttpGet]
+        [Route("Index")]
+        [AllowAnonymous]
         public ActionResult Index()
         {
             ViewBag.Title = "Vagas de Estágio";
@@ -21,13 +24,16 @@ namespace Fatec.Mvc.Controllers
             return View(vagas);
         }
 
-        public ActionResult Index2()
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("Detalhes/{id}")]
+        public ActionResult Detalhes(int id)
         {
-            ViewBag.Title = "Vagas de Estágio v2";
-            var vagas = _vagaEstagioAppService.GetAll().AsEnumerable();
-            return View(vagas);
+            return View();
         }
 
+        [HttpGet]
+        [Route("Cadastro")]
         public ActionResult Cadastro()
         {
 
@@ -36,51 +42,24 @@ namespace Fatec.Mvc.Controllers
             return View(vagas);
         }
 
+        [HttpGet]
+        [Route("Cadastrar")]
         public ActionResult Cadastrar()
         {
             ViewBag.Title = "Cadastrar Vaga de Estágio";
-            //var vagas = _vagaEstagioAppService.GetAllVagaEstagioViewModel().AsEnumerable();
-            //return View(vagas);
-            return View();
+            var vagas = _vagaEstagioAppService.GetAll().AsEnumerable();
+            return View(vagas);
         }
 
-
-        // GET: Estagio/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Estagio/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Estagio/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Estagio/Edit/5
+        [HttpGet]
+        [Route("Edit")]
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Estagio/Edit/5
         [HttpPost]
+        [Route("Edit/{id}")]
         public ActionResult Edit(int id, FormCollection collection)
         {
             try
@@ -95,14 +74,8 @@ namespace Fatec.Mvc.Controllers
             }
         }
 
-        // GET: Estagio/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Estagio/Delete/5
         [HttpPost]
+        [Route("Delete/{id}")]
         public ActionResult Delete(int id, FormCollection collection)
         {
             try

@@ -69,15 +69,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\Constants.cs" />
+    <Compile Include="Helper\DataHelper.cs" />
     <Compile Include="Interfaces\IDbContext.cs" />
+    <Compile Include="Models\Empresas\Empresa.cs" />
+    <Compile Include="Models\PaginacaoHelper\Paginacao.cs" />
+    <Compile Include="Models\PaginacaoHelper\ResultadoPaginacao.cs" />
+    <Compile Include="Models\Tags.cs" />
+    <Compile Include="Models\Vagas\VagaEmprego.cs" />
+    <Compile Include="Models\Vagas\VagaEstagio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

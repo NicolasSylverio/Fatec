@@ -1,13 +1,13 @@
 ﻿using Fatec.CrossCutting.Interfaces;
-using Fatec.Domain.Models.Empresas;
-using Fatec.Domain.Models.Tags;
-using Fatec.Domain.Models.Vagas;
+using Fatec.CrossCutting.Models;
+using Fatec.CrossCutting.Models.Empresas;
+using Fatec.CrossCutting.Models.Vagas;
+using Fatec.DataBase.Map;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
-namespace Fatec.Infra.DataBase.Context
+namespace Fatec.DataBase.Context
 {
-    //[DbConfigurationType(typeof(MySqlEFConfiguration))]
     public class IntranetFatecContext : DbContext, IDbContext
     {
         public IntranetFatecContext()
@@ -24,11 +24,18 @@ namespace Fatec.Infra.DataBase.Context
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+
+            modelBuilder.Configurations.Add(new TagsMap());
+            modelBuilder.Configurations.Add(new EmpresaMap());
+            modelBuilder.Configurations.Add(new VagaEmpregoMap());
+            modelBuilder.Configurations.Add(new VagaEstagioMap());
         }
 
-        public DbSet<VagaEmprego> VagaEmpresa { get; set; }
-        public DbSet<VagaEstagio> VagaEstagio { get; set; }
         public DbSet<Empresa> Empresa { get; set; }
         public DbSet<Tags> Tags { get; set; }
+        public DbSet<VagaEmprego> VagaEmprego { get; set; }
+        public DbSet<VagaEstagio> VagaEstagio { get; set; }
     }
 }

@@ -1,5 +1,9 @@
-﻿using Fatec.Domain.Models.Empresas;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Fatec.CrossCutting.Models;
+using Fatec.CrossCutting.Helper;
+using Fatec.CrossCutting.Models.Empresas;
 
 namespace Fatec.Application.ViewModels
 {
@@ -25,25 +29,44 @@ namespace Fatec.Application.ViewModels
         [Display(Name = "Descrição da Vaga")]
         public string Descricao { get; set; }
 
-        public Empresa Empresa { get; set; }
-
         [Required]
         [StringLength(100, ErrorMessage = "O {0} deve ter no mínimo {2} e no máximo {1} caracteres.", MinimumLength = 3)]
         [DataType(DataType.EmailAddress)]
         [Display(Name = "E-mail de Contato")]
         public string Email { get; set; }
 
+        [Display(Name = "Telefone")]
         public string Telefone { get; set; }
 
         [StringLength(100, ErrorMessage = "O {0} deve ter no mínimo {2} e no máximo {1} caracteres.", MinimumLength = 3)]
         [DataType(DataType.EmailAddress)]
         [Display(Name = "Url da Imagem")]
-        public string URLImagem { get; set; }
+        public string UrlImagem { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "O {0} deve ter no mínimo {2} e no máximo {1} caracteres.", MinimumLength = 3)]
         [DataType(DataType.EmailAddress)]
         [Display(Name = "Url do Site")]
-        public string URLSite { get; set; }
+        public string UrlSite { get; set; }
+
+        [DataType(DataType.DateTime)]
+        [Display(Name = "Data e Hora de Cadastro")]
+        public DateTime DataHoraCadastro { get; set; } = DataHelper.GetHoraBrasilia();
+
+        [DataType(DataType.Date)]
+        [Display(Name = "Data de Validade da Vaga")]
+        public DateTime DataValidade { get; set; }
+
+        [Required]
+        [Display(Name = "Empresa")]
+        public int EmpresaId { get; set; }
+
+        public Empresa Empresa { get; set; }
+
+        [Display(Name = "Tags")]
+        public IEnumerable<int> TagsId { get; set; }
+
+        [Display(Name = "Tags")]
+        public IEnumerable<Tags> Tags { get; set; }
     }
 }

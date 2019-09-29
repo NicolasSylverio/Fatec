@@ -1,14 +1,15 @@
-﻿using Fatec.Domain.Interfaces.Repositories;
-using Fatec.Domain.Models.Tags;
-using Fatec.Infra.DataBase.Context;
-using Fatec.Infra.DataBase.Repositories;
+﻿using Fatec.CrossCutting.Models;
 using System.Data.Entity;
+using Fatec.DataBase.Context;
+
+using Fatec.DataBase.Interfaces;
 
 namespace Fatec.DataBase.Repository
 {
     public class TagsRepository : RepositoryBase<Tags>, ITagsRepository
     {
-        public TagsRepository(IntranetFatecContext context) : base(context)
+        public TagsRepository(IntranetFatecContext context) 
+            : base(context)
         {
         }
 
@@ -23,6 +24,5 @@ namespace Fatec.DataBase.Repository
             Db.Entry(objeto).State = EntityState.Modified;
             Db.SaveChanges();
         }
-
     }
 }

@@ -4,18 +4,17 @@ using Fatec.Application.Interface;
 using Fatec.Application.Services;
 using Fatec.CrossCutting.Interfaces;
 using Fatec.DataBase.Repository;
-using Fatec.Domain.Interfaces.Repositories;
 using Fatec.Identity.Context;
-using Fatec.Infra.Data.Repositories;
-using Fatec.Infra.DataBase.Context;
 using Fatec.Mvc.Controllers;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Web.Mvc;
+using Fatec.DataBase.Context;
 using Unity;
 using Unity.AspNet.Mvc;
 using Unity.Injection;
+using Fatec.DataBase.Interfaces;
 
 namespace Fatec.Mvc
 {
@@ -78,7 +77,7 @@ namespace Fatec.Mvc
             _ = mapperConfig.CreateMapper();
             container.RegisterType<IMapper, Mapper>(new InjectionConstructor(mapperConfig));
 
-            container.RegisterType<IDbContext, IntranetFatecContext>();
+            container.RegisterInstance<IDbContext>(new IntranetFatecContext("server = aws - mysql.marcelomb.com; port = 3306; database = Fatec; uid = fatec; password =}Xy#6[k@,=Yte.Y("));
             container.RegisterType<IDbContext, ApplicationDbContext>();
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));

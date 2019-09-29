@@ -1,15 +1,5 @@
 ﻿@model IEnumerable<Fatec.Application.ViewModels.EmpresaViewModel>
 
-@*<script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var elems = document.querySelectorAll('.fixed-action-btn');
-            var instances = M.FloatingActionButton.init(elems, {
-                direction: 'left',
-                hoverEnabled: false
-            });
-        });
-
-    </script>*@
 <style>
     .fixed-action-btn {
         bottom: 80px;
@@ -27,29 +17,14 @@
 </nav>
 <br />
 
-@*<div class="row">
-        <div class="col-4">
-            <h2>@ViewBag.Title</h2>
-        </div>
-    </div>*@
-
-<div class="fixed-action-btn">
-    <a class="btn-floating btn-large green" href='@Url.Action("Cadastrar", "Empresas")'>
-        <i class="large material-icons">add</i>
-    </a>
-</div>
-
-
-<div class="row">
-    @if (Model != null)
-    {
+@if (Model != null)
+{
+    <div class="row">
         <table class="striped centered">
             <thead>
                 <tr>
                     <th>Id</th>
                     <th>Nome da Empresa</th>
-                    @*<th>Email</th>
-                    <th>Telefone</th>*@
                     <th>Data/Hora de Cadastro</th>
                     <th></th>
                     <th></th>
@@ -58,29 +33,34 @@
             <tbody>
                 @foreach (var empresa in Model)
                 {
-                <tr>
-                    <td>@empresa.Id</td>
-                    <td>@empresa.Nome</td>
-                    @*<td>@empresa.Email</td>
-                    <td>@empresa.Telefone</td>*@
-                    <td>@empresa.DataHoraCadastro</td>
-                    <td>
-                        <a href="@Url.Action("Delete","Empresas", new { id = empresa.Id })" title="Excluir" class="btn red lighten-2 waves-effect right" style="max-height:36px; max-width:52px;">
-                            <i class="material-icons">clear</i>
-                        </a>
-                        <a href="@Url.Action("Alterar","Empresas", new { id = empresa.Id })" title="Editar" class="btn blue lighten-2 waves-effect right" style="max-height:36px; max-width:52px;">
-                            <i class="material-icons center">edit</i>
-                        </a>
-                    </td>
-                </tr>
+                    <tr>
+                        <td>@empresa.Id</td>
+                        <td>@empresa.Nome</td>
+                        <td>@empresa.DataHoraCadastro</td>
+                        <td>
+                            <a href="@Url.Action("Delete","Empresas", new { id = empresa.Id })" title="Excluir" class="btn red lighten-2 waves-effect right" style="max-height:36px; max-width:52px;">
+                                <i class="material-icons">clear</i>
+                            </a>
+                            <a href="@Url.Action("Alterar","Empresas", new { id = empresa.Id })" title="Editar" class="btn blue lighten-2 waves-effect right" style="max-height:36px; max-width:52px;">
+                                <i class="material-icons center">edit</i>
+                            </a>
+                        </td>
+                    </tr>
                 }
             </tbody>
         </table>
-    }
-    else
-    {
-        <div class="center">
-            <h4>Nenhuma empresa cadastrada no momento.</h4>
-        </div>
-    }
+    </div>
+
+}
+else
+{
+    <div class="center">
+        <h4>Nenhuma empresa cadastrada no momento.</h4>
+    </div>
+}
+
+<div class="fixed-action-btn">
+    <a class="btn-floating btn-large green" href='@Url.Action("Cadastrar", "Empresas")'>
+        <i class="large material-icons">add</i>
+    </a>
 </div>

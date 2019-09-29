@@ -30,6 +30,8 @@ namespace Fatec.CrossCutting.Models.Vagas
 
         public virtual Empresa Empresa { get; set; }
 
+        public virtual ICollection<int> TagsId { get; set; }
+
         public virtual ICollection<Tags> Tags { get; set; }
     }
 }

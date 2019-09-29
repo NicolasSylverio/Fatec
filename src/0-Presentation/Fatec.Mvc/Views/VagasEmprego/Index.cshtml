@@ -82,7 +82,7 @@
         }
 
         @Html.PagedListPager((IPagedList<VagaEmpregoViewModel>
-            ) ViewBag.PagedList, page => Url.Action("Index", new
+            )ViewBag.PagedList, page => Url.Action("Index", new
             {
                 Pagina = page,
                 Model.TotalPorPagina,
@@ -90,9 +90,9 @@
                 Model.PesquisaTitulo
             }), new PagedListRenderOptions
             {
-                ContainerDivClasses = new[] {"col s12 m12 offset-l9 l3 offset-xl9 xl3 center"},
-                UlElementClasses = new[] {"pagination"},
-                LiElementClasses = new[] {"waves-effect"},
+                ContainerDivClasses = new[] { "col s12 m12 offset-l9 l3 offset-xl9 xl3 center" },
+                UlElementClasses = new[] { "pagination" },
+                LiElementClasses = new[] { "waves-effect" },
                 ClassToApplyToFirstListItemInPager = null,
                 ClassToApplyToLastListItemInPager = null,
                 DisplayLinkToFirstPage = PagedListDisplayMode.Never,

@@ -74,27 +74,19 @@ namespace Fatec.Application.Services
 
         public PaginacaoViewModel<EmpresaViewModel> GetAll(Paginacao paginacao)
         {
-            try
-            {
-                var result = _empresaRepository.GetAll(paginacao);
+            var result = _empresaRepository.GetAll(paginacao);
 
-                var vagas = _mapper.Map<List<EmpresaViewModel>>(result.Resultados);
+            var vagas = _mapper.Map<List<EmpresaViewModel>>(result.Resultados);
 
-                return new PaginacaoViewModel<EmpresaViewModel>
-                {
-                    Resultado = vagas,
-                    Direcao = result.Direcao,
-                    OrdenarPor = result.OrdenarPor,
-                    Pagina = result.Pagina,
-                    Total = result.Total,
-                    TotalPorPagina = result.TotalPorPagina
-                };
-            }
-            catch (System.Exception ex)
+            return new PaginacaoViewModel<EmpresaViewModel>
             {
-                var teste = ex.InnerException;
-                throw ex;
-            }
+                Resultado = vagas,
+                Direcao = result.Direcao,
+                OrdenarPor = result.OrdenarPor,
+                Pagina = result.Pagina,
+                Total = result.Total,
+                TotalPorPagina = result.TotalPorPagina
+            };
         }
     }
 }

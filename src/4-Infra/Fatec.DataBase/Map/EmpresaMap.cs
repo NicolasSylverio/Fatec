@@ -41,7 +41,7 @@ namespace Fatec.DataBase.Map
             Property(x => x.UrlSite)
                 .HasColumnName("UrlSite")
                 .HasColumnType("VARCHAR")
-                .HasMaxLength(15);
+                .HasMaxLength(200);
 
             Property(x => x.DataCadastro)
                 .HasColumnName("DataCadastro");

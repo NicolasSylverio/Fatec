@@ -27,5 +27,6 @@ namespace Fatec.CrossCutting.Models.Empresas
 
         public virtual ICollection<VagaEmprego> VagaEmprego { get; set; }
         public virtual ICollection<VagaEstagio> VagaEstagio { get; set; }
+        //public bool Ativo { get; set; }
     }
 }

@@ -35,7 +35,7 @@ namespace Fatec.DataBase.Context
 
         public DbSet<Empresa> Empresa { get; set; }
         public DbSet<Tags> Tags { get; set; }
-        public DbSet<VagaEmprego> VagaEmpresa { get; set; }
+        public DbSet<VagaEmprego> VagaEmprego { get; set; }
         public DbSet<VagaEstagio> VagaEstagio { get; set; }
     }
 }

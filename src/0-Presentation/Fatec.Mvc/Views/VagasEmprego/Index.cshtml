@@ -1,5 +1,7 @@
 ﻿@using Fatec.Application.ViewModels;
-@model IEnumerable<VagaEmpregoViewModel>
+@using PagedList
+@using PagedList.Mvc
+@model VagasFiltroViewModel<VagaEmpregoViewModel>
 @{
     ViewBag.Title = "Vagas Emprego";
 }
@@ -7,16 +9,41 @@
 <br />
 <h3 class="center">Vagas de Emprego</h3>
 <br />
+@using (Html.BeginForm("Index", "VagasEmprego", FormMethod.Get, new { @class = "form-horizontal", id = "form-filtro-vagas" }))
+{
+    @Html.HiddenFor(x => x.TotalPorPagina)
+    @Html.HiddenFor(x => x.OrdenarPor)
+    @Html.HiddenFor(x => x.Direcao)
+
+    <div class="row">
+        <div class="input-field col s12 m5 l5 xl5 center">
+            <i class="material-icons prefix">search</i>
+            @Html.TextBoxFor(m => m.PesquisaTitulo, new { @class = "form-control" })
+            @Html.LabelFor(m => m.PesquisaTitulo, new { @class = "validate" })
+        </div>
+        <div class="input-field col s12 m5 l5 xl5 center">
+            @Html.DropDownListFor(m => m.Tags, new SelectList(ViewBag.Tags, "Id", "Descricao", "Selecione"), new { @class = "form-control" })
+            @Html.LabelFor(m => m.Tags, new { @class = "validate" })
+        </div>
+        <div class="row">
+            <div class="col s12 m2 l2 xl2 center">
+                <input type="submit" value="Pesquisar" class="btn teal-2 waves-light" />
+            </div>
+        </div>
+    </div>
+}
+
+<br />
 
 <div class="row">
-    @if (Model.Any())
+    @if (Model?.Resultado != null)
     {
-        foreach (var item in Model)
+        foreach (var item in Model.Resultado)
         {
             <div class="col s12 m6 l6 xl4">
                 <div class="card hoverable">
                     <div class="card-image">
-                        <img class="materialboxed" src="http://fatecjd.edu.br/intranetAlunos/wp-content/uploads/2019/08/Cartaz-181449.pdf-Gam-768x1086.jpg">
+                        <img class="materialboxed" src="http://fatecjd.edu.br/intranetAlunos/wp-content/uploads/2019/08/Cartaz-181449.pdf-Gam-768x1086.jpg" alt="Banner Vaga">
                     </div>
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4">@item.Titulo<i class="material-icons right">more_vert</i></span>
@@ -28,7 +55,7 @@
                     </div>
                     <div class="card-action">
                         <a href="#">@item.UrlSite</a>
-                        <a href="#">Mais Detalhes..</a>
+                        <a href="#" onclick="abrirLinkMenu('@Url.Action($"Detalhes/{item.Id}", "VagasEmprego")')">Mais Detalhes..</a>
                     </div>
                 </div>
             </div>
@@ -42,6 +69,40 @@
     }
 </div>
 
+<br />
+
+@if (ViewBag.PagedList != null)
+{
+    <div class="row">
+        @if (Model != null)
+        {
+            <div class="col l6">
+                Exibindo de @Model.ExibindoDe(ViewBag.TotalItens) até @Model.ExibindoAte(ViewBag.TotalItens) de @ViewBag.TotalItens
+            </div>
+        }
+
+        @Html.PagedListPager((IPagedList<VagaEmpregoViewModel>
+            ) ViewBag.PagedList, page => Url.Action("Index", new
+            {
+                Pagina = page,
+                Model.TotalPorPagina,
+                Model.Tags,
+                Model.PesquisaTitulo
+            }), new PagedListRenderOptions
+            {
+                ContainerDivClasses = new[] {"col s12 m12 offset-l9 l3 offset-xl9 xl3 center"},
+                UlElementClasses = new[] {"pagination"},
+                LiElementClasses = new[] {"waves-effect"},
+                ClassToApplyToFirstListItemInPager = null,
+                ClassToApplyToLastListItemInPager = null,
+                DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+                DisplayLinkToLastPage = PagedListDisplayMode.Never,
+                DisplayEllipsesWhenNotShowingAllPageNumbers = false,
+                LinkToPreviousPageFormat = "<i class=\"material-icons\">chevron_left</i>",
+                LinkToNextPageFormat = "<i class=\"material-icons\">chevron_right</i>"
+            })
+    </div>
+}
 
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function () {
@@ -49,5 +110,11 @@
         const options = {};
 
         M.Materialbox.init(elems, options);
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const elems = document.querySelectorAll('select');
+        const options = {};
+        M.FormSelect.init(elems, options);
     });
 </script>

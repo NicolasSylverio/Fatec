@@ -110,9 +110,6 @@
                                 <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Index", "VagasEstagio")')"><i class="material-icons left">next_week</i>Listar Vagas</a>
                             </li>
                             <li>
-                                <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Index2", "VagasEstagio")')"><i class="material-icons left">next_week</i>Listar Vagas v2</a>
-                            </li>
-                            <li>
                                 <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Cadastro", "VagasEstagio")')"><i class="material-icons left"></i>Cadastro de Vagas</a>
                             </li>
                         </ul>
@@ -209,13 +206,6 @@
 </ul>
 
 <script language="javascript">
-
-    function abrirLinkMenu(vUrl) {
-        const elem = document.querySelector('#slide_menu');
-        const instance = M.Sidenav.getInstance(elem);
-        instance.close();
-        window.location.href = vUrl;
-    };
 
     document.addEventListener('DOMContentLoaded', function () {
         const menuOptions = {};

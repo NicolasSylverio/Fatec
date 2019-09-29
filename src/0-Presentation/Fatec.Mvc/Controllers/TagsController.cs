@@ -1,5 +1,7 @@
 ﻿using Fatec.Application.Interface;
 using Fatec.Application.ViewModels;
+using Fatec.CrossCutting.Models.PaginacaoHelper;
+using PagedList;
 using System;
 using System.Web.Mvc;
 
@@ -15,10 +17,32 @@ namespace Fatec.Mvc.Controllers
             _tagsAppService = tagsAppService;
         }
 
-        public ActionResult Index()
+        [HttpGet]
+        [Route("Index")]
+        public ActionResult Index(PaginacaoViewModel<TagsViewModel> view)
         {
-            var tags = _tagsAppService.GetAll();
-            return View(tags);
+            try
+            {
+                var result = _tagsAppService.GetAll(new Paginacao(view.Pagina, view.TotalPorPagina));
+
+                ViewBag.PagedList = new StaticPagedList<TagsViewModel>
+                (
+                    result.Resultado,
+                    result.Pagina,
+                    result.TotalPorPagina,
+                    result.Total
+                );
+
+                ViewBag.TotalItens = result.Total;
+
+                return View("Index", result);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.TotalItens = 0;
+                ViewBag.Error = $"Erro ao pesquisar vaga. Erro: {ex.Message}";
+                return View("Index");
+            }
         }
 
         public ActionResult Cadastrar()
@@ -26,40 +50,8 @@ namespace Fatec.Mvc.Controllers
             return View();
         }
 
-        // GET: Tags/Edit/id
-        public ActionResult Edit(int id)
-        {
-            try
-            {
-                var tag = _tagsAppService.GetById(id);
-
-                return View(tag);
-            }
-            catch (Exception ex)
-            {
-                ViewBag.Error = $"Erro ao carregar Tag Erro: {ex.Message}";
-                return View();
-            }
-        }
-
-        // POST: Estagio/Edit/5
         [HttpPost]
-        public ActionResult Edit(TagsViewModel model)
-        {
-            try
-            {
-                _tagsAppService.Update(model);
-
-                return RedirectToAction("Index");
-            }
-            catch (Exception ex)
-            {
-                ViewBag.Error = $"Erro ao carregar Tag Erro: {ex.Message}";
-                return View();
-            }
-        }
-
-        [HttpPost]
+        [Route("Cadastrar/{id}")]
         [ValidateAntiForgeryToken]
         public ActionResult Cadastrar(TagsViewModel model)
         {
@@ -79,6 +71,44 @@ namespace Fatec.Mvc.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("Edit/{id}")]
+        public ActionResult Edit(int id)
+        {
+            try
+            {
+                var tag = _tagsAppService.GetById(id);
+
+                return View(tag);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = $"Erro ao carregar Tag Erro: {ex.Message}";
+                return View();
+            }
+        }
+
+        [HttpPost]
+        [Route("Edit/{id}")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(TagsViewModel model)
+        {
+            try
+            {
+                _tagsAppService.Update(model);
+
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = $"Erro ao carregar Tag Erro: {ex.Message}";
+                return View();
+            }
+        }
+
+        [HttpPost]
+        [Route("Delete/{id}")]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {
             try

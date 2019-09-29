@@ -1,26 +1,28 @@
 ﻿@using Fatec.Application.ViewModels;
-@model IEnumerable<TagsViewModel>
+@using PagedList
+@using PagedList.Mvc
+@model PaginacaoViewModel<TagsViewModel>
 
 <h2 class="center">Tags</h2>
 
 @if (Model != null)
 {
     <div class="row">
-        @foreach (var item in Model)
+        @foreach (var item in Model.Resultado)
         {
-        <div class="col s12 m6 l4 xl4">
-            <div class="card blue-grey lighten-3">
-                <div class="card-content ">
-                    <span class="card-title">@item.Nome</span>
-                    <p>@item.Descricao</p>
-                </div>
-                <div class="card-action">
-                    <span class="card-title"></span>
-                    <a href="Tags/Edit/@item.Id" class="white-text">Alterar</a>
-                    <a href="Tags/Delete/@item.Id" class="white-text">Excluir</a>
+            <div class="col s12 m6 l4 xl4">
+                <div class="card blue-grey lighten-3">
+                    <div class="card-content ">
+                        <span class="card-title">@item.Nome</span>
+                        <p>@item.Descricao</p>
+                    </div>
+                    <div class="card-action">
+                        <span class="card-title"></span>
+                        <a href="Tags/Edit/@item.Id" class="white-text">Alterar</a>
+                        <a href="Tags/Delete/@item.Id" class="white-text">Excluir</a>
+                    </div>
                 </div>
             </div>
-        </div>
         }
     </div>
 }
@@ -32,6 +34,38 @@ else
         </div>
     </div>
 }
+
+@if (ViewBag.PagedList != null)
+{
+    <div class="row">
+        @if (Model != null)
+        {
+            <div class="col l6">
+                Exibindo de @Model.ExibindoDe(ViewBag.TotalItens) até @Model.ExibindoAte(ViewBag.TotalItens) de @ViewBag.TotalItens
+            </div>
+        }
+
+        @Html.PagedListPager((IPagedList<TagsViewModel>
+            )ViewBag.PagedList, page => Url.Action("Index", new
+            {
+                Pagina = page,
+                Model.TotalPorPagina
+            }), new PagedListRenderOptions
+            {
+                ContainerDivClasses = new[] { "col s12 m12 offset-l9 l3 offset-xl9 xl3 center" },
+                UlElementClasses = new[] { "pagination" },
+                LiElementClasses = new[] { "waves-effect" },
+                ClassToApplyToFirstListItemInPager = null,
+                ClassToApplyToLastListItemInPager = null,
+                DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+                DisplayLinkToLastPage = PagedListDisplayMode.Never,
+                DisplayEllipsesWhenNotShowingAllPageNumbers = false,
+                LinkToPreviousPageFormat = "<i class=\"material-icons\">chevron_left</i>",
+                LinkToNextPageFormat = "<i class=\"material-icons\">chevron_right</i>"
+            })
+    </div>
+}
+
 
 <div class="fixed-action-btn">
     <a class="btn-floating btn-large green" href='@Url.Action("Cadastrar", "Tags")'>

@@ -69,9 +69,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\Constants.cs" />
     <Compile Include="Helper\DataHelper.cs" />
     <Compile Include="Interfaces\IDbContext.cs" />
     <Compile Include="Models\Empresas\Empresa.cs" />
+    <Compile Include="Models\PaginacaoHelper\Paginacao.cs" />
+    <Compile Include="Models\PaginacaoHelper\ResultadoPaginacao.cs" />
     <Compile Include="Models\Tags.cs" />
     <Compile Include="Models\Vagas\VagaEmprego.cs" />
     <Compile Include="Models\Vagas\VagaEstagio.cs" />

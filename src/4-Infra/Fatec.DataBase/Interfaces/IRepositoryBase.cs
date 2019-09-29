@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Fatec.CrossCutting.Models.PaginacaoHelper;
+using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace Fatec.DataBase.Interfaces
 {
@@ -10,5 +12,6 @@ namespace Fatec.DataBase.Interfaces
         IEnumerable<TEntity> GetAll();
         void Update(TEntity obj);
         void Remove(int obj);
+        ResultadoPaginacao<TEntity> GetAll<TKey>(Paginacao paginacao, Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TKey>> order);
     }
 }

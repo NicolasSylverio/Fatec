@@ -324,6 +324,7 @@
     <Content Include="Views\VagasEmprego\Lista.cshtml" />
     <Content Include="Views\VagasEstagio\Edit.cshtml" />
     <Content Include="Views\VagasEmprego\Edit.cshtml" />
+    <Content Include="Views\Home\Professores.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\2-Application\Fatec.Application\Fatec.Application.csproj">

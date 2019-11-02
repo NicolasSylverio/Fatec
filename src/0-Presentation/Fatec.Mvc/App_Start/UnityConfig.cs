@@ -58,6 +58,7 @@ namespace Fatec.Mvc
 
             container.RegisterType<AccountController>(new InjectionConstructor());
             container.RegisterType<ManageController>(new InjectionConstructor());
+            container.RegisterType<PermissaoController>(new InjectionConstructor());
 
             container.RegisterType<IUserStore<IdentityUser>, UserStore<IdentityUser>>();
 

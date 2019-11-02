@@ -221,6 +221,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\OfflineController.cs" />
     <Compile Include="Controllers\EmpresasController.cs" />
+    <Compile Include="Controllers\PermissaoController.cs" />
     <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Controllers\VagasEstagioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -332,6 +333,8 @@
     <Content Include="Views\VagasEstagio\Edit.cshtml" />
     <Content Include="Views\VagasEmprego\Edit.cshtml" />
     <Content Include="Views\Home\Professores.cshtml" />
+    <Content Include="Views\Permissao\Index.cshtml" />
+    <Content Include="Views\Permissao\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\2-Application\Fatec.Application\Fatec.Application.csproj">

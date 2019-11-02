@@ -60,7 +60,7 @@ namespace Fatec.Mvc.Controllers
                 : message == ManageMessageId.Error ? "Ocorreu um erro."
                 : message == ManageMessageId.AddPhoneSuccess ? "Seu número de telefone foi adicionado."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Seu número de telefone foi removido."
-                : "";
+                : string.Empty;
 
             var userId = User.Identity.GetUserId();
             var model = new IndexViewModel

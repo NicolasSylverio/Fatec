@@ -1,0 +1,92 @@
+﻿@using Fatec.Application.ViewModels;
+@using PagedList
+@using PagedList.Mvc
+@model VagasFiltroViewModel<VagaEstagioViewModel>
+@{
+    ViewBag.Title = "Vagas Estágio";
+}
+
+<br />
+<h3 class="center">Vagas de Estágio</h3>
+<br />
+
+@if (Model?.Resultado != null)
+{
+    <div class="row">
+        <table class="striped responsive-table centered">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Empresa</th>
+                    <th>Data Cadastro</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Resultado)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Titulo</td>
+                        <td>@item.DataHoraCadastro.ToString("dd/MM/yyyy")</td>
+                        <td>
+                            <a href="@Url.Action("Delete","VagasEstagio", new { id = item.Id })" title="Excluir" class="btn red lighten-2 waves-effect right" style="max-height:36px; max-width:52px;">
+                                <i class="material-icons">clear</i>
+                            </a>
+                            <a href="@Url.Action("Edit","VagasEstagio", new { id = item.Id })" title="Editar" class="btn blue lighten-2 waves-effect right" style="max-height:36px; max-width:52px;">
+                                <i class="material-icons center">edit</i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    if (ViewBag.PagedList != null)
+    {
+        <div class="row">
+            @if (Model != null)
+            {
+                <div class="col l6">
+                    Exibindo de @Model.ExibindoDe(ViewBag.TotalItens) até @Model.ExibindoAte(ViewBag.TotalItens) de @ViewBag.TotalItens
+                </div>
+            }
+
+            @Html.PagedListPager((IPagedList<VagaEstagioViewModel>
+                )ViewBag.PagedList, page => Url.Action("Index", new
+                {
+                    Pagina = page,
+                    Model.TotalPorPagina,
+                    Model.Tags,
+                    Model.PesquisaTitulo
+                }), new PagedListRenderOptions
+                {
+                    ContainerDivClasses = new[] { "col s12 m12 offset-l9 l3 offset-xl9 xl3 center" },
+                    UlElementClasses = new[] { "pagination" },
+                    LiElementClasses = new[] { "waves-effect" },
+                    ClassToApplyToFirstListItemInPager = null,
+                    ClassToApplyToLastListItemInPager = null,
+                    DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+                    DisplayLinkToLastPage = PagedListDisplayMode.Never,
+                    DisplayEllipsesWhenNotShowingAllPageNumbers = false,
+                    LinkToPreviousPageFormat = "<i class=\"material-icons\">chevron_left</i>",
+                    LinkToNextPageFormat = "<i class=\"material-icons\">chevron_right</i>"
+                })
+        </div>
+    }
+
+}
+else
+{
+    <div class="center">
+        <h4>Nenhuma Vaga de Estágio Disponível no Momento</h4>
+    </div>
+}
+
+<div class="fixed-action-btn">
+    <a class="btn-floating btn-large green" href='@Url.Action("Cadastrar", "VagasEstagio")'>
+        <i class="large material-icons">add</i>
+    </a>
+</div>

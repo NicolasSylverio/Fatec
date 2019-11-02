@@ -1,5 +1,6 @@
 ﻿using Fatec.Application.Interface;
 using Fatec.Application.ViewModels;
+using Fatec.CrossCutting.Constants;
 using Fatec.CrossCutting.Models.PaginacaoHelper;
 using Fatec.Mvc.Models;
 using PagedList;
@@ -49,7 +50,7 @@ namespace Fatec.Mvc.Controllers
                 (
                     pesquisa,
                     tags,
-                    new Paginacao(view.Pagina, view.TotalPorPagina)
+                    new Paginacao(view.Pagina, Constants.NumeroVagasPorPagina)
                 );
 
                 ViewBag.PagedList = new StaticPagedList<VagaEmpregoViewModel>
@@ -77,9 +78,59 @@ namespace Fatec.Mvc.Controllers
         [Route("Detalhes/{id}")]
         public ActionResult Detalhes(int id)
         {
-            ViewBag.Title = "Vagas de Emprego - Detalhes";
-            var vagas = _vagaEmpregoAppService.GetById(id);
-            return View(vagas);
+            try
+            {
+                var vagas = _vagaEmpregoAppService.GetById(id);
+                return View(vagas);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.TotalItens = 0;
+                ViewBag.Error = $"Erro ao pesquisar vaga. Erro: {ex.Message}";
+                return View("Index");
+            }
+        }
+
+        [HttpGet]
+        [Route("Lista")]
+        public ActionResult Lista(VagasFiltroViewModel<VagaEmpregoViewModel> view)
+        {
+            try
+            {
+                var teste = new List<DropDownDto> { new DropDownDto { Descricao = "Tag", Id = 0 } };
+
+                _tagsAppService.GetAll().ToList().ForEach(x => teste.Add(new DropDownDto { Descricao = x.Nome, Id = x.Id }));
+
+                ViewBag.Tags = teste;
+
+                var pesquisa = view.PesquisaTitulo;
+                var tags = view.Tags;
+
+                var result = _vagaEmpregoAppService.GetAllByTituloTags
+                (
+                    pesquisa,
+                    tags,
+                    new Paginacao(view.Pagina, Constants.NumeroPaginacaoListaDefault)
+                );
+
+                ViewBag.PagedList = new StaticPagedList<VagaEmpregoViewModel>
+                (
+                    result.Resultado,
+                    result.Pagina,
+                    result.TotalPorPagina,
+                    result.Total
+                );
+
+                ViewBag.TotalItens = result.Total;
+
+                return View("Lista", result);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.TotalItens = 0;
+                ViewBag.Error = $"Erro ao pesquisar vaga. Erro: {ex.Message}";
+                return View("Lista");
+            }
         }
 
         [HttpGet]
@@ -104,7 +155,7 @@ namespace Fatec.Mvc.Controllers
 
                 _vagaEmpregoAppService.Add(model);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Lista");
             }
             catch (Exception)
             {
@@ -112,7 +163,7 @@ namespace Fatec.Mvc.Controllers
                 ViewBag.Tags = _tagsAppService.GetAll();
 
                 ViewBag.Error = "Erro ao cadastrar nova Vaga Emprego";
-                return RedirectToAction("Cadastrar");
+                return View("Cadastrar", model);
             }
         }
 
@@ -122,14 +173,17 @@ namespace Fatec.Mvc.Controllers
         {
             try
             {
-                var tag = _vagaEmpregoAppService.GetById(id);
+                ViewBag.EmpresaId = _empresaAppService.GetAll();
+                ViewBag.Tags = _tagsAppService.GetAll();
 
-                return View(tag);
+                var vaga = _vagaEmpregoAppService.GetById(id);
+
+                return View(vaga);
             }
             catch (Exception ex)
             {
                 ViewBag.Error = $"Erro ao carregar Vaga. Erro: {ex.Message}";
-                return View();
+                return View("Lista");
             }
         }
 
@@ -142,12 +196,15 @@ namespace Fatec.Mvc.Controllers
             {
                 _vagaEmpregoAppService.Update(model);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Lista");
             }
             catch (Exception ex)
             {
+                ViewBag.EmpresaId = _empresaAppService.GetAll();
+                ViewBag.Tags = _tagsAppService.GetAll();
+
                 ViewBag.Error = $"Erro ao carregar Vaga. Erro: {ex.Message}";
-                return View();
+                return View(model);
             }
         }
 
@@ -162,12 +219,12 @@ namespace Fatec.Mvc.Controllers
 
                 ViewBag.Sucess = "Vaga excluida com sucesso.";
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Lista");
             }
             catch (Exception ex)
             {
                 ViewBag.Error = $"Erro ao deletar Vaga. Erro: {ex.Message}";
-                return RedirectToAction("Index");
+                return RedirectToAction("lista");
             }
         }
     }

@@ -44,17 +44,10 @@
 <ul class="sidenav" id="slide_menu">
 
     <li class="logo">
-        <a id="imagem-auth" aria-label="Página Principal" class="brand-logo" href="/Home">
-        </a>
+        <a id="imagem-auth" aria-label="Página Principal" class="brand-logo" href="#"></a>
     </li>
     <li class="version">
-        <a href="/Home" class="collapsible-header waves-effect waves-teal center">Fatec</a>
-    </li>
-    <li>
-        <div class="divider"></div>
-    </li>
-    <li>
-        <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Index", "Home")')"><i class="material-icons left">layers</i>Início</a>
+        <a href="#" class="collapsible-header waves-effect waves-teal center" onclick="abrirLinkMenu('@Url.Action("Index", "Home")')">Fatec</a>
     </li>
     <li>
         <div class="divider"></div>
@@ -74,17 +67,40 @@
 
     @if (User.Identity.IsAuthenticated)
     {
+        <li class="version">
+            <a href="#" class="collapsible-header waves-effect waves-teal center" onclick="abrirLinkMenu('@Url.Action("Professores", "Home")')">Links</a>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
         <li>
             <ul class="collapsible collapsible-accordion">
                 <li>
-                    <a class="collapsible-header waves-effect waves-teal">Empresas<i class="material-icons">arrow_drop_down</i></a>
+                    <a class="collapsible-header waves-effect waves-teal">Cadastros<i class="material-icons">arrow_drop_down</i></a>
                     <div class="collapsible-body">
                         <ul>
                             <li>
-                                <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Index", "Empresas")')"><i class="material-icons left">business</i>Lista Empresas</a>
+                                <ul class="collapsible collapsible-accordion">
+                                    <li>
+                                        <a class="collapsible-header waves-effect waves-teal">Empresas<i class="material-icons">arrow_drop_down</i></a>
+                                        <div class="collapsible-body">
+                                            <ul>
+                                                <li>
+                                                    <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Index", "Empresas")')"><i class="material-icons left">business</i>Lista Empresas</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Cadastro", "Empresas")')"><i class="material-icons left">business</i>Cadastro de Empresas</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
                             </li>
                             <li>
-                                <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Cadastro", "Empresas")')"><i class="material-icons left">business</i>Cadastro de Empresas</a>
+                                <div class="divider"></div>
+                            </li>
+                            <li>
+                                <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Index", "Tags")')"><i class="material-icons left">star_border</i>Lista Tags</a>
                             </li>
                         </ul>
                     </div>
@@ -95,7 +111,13 @@
             <div class="divider"></div>
         </li>
         <li>
-            <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Index", "Tags")')"><i class="material-icons left">star_border</i>Lista Tags</a>
+            <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Lista", "VagasEstagio")')"><i class="material-icons left">next_week</i>Vagas Estágio</a>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li>
+            <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Lista", "VagasEmprego")')"><i class="material-icons left">work</i>Vagas de Emprego</a>
         </li>
         <li>
             <div class="divider"></div>
@@ -103,14 +125,53 @@
         <li>
             <ul class="collapsible collapsible-accordion">
                 <li>
-                    <a class="collapsible-header waves-effect waves-teal">Vagas de Estágio<i class="material-icons">arrow_drop_down</i></a>
+                    <a class="collapsible-header waves-effect waves-teal">Reservas<i class="material-icons">arrow_drop_down</i></a>
                     <div class="collapsible-body">
                         <ul>
                             <li>
-                                <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Index", "VagasEstagio")')"><i class="material-icons left">next_week</i>Listar Vagas</a>
+                                <a href="http://fatecjd.edu.br/intranet/auditorio/" rel="noopener" target="_blank" class="collapsible-header waves-effect waves-teal"><i class="material-icons left"></i>Reservar Auditório</a>
                             </li>
                             <li>
-                                <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Cadastro", "VagasEstagio")')"><i class="material-icons left"></i>Cadastro de Vagas</a>
+                                <div class="divider"></div>
+                            </li>
+                            <li>
+                                <a href="http://fatecjd.edu.br/intranet/reservalab/" rel="noopener" target="_blank" class="collapsible-header waves-effect waves-teal"><i class="material-icons left"></i>Reserva Laboratório</a>
+                            </li>
+                            <li>
+                                <div class="divider"></div>
+                            </li>
+                            <li>
+                                <a href="http://fatecjd.edu.br/intranet/eventosTL.php" rel="noopener" target="_blank" class="collapsible-header waves-effect waves-teal"><i class="material-icons left"></i>Solicitação de Eventos</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li>
+            <ul class="collapsible collapsible-accordion">
+                <li>
+                    <a class="collapsible-header waves-effect waves-teal">TCC<i class="material-icons">arrow_drop_down</i></a>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li>
+                                <a href="http://fatecjd.edu.br/intranet/tccTemas.php" rel="noopener" target="_blank" class="collapsible-header waves-effect waves-teal"><i class="material-icons left"></i>TCC Temas</a>
+                            </li>
+                            <li>
+                                <div class="divider"></div>
+                            </li>
+                            <li>
+                                <a href="http://fatecjd.edu.br/intranet/tcc_minhasBancas.php" rel="noopener" target="_blank" class="collapsible-header waves-effect waves-teal"><i class="material-icons left"></i>Minhas Bancas de TCC</a>
+                            </li>
+                            <li>
+                                <div class="divider"></div>
+                            </li>
+                            <li>
+                                <a href="http://www.fatecjd.edu.br/intranetAlunos/temas.php" target="_blank" rel="noopener" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">insert_drive_file</i>TCC/ICT orientadores</a>
                             </li>
                         </ul>
                     </div>
@@ -121,44 +182,25 @@
             <div class="divider"></div>
         </li>
         <li>
-            <ul class="collapsible collapsible-accordion">
-                <li>
-                    <a class="collapsible-header waves-effect waves-teal">Vagas de Emprego<i class="material-icons">arrow_drop_down</i></a>
-                    <div class="collapsible-body">
-                        <ul>
-                            <li>
-                                <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Index", "VagasEmprego")')"><i class="material-icons left">work</i>Vagas de Emprego</a>
-                            </li>
-                            <li>
-                                <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Cadastrar", "VagasEmprego")')"><i class="material-icons left"></i>Cadastro</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
+            <a href="https://siga.cps.sp.gov.br/fatec/login.aspx" rel="noopener" target="_blank" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">school</i> Siga</a>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li>
+            <a href="http://fatecjd.edu.br/intranet/historicoHD.php" rel="noopener" target="_blank" class="collapsible-header waves-effect waves-teal"><i class="material-icons left"></i>Help Desk</a>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li>
+            <a href="http://portal.office.com/" rel="noopener" target="_blank" class="collapsible-header waves-effect waves-teal"><i class="material-icons left"></i>E-mail Office</a>
         </li>
     }
     else
     {
         <li>
-            <ul class="collapsible collapsible-accordion">
-                <li>
-                    <a class="collapsible-header waves-effect waves-teal">Vagas de Estágio<i class="material-icons">arrow_drop_down</i></a>
-                    <div class="collapsible-body">
-                        <ul>
-                            <li>
-                                <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Index", "VagasEstagio")')"><i class="material-icons left">next_week</i>Listar Vagas</a>
-                            </li>
-                            <li>
-                                <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Index2", "VagasEstagio")')"><i class="material-icons left">next_week</i>Listar Vagas v2</a>
-                            </li>
-                            <li>
-                                <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Cadastro", "VagasEstagio")')"><i class="material-icons left"></i>Cadastro de Vagas</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
+            <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Index", "VagasEstagio")')"><i class="material-icons left">next_week</i>Vagas Estágio</a>
         </li>
         <li>
             <div class="divider"></div>
@@ -166,40 +208,39 @@
         <li>
             <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Index", "VagasEmprego")')"><i class="material-icons left">work</i>Vagas de Emprego</a>
         </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li>
+            <a href="https://siga.cps.sp.gov.br/aluno/login.aspx" rel="noopener" target="_blank" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">school</i>Siga</a>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li>
+            <ul class="collapsible collapsible-accordion">
+                <li>
+                    <a class="collapsible-header waves-effect waves-teal">Outros<i class="material-icons">arrow_drop_down</i></a>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li>
+                                <a href="http://www.fatecjd.edu.br/aacc/" target="_blank" rel="noopener" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">add_circle_outline</i>AACC - Apenas GTI</a>
+                            </li>
+                            <li>
+                                <a href="http://www.fatecjd.edu.br/semtec_inscricao/" target="_blank" rel="noopener" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">insert_drive_file</i>Certificados</a>
+                            </li>
+                            <li>
+                                <a href="http://www.fatecjd.edu.br/intranetAlunos/temas.php" target="_blank" rel="noopener" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">insert_drive_file</i>TCC/ICT orientadores</a>
+                            </li>
+                            <li>
+                                <a href="http://www.fatecjd.edu.br/intranetAlunos/?page_id=2017" target="_blank" rel="noopener" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">local_library</i>Tabelas Prof. João Carlos</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </li>
     }
-
-    <li>
-        <div class="divider"></div>
-    </li>
-    <li>
-        <a href="https://siga.cps.sp.gov.br/aluno/login.aspx" rel="noopener" target="_blank" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">school</i>Siga</a>
-    </li>
-    <li>
-        <div class="divider"></div>
-    </li>
-    <li>
-        <ul class="collapsible collapsible-accordion">
-            <li>
-                <a class="collapsible-header waves-effect waves-teal">Outros<i class="material-icons">arrow_drop_down</i></a>
-                <div class="collapsible-body">
-                    <ul>
-                        <li>
-                            <a href="http://www.fatecjd.edu.br/aacc/" target="_blank" rel="noopener" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">add_circle_outline</i>AACC - Apenas GTI</a>
-                        </li>
-                        <li>
-                            <a href="http://www.fatecjd.edu.br/semtec_inscricao/" target="_blank" rel="noopener" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">insert_drive_file</i>Certificados</a>
-                        </li>
-                        <li>
-                            <a href="http://www.fatecjd.edu.br/intranetAlunos/temas.php" target="_blank" rel="noopener" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">insert_drive_file</i>TCC/ICT orientadores</a>
-                        </li>
-                        <li>
-                            <a href="http://www.fatecjd.edu.br/intranetAlunos/?page_id=2017" target="_blank" rel="noopener" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">local_library</i>Tabelas Prof. João Carlos</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-        </ul>
-    </li>
     <li>
         <div class="divider"></div>
     </li>

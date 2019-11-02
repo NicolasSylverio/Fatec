@@ -239,6 +239,13 @@
     <Content Include="Content\css\material-icons.css" />
     <Content Include="Content\css\materialize.css" />
     <Content Include="Content\css\materialize.min.css" />
+    <Content Include="Content\images\144x144.jpeg" />
+    <Content Include="Content\images\168x168.jpeg" />
+    <Content Include="Content\images\192x192.jpeg" />
+    <Content Include="Content\images\48x48.jpeg" />
+    <Content Include="Content\images\512x512.jpeg" />
+    <Content Include="Content\images\72x72.jpeg" />
+    <Content Include="Content\images\96x96.jpeg" />
     <Content Include="Content\images\logoPadrao.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
@@ -307,7 +314,7 @@
     <Content Include="Views\Offline\_offlineLayout.cshtml" />
     <Content Include="Views\Shared\_floating.cshtml" />
     <None Include="Properties\PublishProfiles\fatecjundiai - Web Deploy.pubxml" />
-    <Content Include="Views\VagasEstagio\Cadastro.cshtml" />
+    <Content Include="Views\VagasEstagio\Lista.cshtml" />
     <Content Include="Views\VagasEstagio\Cadastrar.cshtml" />
     <Content Include="Views\VagasEstagio\Index.cshtml" />
     <Content Include="Views\Empresas\Index.cshtml" />
@@ -320,6 +327,11 @@
     <Content Include="Views\Tags\Edit.cshtml" />
     <Content Include="Views\VagasEmprego\Cadastrar.cshtml" />
     <Content Include="Views\VagasEmprego\Detalhes.cshtml" />
+    <Content Include="Views\VagasEstagio\Detalhes.cshtml" />
+    <Content Include="Views\VagasEmprego\Lista.cshtml" />
+    <Content Include="Views\VagasEstagio\Edit.cshtml" />
+    <Content Include="Views\VagasEmprego\Edit.cshtml" />
+    <Content Include="Views\Home\Professores.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\2-Application\Fatec.Application\Fatec.Application.csproj">

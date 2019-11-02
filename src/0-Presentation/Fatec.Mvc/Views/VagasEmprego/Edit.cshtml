@@ -1,12 +1,12 @@
 ﻿@using Fatec.Application.ViewModels;
-@model VagaEstagioViewModel
+@model VagaEmpregoViewModel
 @{
-    ViewBag.Title = "Vagas Estágio";
+    ViewBag.Title = "Alterar Vaga";
 }
 
-<h3 class="center">Cadastro de Vagas Emprego</h3>
+<h3 class="center">Alterar Vaga</h3>
 
-@using (Html.BeginForm("Cadastrar", "VagasEstagio", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("Edit", "VagasEmprego", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
 
@@ -60,7 +60,7 @@
 
     <div class="row">
         <div class="col s12 m12 l12 xl12 center">
-            <input type="submit" value="Cadastrar" class="btn teal-2 waves-light" />
+            <input type="submit" value="Alterar" class="btn teal-2 waves-light" />
         </div>
     </div>
 }

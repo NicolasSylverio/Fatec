@@ -5,6 +5,7 @@ namespace Fatec.Mvc.Controllers
     [Authorize]
     public class HomeController : Controller
     {
+        [HttpGet]
         [Route("Home")]
         [AllowAnonymous]
         public ActionResult Index()
@@ -12,6 +13,7 @@ namespace Fatec.Mvc.Controllers
             return View();
         }
 
+        [HttpGet]
         [Route("About")]
         [AllowAnonymous]
         public ActionResult About()
@@ -19,6 +21,7 @@ namespace Fatec.Mvc.Controllers
             return View();
         }
 
+        [HttpGet]
         [Route("Contact")]
         [AllowAnonymous]
         public ActionResult Contact()
@@ -26,9 +29,17 @@ namespace Fatec.Mvc.Controllers
             return View();
         }
 
+        [HttpGet]
         [Route("Privacy")]
         [AllowAnonymous]
         public ActionResult Privacy()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        [Route("Professores")]
+        public ActionResult Professores()
         {
             return View();
         }

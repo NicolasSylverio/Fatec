@@ -1,5 +1,4 @@
 ﻿using Fatec.Application.ViewModels;
-using System.Collections.Generic;
 using Fatec.CrossCutting.Models.PaginacaoHelper;
 
 namespace Fatec.Application.Interface

@@ -36,6 +36,5 @@ namespace Fatec.Identity.Context
         public DbSet<IdentityUserLogin> UserLogins { get; set; }
         public DbSet<IdentityUserClaim> UserClaims { get; set; }
         public DbSet<IdentityUserRole> UserRoles { get; set; }
-        public DbSet<Tags> Tags { get; set; }
     }
 }

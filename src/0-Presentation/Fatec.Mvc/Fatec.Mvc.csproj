@@ -332,6 +332,7 @@
     <Content Include="Views\VagasEstagio\Edit.cshtml" />
     <Content Include="Views\VagasEmprego\Edit.cshtml" />
     <Content Include="Views\Home\Professores.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\2-Application\Fatec.Application\Fatec.Application.csproj">

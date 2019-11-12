@@ -1,134 +1,78 @@
-﻿@model Fatec.Application.ViewModels.VagaEstagioViewModel
+﻿@using Fatec.Application.ViewModels;
+@model VagaEstagioViewModel
+@{
+    ViewBag.Title = "Vagas Estágio";
+}
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var elems = document.querySelectorAll('.fixed-action-btn');
-        var instances = M.FloatingActionButton.init(elems, {
-            direction: 'left',
-            hoverEnabled: false
-        });
-    });
+<h3 class="center">Cadastro de Vagas Emprego</h3>
 
-</script>
-<style>
-    .fixed-action-btn {
-        bottom: 80px;
-        right: 50px; /*desired value*/
-    }
-</style>
-<br />
-<nav>
-    <div class="nav-wrapper">
-        <div class="col s12">
-            <a href="#!" class="breadcrumb">&nbsp; Vagas de Estágio</a>
-            <a href='@Url.Action("Cadastro", "VagasEstagio")' class="breadcrumb">Cadastro</a>
-            <a href="#!" class="breadcrumb">@ViewBag.Title</a>
+@using (Html.BeginForm("Cadastrar", "VagasEstagio", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <br />
+    <br />
+    <div class="row">
+        <div class="input-field col s12 m6 l6 xl4 center">
+            @Html.LabelFor(m => m.Titulo, new { @class = "validate" })
+            @Html.TextBoxFor(m => m.Titulo, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Titulo, "", new { @class = "helper-text" })
+        </div>
+        <div class="input-field col s12 m6 l6 xl8 center">
+            @Html.LabelFor(m => m.Subtitulo, new { @class = "validate" })
+            @Html.TextBoxFor(m => m.Subtitulo, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Subtitulo, "", new { @class = "helper-text" })
+        </div>
+        <div class="input-field col s12 m12 l12 xl12 center">
+            @Html.LabelFor(m => m.Descricao, new { @class = "validate" })
+            @Html.TextAreaFor(m => m.Descricao, new { @class = "materialize-textarea" })
+            @Html.ValidationMessageFor(m => m.Descricao, "", new { @class = "helper-text" })
+        </div>
+        <div class="input-field col s12 m12 l12 xl12 center">
+            @Html.ListBoxFor(m => m.TagsId, new SelectList(ViewBag.Tags, "Id", "Nome", "Selecione"), new { @class = "form-control", multiple = "multiple" })
+            @Html.ValidationMessageFor(m => m.TagsId, "", new { @class = "helper-text" })
+        </div>
+        <div class="input-field col s12 m6 l4 xl4 center">
+            @Html.LabelFor(m => m.Email, new { @class = "validate" })
+            @Html.TextBoxFor(m => m.Email, new { @class = "validate", type = "email" })
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "helper-text" })
+        </div>
+        <div class="input-field col s12 m6 l4 xl4 center">
+            @Html.LabelFor(m => m.Telefone, new { @class = "validate" })
+            @Html.TextBoxFor(m => m.Telefone, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Telefone, "", new { @class = "helper-text" })
+        </div>
+        <div class="input-field col s12 m6 l4 xl4 center">
+            @Html.DropDownListFor(m => m.EmpresaId, new SelectList(ViewBag.EmpresaId, "Id", "Nome"), "Selecione a Empresa", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.EmpresaId, "", new { @class = "helper-text" })
+        </div>
+        <div class="input-field col s12 m6 l6 xl6 center">
+            @Html.LabelFor(m => m.UrlImagem, new { @class = "validate" })
+            @Html.TextBoxFor(m => m.UrlImagem, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.UrlImagem, "", new { @class = "helper-text" })
+        </div>
+        <div class="input-field col s12 m6 l6 xl6 center">
+            @Html.LabelFor(m => m.UrlSite, new { @class = "validate" })
+            @Html.TextBoxFor(m => m.UrlSite, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.UrlSite, "", new { @class = "helper-text" })
         </div>
     </div>
-</nav>
-<div class="col s12 m12 push-l2 l8 push-xl2 xl8 center">
 
-    <div class="container">
-        <div>
-            <h3>Cadastro de Vagas de Estágio</h3>
-        </div>
-
-        <div class="row">
-            <form method="post" class="col s12">
-                <div>
-                    <div class="input-field col s12 m6 l6 xl6">
-                        <input asp-for="Nome" id="Nome" type="text" class="validate" data-length="50" />
-                        <label asp-for="Nome">Nome</label>
-                        <span asp-validation-for="Nome" class="helper-text" data-error="wrong"></span>
-                    </div>
-
-                    <div class="input-field col s12 m6 l6 xl6">
-                        <input asp-for="Sobrenome" id="Sobrenome" type="text" class="validate" min="3" data-length="50" />
-                        <label asp-for="Sobrenome"></label>
-                        <span asp-validation-for="Sobrenome" class="helper-text" data-error="wrong"></span>
-                    </div>
-
-                    <div class="input-field col s12 m6 l6 xl6">
-                        <input asp-for="Cpf" id="Cpf" type="text" class="validate" data-length="11" />
-                        <label asp-for="Cpf"></label>
-                        <span asp-validation-for="Cpf" class="helper-text" data-error="wrong"></span>
-                    </div>
-
-                    <div class="input-field col s12 m6 l6 xl6">
-                        <input asp-for="DataNascimento" id="DataNascimento" type="date" class="" data-length="10" />
-                        <label asp-for="DataNascimento"></label>
-                        <span asp-validation-for="DataNascimento" class="helper-text" data-error="wrong"></span>
-                    </div>
-
-                    <div class="input-field col s12 m6 l6 xl6">
-                        <input asp-for="Login" id="Login" type="text" class="validate" data-length="20" />
-                        <label asp-for="Login"></label>
-                        <span asp-validation-for="Login" class="helper-text" data-error="wrong"></span>
-                    </div>
-
-                    <div class="input-field col s12 m6 l6 xl6">
-                        <input asp-for="Senha" id="Senha" type="password" class="validate" data-length="20" />
-                        <label asp-for="Senha"></label>
-                        <span asp-validation-for="Senha" class="helper-text" data-error="wrong"></span>
-                    </div>
-
-                    <div class="input-field col s12 m4 l4 xl4">
-                        <input asp-for="Celular" id="Celular" type="number" class="validate" data-length="9" />
-                        <label asp-for="Celular"></label>
-                        <span asp-validation-for="Celular" class="helper-text" data-error="wrong"></span>
-                    </div>
-
-                    <div class="input-field col s12 m4 l4 xl4">
-                        <select asp-for="Sexo">
-                            <option value="" disabled selected>Selecione uma opção</option>
-                            <option value="0">Feminino</option>
-                            <option value="1">Masculino</option>
-                            <option value="2">Outros</option>
-                        </select>
-                        <label asp-for="Sexo"></label>
-                        <br />
-                        <br />
-                    </div>
-
-                    <div class="input-field col s12 m4 l4 xl4">
-                        <select asp-for="TipoUsuario">
-                            <option value="" disabled selected>Selecione uma opção</option>
-                            <option value="0">Supervisor</option>
-                            <option value="1">Funcionario</option>
-                            <option value="2">Aluno</option>
-                            <option value="3">Visitante</option>
-                        </select>
-                        <label asp-for="TipoUsuario"></label>
-                        <span asp-validation-for="TipoUsuario" class="helper-text" data-error="wrong"></span>
-                    </div>
-
-                    <div class="input-field col s12 m12 l12 xl12">
-                        <input asp-for="Email" id="Email" type="email" class="validate" data-length="100" />
-                        <label asp-for="Email"></label>
-                        <span asp-validation-for="Email" class="helper-text" data-error="E-mail invalido" data-success="Email Valido"></span>
-                    </div>
-
-                    <div class="input-field col s12 m12 l12 xl12">
-                        <div class="left">
-                            <button type="submit" title="Cadastrar" asp-action="CadastroUsuario" method="post" class="btn teal lighten-2">Cadastrar</button>
-                            <a asp-action="CadastroUsuario" method="get" class="btn amber lighten-2">Limpar</a>
-                        </div>
-                    </div>
-                </div>
-            </form>
+    <div class="row">
+        <div class="col s12 m12 l12 xl12 center">
+            <input type="submit" value="Cadastrar" class="btn teal-2 waves-light" />
         </div>
     </div>
-</div>
+}
 
 @section Scripts
-    {
+{
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function () {
             const elems = document.querySelectorAll('select');
-            const textNeedCount = document.querySelectorAll('#Nome, #Sobrenome, #DataNascimento, #Cpf, #Login, #Celular, #Senha, #Email');
             const options = {};
             M.FormSelect.init(elems, options);
-            M.CharacterCounter.init(textNeedCount);
         });
+
     </script>
-    }
+}

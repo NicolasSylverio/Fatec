@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
 using Fatec.Application.Interface;
 using Fatec.Application.ViewModels;
-using Fatec.Domain.Interfaces.Repositories;
-using Fatec.Domain.Models.Empresas;
+using Fatec.CrossCutting.Models.Empresas;
+using Fatec.CrossCutting.Models.PaginacaoHelper;
+using Fatec.DataBase.Interfaces;
 using System.Collections.Generic;
 
 namespace Fatec.Application.Services
@@ -22,25 +23,21 @@ namespace Fatec.Application.Services
             _mapper = mapper;
         }
 
-        public void Cadastrar(EmpresaViewModel empresaViewModel)
+        public void Add(EmpresaViewModel empresaViewModel)
         {
             var empresa = _mapper.Map<Empresa>(empresaViewModel);
 
             _empresaRepository.Add(empresa);
         }
 
-        public IEnumerable<EmpresaViewModel> GetAllEmpresaViewModel()
-        {           
-            return _mapper.Map<List<EmpresaViewModel>>(_empresaRepository.GetAll());
-        }
         public void Add(Empresa obj)
         {
             _empresaRepository.Add(obj);
         }
 
-        public Empresa GetById(int id)
+        public EmpresaViewModel GetById(int id)
         {
-            return _empresaRepository.GetById(id);
+            return _mapper.Map<EmpresaViewModel>(_empresaRepository.GetById(id));
         }
 
         public void Remove(int id)
@@ -58,9 +55,9 @@ namespace Fatec.Application.Services
             _empresaRepository.Dispose();
         }
 
-        public IEnumerable<Empresa> GetAll()
+        public IEnumerable<EmpresaViewModel> GetAll()
         {
-            return _empresaRepository.GetAll();
+            return _mapper.Map<List<EmpresaViewModel>>(_empresaRepository.GetAll());
         }
 
         public EmpresaViewModel GetViewModel(int id)
@@ -69,10 +66,27 @@ namespace Fatec.Application.Services
             return _mapper.Map<EmpresaViewModel>(empresa);
         }
 
-        public void Alterar(EmpresaViewModel obj)
+        public void Update(EmpresaViewModel obj)
         {
             var empresa = _mapper.Map<Empresa>(obj);
             _empresaRepository.Update(empresa);
+        }
+
+        public PaginacaoViewModel<EmpresaViewModel> GetAll(Paginacao paginacao)
+        {
+            var result = _empresaRepository.GetAll(paginacao);
+
+            var vagas = _mapper.Map<List<EmpresaViewModel>>(result.Resultados);
+
+            return new PaginacaoViewModel<EmpresaViewModel>
+            {
+                Resultado = vagas,
+                Direcao = result.Direcao,
+                OrdenarPor = result.OrdenarPor,
+                Pagina = result.Pagina,
+                Total = result.Total,
+                TotalPorPagina = result.TotalPorPagina
+            };
         }
     }
 }

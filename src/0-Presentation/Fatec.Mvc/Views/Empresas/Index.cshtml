@@ -1,48 +1,48 @@
 ﻿@using Fatec.Application.ViewModels;
-@model IEnumerable<EmpresaViewModel>
+@using PagedList
+@using PagedList.Mvc
+@model PaginacaoViewModel<EmpresaViewModel>
+@{
+    ViewBag.Title = "Empresas";
+}
 
-
-<br />
-<nav>
-    <div class="nav-wrapper">
+<div class="nav-wrapper hide-on-med-and-down">
+    <br />
+    <nav>
         <div class="col s12">
             <a href="#!" class="breadcrumb">&nbsp; Empresas</a>
             <a href="#!" class="breadcrumb">@ViewBag.Title</a>
         </div>
-    </div>
-</nav>
+    </nav>
+</div>
+
+<br />
+<h3 class="center">Empresas</h3>
 <br />
 
-
-@if (Model != null)
+@if (Model?.Resultado != null)
 {
+    <div class="row">
 
-    @Html.Raw("<div class=\"row\" >");
-
-    //foreach (var vaga in Model)
-    for (int i = 0; i < Model.Count(); i++)
-    {
-        EmpresaViewModel empresa = Model.ElementAt(i);
-
-        if (empresa != null)
+        @foreach (var item in Model.Resultado)
         {
-            <div class="col s12 m6">
+            <div class="col s12 m6 l6 xl6">
                 <div class="card ">
                     <div class="card-content ">
-                        <span class="card-title">@empresa.Nome</span>
+                        <span class="card-title">@item.Nome</span>
                         <p>
-                            Telefone: @empresa.Telefone
+                            Telefone: @item.Telefone
                         </p>
                     </div>
                     <div class="card-action">
-                        <a href="@empresa.Email">Email</a>
-                        <a href="@empresa.Email">Site</a>
+                        <a href="@item.Email">Email</a>
+                        <a href="@item.UrlSite">Site</a>
                     </div>
                 </div>
             </div>
         }
-    }
-    @Html.Raw("</div>")
+
+    </div>
 }
 else
 {
@@ -50,5 +50,36 @@ else
         <div class="center">
             <h4>Nenhuma empresa cadastrada no momento</h4>
         </div>
+    </div>
+}
+
+@if (ViewBag.PagedList != null)
+{
+    <div class="row">
+        @if (Model != null)
+        {
+            <div class="col l6">
+                Exibindo de @Model.ExibindoDe(ViewBag.TotalItens) até @Model.ExibindoAte(ViewBag.TotalItens) de @ViewBag.TotalItens
+            </div>
+        }
+
+        @Html.PagedListPager((IPagedList<EmpresaViewModel>
+            )ViewBag.PagedList, page => Url.Action("Index", new
+            {
+                Pagina = page,
+                Model.TotalPorPagina
+            }), new PagedListRenderOptions
+            {
+                ContainerDivClasses = new[] { "col s12 m12 offset-l9 l3 offset-xl9 xl3 center" },
+                UlElementClasses = new[] { "pagination" },
+                LiElementClasses = new[] { "waves-effect" },
+                ClassToApplyToFirstListItemInPager = null,
+                ClassToApplyToLastListItemInPager = null,
+                DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+                DisplayLinkToLastPage = PagedListDisplayMode.Never,
+                DisplayEllipsesWhenNotShowingAllPageNumbers = false,
+                LinkToPreviousPageFormat = "<i class=\"material-icons\">chevron_left</i>",
+                LinkToNextPageFormat = "<i class=\"material-icons\">chevron_right</i>"
+            })
     </div>
 }

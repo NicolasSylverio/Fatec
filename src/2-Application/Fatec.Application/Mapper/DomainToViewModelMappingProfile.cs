@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Fatec.Application.ViewModels;
-using Fatec.Domain.Models;
-using Fatec.Domain.Models.Empresas;
-using Fatec.Domain.Models.Vagas;
+using Fatec.CrossCutting.Models;
+using Fatec.CrossCutting.Models.Empresas;
+using Fatec.CrossCutting.Models.Vagas;
 
 namespace Fatec.Application.AutoMapper
 {

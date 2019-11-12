@@ -75,21 +75,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\Repositories\IRepositoryBase.cs" />
-    <Compile Include="Interfaces\Repositories\IEmpresaRepository.cs" />
-    <Compile Include="Interfaces\Repositories\ITagsRepository.cs" />
-    <Compile Include="Interfaces\Repositories\IVagaEmpregoRepository.cs" />
-    <Compile Include="Interfaces\Repositories\IVagaEstagioRepository.cs" />
-    <Compile Include="Models\Empresas\Empresa.cs" />
-    <Compile Include="Models\Tags.cs" />
-    <Compile Include="Models\Vagas\VagaEmprego.cs" />
-    <Compile Include="Models\Vagas\VagaEstagio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DateService.cs" />
     <Compile Include="Services\EmailService.cs" />
     <Compile Include="Services\SmsService.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
@@ -98,6 +91,10 @@
     <ProjectReference Include="..\..\4-Infra\Fatec.CrossCutting\Fatec.CrossCutting.csproj">
       <Project>{CBD67C1C-A4FB-4C6A-B16F-229D34882312}</Project>
       <Name>Fatec.CrossCutting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\4-Infra\Fatec.DataBase\Fatec.DataBase.csproj">
+      <Project>{579ceec6-f0b7-48d4-9ba2-1bc8cf577de0}</Project>
+      <Name>Fatec.DataBase</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

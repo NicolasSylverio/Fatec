@@ -1,86 +1,121 @@
 ﻿@using Fatec.Application.ViewModels;
-@model IEnumerable<VagaEstagioViewModel>
+@using PagedList
+@using PagedList.Mvc
+@model VagasFiltroViewModel<VagaEstagioViewModel>
+@{
+    ViewBag.Title = "Vagas Estagio";
+}
+
 <br />
-<nav>
-    <div class="nav-wrapper">
-        <div class="col s12">
-            <a href="#!" class="breadcrumb">&nbsp; Vagas de Estágio</a>
-            <a href="#!" class="breadcrumb">@ViewBag.Title</a>
+<h3 class="center">Vagas de Estágio</h3>
+<br />
+
+@using (Html.BeginForm("Index", "VagasEstagio", FormMethod.Get, new { @class = "form-horizontal", id = "form-filtro-vagas" }))
+{
+    @Html.HiddenFor(x => x.TotalPorPagina)
+    @Html.HiddenFor(x => x.OrdenarPor)
+    @Html.HiddenFor(x => x.Direcao)
+
+    <div class="row">
+        <div class="input-field col s12 m5 l5 xl5 center">
+            <i class="material-icons prefix">search</i>
+            @Html.TextBoxFor(m => m.PesquisaTitulo, new { @class = "form-control" })
+            @Html.LabelFor(m => m.PesquisaTitulo, new { @class = "validate" })
         </div>
-    </div>
-</nav>
-<br />
-
-@*<div class="col s12 m12 push-l2 l8 push-xl2 xl8 center">
-
+        <div class="input-field col s12 m5 l5 xl5 center">
+            @Html.DropDownListFor(m => m.Tags, new SelectList(ViewBag.Tags, "Id", "Descricao", "Selecione"), new { @class = "form-control" })
+            @Html.LabelFor(m => m.Tags, new { @class = "validate" })
+        </div>
         <div class="row">
-            <div class="col-4">
-                <h2>@ViewBag.Title</h2>
+            <div class="col s12 m2 l2 xl2 center">
+                <input type="submit" value="Pesquisar" class="btn teal-2 waves-light" />
             </div>
         </div>
-    </div>*@
+    </div>
+}
 
-@if (Model != null)
+<br />
+
+@if (Model?.Resultado != null)
 {
-
-    @Html.Raw("<div class=\"row\">");
-
-    //foreach (var vaga in Model)
-    for (int i = 0; i < Model.Count(); i++)
-    {
-        string classeCard = "col s6";
-
-        VagaEstagioViewModel vaga = Model.ElementAt(i);
-
-        //if ((vaga.Descricao != null && vaga.Descricao.Length > 800) ||
-        //        (vaga.URLImagem != null && vaga.URLImagem != String.Empty))
-        //{
-        classeCard = "col s12";
-        //}
-
-        if (vaga != null)
+    <div class="row">
+        @foreach (var item in Model.Resultado)
         {
-            <div class="@classeCard">
-                <div class="card">
+            <div class="col s12 m6 l6 xl4">
+                <div class="card hoverable">
                     <div class="card-image">
-                        <img src="@vaga.UrlImagem">
-                        @*<img src="https://www.prefeitura.sp.gov.br/cidade/secretarias/upload/planejamento/portal_do_servidor/portalestagio2.jpg">*@
-                        @*<a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>*@
+                        <img class="materialboxed" src="@item.UrlImagem" alt="Banner Vaga">
                     </div>
                     <div class="card-content">
-                        <span class="card-title">@vaga.Titulo</span>
-                        <p>@Html.Raw(@vaga.Descricao)</p>
+                        <span class="card-title activator grey-text text-darken-4">@item.Titulo<i class="material-icons right">more_vert</i></span>
+                        <p>Contato: <a href="#">@item.Email</a></p>
                     </div>
-                    @if (vaga.Empresa.Email != null || vaga.Empresa.UrlSite != null)
-                    {
-                        <div class="card-action">
-                            @if (vaga.Empresa.Email != null)
-                            {
-                                <a href="mailto:@vaga.Empresa.Email"><i class="material-icons tiny">email</i>@vaga.Empresa.Email.ToLower()</a>
-                            }
-                            @if (vaga.Empresa.UrlSite != null)
-                            {
-                                var url = vaga.Empresa.UrlSite;
-                                if (!(url.ToUpper().Contains("HTTP://") || url.ToUpper().Contains("HTTPS://")))
-                                {
-                                    url = string.Format("Http://{0}", url);
-                                }
-
-                                <a href="@url"><i class="material-icons tiny">open_in_browser</i>@vaga.Empresa.UrlSite.ToLower()</a>
-                            }
-                        </div>
-                    }
+                    <div class="card-reveal hoverable">
+                        <span class="card-title grey-text text-darken-4">@item.Titulo<i class="material-icons right">close</i></span>
+                        <p>@item.Descricao</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="#">@item.UrlSite</a>
+                        <a href="#" onclick="abrirLinkMenu('@Url.Action($"Detalhes/{item.Id}", "VagasEstagio")')">Mais Detalhes..</a>
+                    </div>
                 </div>
             </div>
         }
-    }
-    @Html.Raw("</div>")
+    </div>
 }
 else
 {
     <div class="row">
         <div class="center">
-            <h4>Nenhuma vaga de Estágio disponível no momento</h4>
+            <h4>Nenhuma vaga de emprego disponível no momento</h4>
         </div>
     </div>
 }
+
+@if (ViewBag.PagedList != null)
+{
+    <div class="row">
+        @if (Model != null)
+        {
+            <div class="col l6">
+                Exibindo de @Model.ExibindoDe(ViewBag.TotalItens) até @Model.ExibindoAte(ViewBag.TotalItens) de @ViewBag.TotalItens
+            </div>
+        }
+
+        @Html.PagedListPager((IPagedList<VagaEstagioViewModel>
+            )ViewBag.PagedList, page => Url.Action("Index", new
+            {
+                Pagina = page,
+                Model.TotalPorPagina,
+                Model.Tags,
+                Model.PesquisaTitulo
+            }), new PagedListRenderOptions
+            {
+                ContainerDivClasses = new[] { "col s12 m12 offset-l9 l3 offset-xl9 xl3 center" },
+                UlElementClasses = new[] { "pagination" },
+                LiElementClasses = new[] { "waves-effect" },
+                ClassToApplyToFirstListItemInPager = null,
+                ClassToApplyToLastListItemInPager = null,
+                DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+                DisplayLinkToLastPage = PagedListDisplayMode.Never,
+                DisplayEllipsesWhenNotShowingAllPageNumbers = false,
+                LinkToPreviousPageFormat = "<i class=\"material-icons\">chevron_left</i>",
+                LinkToNextPageFormat = "<i class=\"material-icons\">chevron_right</i>"
+            })
+    </div>
+}
+
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+        const elems = document.querySelectorAll('.materialboxed');
+        const options = {};
+
+        M.Materialbox.init(elems, options);
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const elems = document.querySelectorAll('select');
+        const options = {};
+        M.FormSelect.init(elems, options);
+    });
+</script>

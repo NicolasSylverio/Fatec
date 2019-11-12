@@ -89,17 +89,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Context\ApplicationDbContext.cs" />
-    <Compile Include="Identity\ApplicationSignInManager.cs" />
-    <Compile Include="Identity\ApplicationUserManager.cs" />
-    <Compile Include="Identity\IdentityEmailService.cs" />
-    <Compile Include="Identity\IdentitySmsService.cs" />
-    <Compile Include="Migrations\201909110115506_initial-migration.cs" />
-    <Compile Include="Migrations\201909110115506_initial-migration.Designer.cs">
-      <DependentUpon>201909110115506_initial-migration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -117,9 +106,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201909110115506_initial-migration.resx">
-      <DependentUpon>201909110115506_initial-migration.cs</DependentUpon>
-    </EmbeddedResource>
+    <Folder Include="Context\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,4 @@
-﻿using Fatec.Domain.Models.Empresas;
+﻿using Fatec.CrossCutting.Models.Empresas;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.Infrastructure.Annotations;
 using System.Data.Entity.ModelConfiguration;
@@ -41,7 +41,7 @@ namespace Fatec.DataBase.Map
             Property(x => x.UrlSite)
                 .HasColumnName("UrlSite")
                 .HasColumnType("VARCHAR")
-                .HasMaxLength(15);
+                .HasMaxLength(200);
 
             Property(x => x.DataCadastro)
                 .HasColumnName("DataCadastro");

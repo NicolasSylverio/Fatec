@@ -1,0 +1,78 @@
+﻿@using Fatec.Application.ViewModels;
+@model VagaEmpregoViewModel
+@{
+    ViewBag.Title = "Alterar Vaga";
+}
+
+<h3 class="center">Alterar Vaga</h3>
+
+@using (Html.BeginForm("Edit", "VagasEmprego", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <br />
+    <br />
+    <div class="row">
+        <div class="input-field col s12 m6 l6 xl4 center">
+            @Html.LabelFor(m => m.Titulo, new { @class = "validate" })
+            @Html.TextBoxFor(m => m.Titulo, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Titulo, "", new { @class = "helper-text" })
+        </div>
+        <div class="input-field col s12 m6 l6 xl8 center">
+            @Html.LabelFor(m => m.Subtitulo, new { @class = "validate" })
+            @Html.TextBoxFor(m => m.Subtitulo, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Subtitulo, "", new { @class = "helper-text" })
+        </div>
+        <div class="input-field col s12 m12 l12 xl12 center">
+            @Html.LabelFor(m => m.Descricao, new { @class = "validate" })
+            @Html.TextAreaFor(m => m.Descricao, new { @class = "materialize-textarea" })
+            @Html.ValidationMessageFor(m => m.Descricao, "", new { @class = "helper-text" })
+        </div>
+        <div class="input-field col s12 m12 l12 xl12 center">
+            @Html.ListBoxFor(m => m.TagsId, new SelectList(ViewBag.Tags, "Id", "Nome", "Selecione"), new { @class = "form-control", multiple = "multiple" })
+            @Html.ValidationMessageFor(m => m.TagsId, "", new { @class = "helper-text" })
+        </div>
+        <div class="input-field col s12 m6 l4 xl4 center">
+            @Html.LabelFor(m => m.Email, new { @class = "validate" })
+            @Html.TextBoxFor(m => m.Email, new { @class = "validate", type = "email" })
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "helper-text" })
+        </div>
+        <div class="input-field col s12 m6 l4 xl4 center">
+            @Html.LabelFor(m => m.Telefone, new { @class = "validate" })
+            @Html.TextBoxFor(m => m.Telefone, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Telefone, "", new { @class = "helper-text" })
+        </div>
+        <div class="input-field col s12 m6 l4 xl4 center">
+            @Html.DropDownListFor(m => m.EmpresaId, new SelectList(ViewBag.EmpresaId, "Id", "Nome"), "Selecione a Empresa", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.EmpresaId, "", new { @class = "helper-text" })
+        </div>
+        <div class="input-field col s12 m6 l6 xl6 center">
+            @Html.LabelFor(m => m.UrlImagem, new { @class = "validate" })
+            @Html.TextBoxFor(m => m.UrlImagem, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.UrlImagem, "", new { @class = "helper-text" })
+        </div>
+        <div class="input-field col s12 m6 l6 xl6 center">
+            @Html.LabelFor(m => m.UrlSite, new { @class = "validate" })
+            @Html.TextBoxFor(m => m.UrlSite, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.UrlSite, "", new { @class = "helper-text" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12 m12 l12 xl12 center">
+            <input type="submit" value="Alterar" class="btn teal-2 waves-light" />
+        </div>
+    </div>
+}
+
+@section Scripts
+{
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            const elems = document.querySelectorAll('select');
+            const options = {};
+            M.FormSelect.init(elems, options);
+        });
+
+    </script>
+}

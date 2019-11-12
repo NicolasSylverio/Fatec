@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
 using Fatec.Application.Interface;
 using Fatec.Application.ViewModels;
-using Fatec.Domain.Interfaces.Repositories;
-using Fatec.Domain.Models;
+using Fatec.CrossCutting.Models;
+using Fatec.CrossCutting.Models.PaginacaoHelper;
+using Fatec.DataBase.Interfaces;
 using System.Collections.Generic;
 
 namespace Fatec.Application.Services
@@ -12,7 +13,11 @@ namespace Fatec.Application.Services
         private readonly ITagsRepository _tagsRepository;
         private readonly IMapper _mapper;
 
-        public TagsAppService(ITagsRepository tagsRepository, IMapper mapper)
+        public TagsAppService
+        (
+            ITagsRepository tagsRepository,
+            IMapper mapper
+        )
         {
             _tagsRepository = tagsRepository;
             _mapper = mapper;
@@ -32,6 +37,23 @@ namespace Fatec.Application.Services
         public IEnumerable<TagsViewModel> GetAll()
         {
             return _mapper.Map<List<TagsViewModel>>(_tagsRepository.GetAll());
+        }
+
+        public PaginacaoViewModel<TagsViewModel> GetAll(Paginacao paginacao)
+        {
+            var result = _tagsRepository.GetAll(paginacao, x => x.Ativo, x => x.DataCadastro);
+
+            var vagas = _mapper.Map<List<TagsViewModel>>(result.Resultados);
+
+            return new PaginacaoViewModel<TagsViewModel>
+            {
+                Resultado = vagas,
+                Direcao = result.Direcao,
+                OrdenarPor = result.OrdenarPor,
+                Pagina = result.Pagina,
+                Total = result.Total,
+                TotalPorPagina = result.TotalPorPagina
+            };
         }
 
         public TagsViewModel GetById(int id)

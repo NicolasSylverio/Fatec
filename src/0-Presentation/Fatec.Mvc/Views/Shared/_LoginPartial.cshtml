@@ -29,14 +29,26 @@
             <li>
                 <div class="divider"></div>
             </li>
-            <li>
-                <a href="@Url.Action("", "")" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">notifications</i>Notificações</a>
+            <li class="version">
+                <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Professores", "Home")')"><i class="material-icons left">message</i>Links</a>
             </li>
             <li>
                 <div class="divider"></div>
             </li>
             <li>
-                <a href="@Url.Action("", "")" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">message</i>Mensagens</a>
+                <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Index", "Permissao")')"><i class="material-icons left">person_outline</i>Permissões</a>
+            </li>
+            <li>
+                <div class="divider"></div>
+            </li>
+            <li>
+                <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Contact", "Home")')"><i class="material-icons left">question_answer</i>Contato</a>
+            </li>
+            <li>
+                <div class="divider"></div>
+            </li>
+            <li>
+                <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Privacy", "Home")')"><i class="material-icons left">lock_open</i>Politica de Privacidade</a>
             </li>
             <li>
                 <div class="divider"></div>
@@ -67,14 +79,31 @@
         <li>
             <div class="divider"></div>
         </li>
-
+        <li class="version">
+            <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Professores", "Home")')"><i class="material-icons left">message</i>Links</a>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li>
+            <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Index", "Permissao")')"><i class="material-icons left">person_outline</i>Permissões</a>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li>
+            <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Contact", "Home")')"><i class="material-icons left">question_answer</i>Contato</a>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li>
+            <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Privacy", "Home")')"><i class="material-icons left">lock_open</i>Politica de Privacidade</a>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
     }
-    <li>
-        <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Index", "Permissao")')"><i class="material-icons left">person_outline</i>Permissões</a>
-    </li>
-    <li>
-        <div class="divider"></div>
-    </li>
 </ul>
 
 <script language="javascript">

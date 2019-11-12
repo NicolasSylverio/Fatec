@@ -335,6 +335,7 @@
     <Content Include="Views\Home\Professores.cshtml" />
     <Content Include="Views\Permissao\Index.cshtml" />
     <Content Include="Views\Permissao\Edit.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\2-Application\Fatec.Application\Fatec.Application.csproj">

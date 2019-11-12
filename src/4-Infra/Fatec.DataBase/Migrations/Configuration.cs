@@ -1,4 +1,3 @@
-using System.Data.Entity;
 using Fatec.DataBase.Context;
 
 namespace Fatec.DataBase.Migrations
@@ -14,6 +13,7 @@ namespace Fatec.DataBase.Migrations
 
         protected override void Seed(IntranetFatecContext context)
         {
+
         }
     }
 }

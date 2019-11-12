@@ -64,6 +64,8 @@
     <Compile Include="Services\EmpresaAppService.cs" />
     <Compile Include="Services\VagaEstagioAppService.cs" />
     <Compile Include="ViewModels\PaginacaoViewModel.cs" />
+    <Compile Include="ViewModels\PermissaoFiltroViewModel.cs" />
+    <Compile Include="ViewModels\PermissaoViewModel.cs" />
     <Compile Include="ViewModels\TagsViewModel.cs" />
     <Compile Include="ViewModels\VagaEmpregoViewModel.cs" />
     <Compile Include="ViewModels\EmpresaViewModel.cs" />
@@ -71,6 +73,7 @@
     <Compile Include="ViewModels\VagasFiltroViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

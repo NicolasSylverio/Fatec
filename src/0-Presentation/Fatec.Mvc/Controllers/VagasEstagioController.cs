@@ -37,11 +37,11 @@ namespace Fatec.Mvc.Controllers
         {
             try
             {
-                var teste = new List<DropDownDto> { new DropDownDto { Descricao = "Tag", Id = 0 } };
+                var tagsDisponiveis = new List<DropDownDto<int>> { new DropDownDto<int> { Descricao = "Tag", Id = 0 } };
 
-                _tagsAppService.GetAll().ToList().ForEach(x => teste.Add(new DropDownDto { Descricao = x.Nome, Id = x.Id }));
+                _tagsAppService.GetAll().ToList().ForEach(x => tagsDisponiveis.Add(new DropDownDto<int> { Descricao = x.Nome, Id = x.Id }));
 
-                ViewBag.Tags = teste;
+                ViewBag.Tags = tagsDisponiveis;
 
                 var pesquisa = view.PesquisaTitulo;
                 var tags = view.Tags;
@@ -79,9 +79,9 @@ namespace Fatec.Mvc.Controllers
         {
             try
             {
-                var teste = new List<DropDownDto> { new DropDownDto { Descricao = "Tag", Id = 0 } };
+                var teste = new List<DropDownDto<int>> { new DropDownDto<int> { Descricao = "Tag", Id = 0 } };
 
-                _tagsAppService.GetAll().ToList().ForEach(x => teste.Add(new DropDownDto { Descricao = x.Nome, Id = x.Id }));
+                _tagsAppService.GetAll().ToList().ForEach(x => teste.Add(new DropDownDto<int> { Descricao = x.Nome, Id = x.Id }));
 
                 ViewBag.Tags = teste;
 

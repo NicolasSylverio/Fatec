@@ -1,12 +1,12 @@
 ﻿@using Microsoft.AspNet.Identity
 
-@if (Request.IsAuthenticated)
-{
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+<ul class="sidenav" id="slide_login">
+    @if (Request.IsAuthenticated)
     {
-        @Html.AntiForgeryToken()
+        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+        {
+            @Html.AntiForgeryToken()
 
-        <ul class="sidenav" id="slide_login">
             <li>
                 <div class="user-view">
                     @*<div class="background">
@@ -41,16 +41,14 @@
             <li>
                 <div class="divider"></div>
             </li>
-        </ul>
+        }
     }
-}
-else
-{
-    <ul class="sidenav" id="slide_login">
+    else
+    {
         <li>
             <div class="user-view" style="height:100px;">
                 <div class="background">
-                    @*<img src="~/imagens/fundoPadrao.png" alt="Imagem Fundo">*@
+                    <img src="~/imagens/fundoPadrao.png" alt="Imagem Fundo">
                 </div>
             </div>
         </li>
@@ -69,8 +67,15 @@ else
         <li>
             <div class="divider"></div>
         </li>
-    </ul>
-}
+
+    }
+    <li>
+        <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Index", "Permissao")')"><i class="material-icons left">person_outline</i>Permissões</a>
+    </li>
+    <li>
+        <div class="divider"></div>
+    </li>
+</ul>
 
 <script language="javascript">
 

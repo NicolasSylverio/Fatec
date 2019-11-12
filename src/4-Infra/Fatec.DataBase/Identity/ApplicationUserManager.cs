@@ -1,12 +1,12 @@
-﻿using Fatec.Identity.Context;
-using Fatec.Identity.Models;
+﻿using Fatec.CrossCutting.Models.Identity;
+using Fatec.DataBase.Context;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using System;
 
-namespace Fatec.Identity
+namespace Fatec.DataBase.Identity
 {
     /// <summary>
     /// Configure o gerenciador de usuários do aplicativo usado nesse aplicativo. O UserManager está definido no ASP.NET Identity e é usado pelo aplicativo.
@@ -21,11 +21,11 @@ namespace Fatec.Identity
 
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
-            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
+            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<IntranetFatecContext>()));
             // Configurar a lógica de validação para nomes de usuário
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)
             {
-                AllowOnlyAlphanumericUserNames = false,
+                AllowOnlyAlphanumericUserNames = true,
                 RequireUniqueEmail = true
             };
 

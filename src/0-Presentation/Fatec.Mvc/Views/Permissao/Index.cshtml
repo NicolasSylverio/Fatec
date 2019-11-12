@@ -1,0 +1,131 @@
+﻿@using Fatec.Application.ViewModels;
+@using PagedList
+@using PagedList.Mvc
+@model PermissaoFiltroViewModel
+@{
+    ViewBag.Title = "Permissões";
+}
+
+<br />
+<h3 class="center">Usuario/Permissões</h3>
+<br />
+
+@using (Html.BeginForm("Index", "Permissao", FormMethod.Get, new { @class = "form-horizontal", id = "form-filtro-vagas" }))
+{
+    @Html.HiddenFor(x => x.TotalPorPagina)
+    @Html.HiddenFor(x => x.OrdenarPor)
+    @Html.HiddenFor(x => x.Direcao)
+
+    <div class="row">
+        <div class="input-field col s12 m5 l5 xl5 center">
+            <i class="material-icons prefix">search</i>
+            @Html.TextBoxFor(m => m.Permissao, new { @class = "form-control" })
+            @Html.LabelFor(m => m.Permissao, new { @class = "validate" })
+        </div>
+        <div class="input-field col s12 m5 l5 xl5 center">
+            <i class="material-icons prefix">search</i>
+            @Html.TextBoxFor(m => m.Nome, new { @class = "form-control" })
+            @Html.LabelFor(m => m.Nome, new { @class = "validate" })
+        </div>
+        <div class="row">
+            <div class="col s12 m2 l2 xl2 center">
+                <input type="submit" value="Pesquisar" class="btn teal-2 waves-light" />
+            </div>
+        </div>
+    </div>
+}
+
+<br />
+
+@if (Model?.Resultado != null)
+{
+    <div class="row">
+        <table class="striped centered responsive-table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Permissão</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var usuario in Model.Resultado)
+                {
+                    <tr>
+                        <td>@usuario.IdUsuario</td>
+                        <td>@usuario.NomeUsuario</td>
+                        <td>@usuario.EmailUsuario</td>
+                        <td>@usuario.Role</td>
+                        <td>
+                            <a href="@Url.Action("Desativar","Permissao", new { id = usuario.IdUsuario })" title="Desativar" class="btn red lighten-2 waves-effect right" style="max-height:36px; max-width:52px;">
+                                <i class="material-icons">clear</i>
+                            </a>
+                            <a href="@Url.Action("Edit","Permissao", new { id = usuario.IdUsuario })" title="Editar" class="btn blue lighten-2 waves-effect right" style="max-height:36px; max-width:52px;">
+                                <i class="material-icons center">edit</i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="center">
+            <h4>Nenhum usuário cadastrado com os filtros selecionados</h4>
+        </div>
+    </div>
+}
+
+@if (ViewBag.PagedList != null)
+{
+    <div class="row">
+        @if (Model != null)
+        {
+            <div class="col l6">
+                Exibindo de @Model.ExibindoDe(ViewBag.TotalItens) até @Model.ExibindoAte(ViewBag.TotalItens) de @ViewBag.TotalItens
+            </div>
+        }
+
+        @Html.PagedListPager((IPagedList<PermissaoViewModel>
+            )ViewBag.PagedList, page => Url.Action("Index", new
+            {
+                Pagina = page,
+                Model.TotalPorPagina,
+                Model.Nome,
+                Model.Permissao
+            }), new PagedListRenderOptions
+            {
+                ContainerDivClasses = new[] { "col s12 m12 offset-l9 l3 offset-xl9 xl3 center" },
+                UlElementClasses = new[] { "pagination" },
+                LiElementClasses = new[] { "waves-effect" },
+                ClassToApplyToFirstListItemInPager = null,
+                ClassToApplyToLastListItemInPager = null,
+                DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+                DisplayLinkToLastPage = PagedListDisplayMode.Never,
+                DisplayEllipsesWhenNotShowingAllPageNumbers = false,
+                LinkToPreviousPageFormat = "<i class=\"material-icons\">chevron_left</i>",
+                LinkToNextPageFormat = "<i class=\"material-icons\">chevron_right</i>"
+            })
+    </div>
+}
+
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+        const elems = document.querySelectorAll('.materialboxed');
+        const options = {};
+
+        M.Materialbox.init(elems, options);
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const elems = document.querySelectorAll('select');
+        const options = {};
+        M.FormSelect.init(elems, options);
+    });
+</script>

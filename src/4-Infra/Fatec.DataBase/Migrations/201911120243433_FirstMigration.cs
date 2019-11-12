@@ -1,9 +1,8 @@
 namespace Fatec.DataBase.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialMigration : DbMigration
+    public partial class FirstMigration : DbMigration
     {
         public override void Up()
         {
@@ -15,7 +14,7 @@ namespace Fatec.DataBase.Migrations
                         Nome = c.String(nullable: false, maxLength: 50, unicode: false),
                         Email = c.String(nullable: false, maxLength: 200, unicode: false),
                         Telefone = c.String(nullable: false, maxLength: 15, unicode: false),
-                        UrlSite = c.String(maxLength: 15, unicode: false),
+                        UrlSite = c.String(maxLength: 200, unicode: false),
                         DataCadastro = c.DateTime(nullable: false, precision: 0),
                     })
                 .PrimaryKey(t => t.id)
@@ -71,6 +70,74 @@ namespace Fatec.DataBase.Migrations
                 .Index(t => t.EmpresaId);
             
             CreateTable(
+                "dbo.AspNetRoles",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
+                        Name = c.String(nullable: false, maxLength: 256, storeType: "nvarchar"),
+                    })
+                .PrimaryKey(t => t.Id)
+                .Index(t => t.Name, unique: true, name: "RoleNameIndex");
+            
+            CreateTable(
+                "dbo.AspNetUserRoles",
+                c => new
+                    {
+                        UserId = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
+                        RoleId = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
+                    })
+                .PrimaryKey(t => new { t.UserId, t.RoleId })
+                .ForeignKey("dbo.AspNetRoles", t => t.RoleId)
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId)
+                .Index(t => t.UserId)
+                .Index(t => t.RoleId);
+            
+            CreateTable(
+                "dbo.AspNetUserClaims",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        UserId = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
+                        ClaimType = c.String(unicode: false),
+                        ClaimValue = c.String(unicode: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId)
+                .Index(t => t.UserId);
+            
+            CreateTable(
+                "dbo.AspNetUserLogins",
+                c => new
+                    {
+                        LoginProvider = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
+                        ProviderKey = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
+                        UserId = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
+                    })
+                .PrimaryKey(t => new { t.LoginProvider, t.ProviderKey, t.UserId })
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId)
+                .Index(t => t.UserId);
+            
+            CreateTable(
+                "dbo.AspNetUsers",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
+                        Email = c.String(maxLength: 256, storeType: "nvarchar"),
+                        EmailConfirmed = c.Boolean(nullable: false),
+                        PasswordHash = c.String(unicode: false),
+                        SecurityStamp = c.String(unicode: false),
+                        PhoneNumber = c.String(unicode: false),
+                        PhoneNumberConfirmed = c.Boolean(nullable: false),
+                        TwoFactorEnabled = c.Boolean(nullable: false),
+                        LockoutEndDateUtc = c.DateTime(precision: 0),
+                        LockoutEnabled = c.Boolean(nullable: false),
+                        AccessFailedCount = c.Int(nullable: false),
+                        UserName = c.String(nullable: false, maxLength: 256, storeType: "nvarchar"),
+                    })
+                .PrimaryKey(t => t.Id)
+                .Index(t => t.UserName, unique: true, name: "UserNameIndex");
+            
+            CreateTable(
                 "dbo.VagaEmpregoTags",
                 c => new
                     {
@@ -100,6 +167,10 @@ namespace Fatec.DataBase.Migrations
         
         public override void Down()
         {
+            DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.VagaEstagio", "EmpresaId", "dbo.Empresa");
             DropForeignKey("dbo.VagaEmprego", "EmpresaId", "dbo.Empresa");
             DropForeignKey("dbo.VagaEstagioTags", "VagaEstagioId", "dbo.VagaEstagio");
@@ -110,6 +181,12 @@ namespace Fatec.DataBase.Migrations
             DropIndex("dbo.VagaEstagioTags", new[] { "TagId" });
             DropIndex("dbo.VagaEmpregoTags", new[] { "VagaEmpregoId" });
             DropIndex("dbo.VagaEmpregoTags", new[] { "TagId" });
+            DropIndex("dbo.AspNetUsers", "UserNameIndex");
+            DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
+            DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
+            DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
+            DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
+            DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropIndex("dbo.VagaEstagio", new[] { "EmpresaId" });
             DropIndex("dbo.VagaEstagio", "IX_Nome");
             DropIndex("dbo.Tags", new[] { "Nome" });
@@ -118,6 +195,11 @@ namespace Fatec.DataBase.Migrations
             DropIndex("dbo.Empresa", new[] { "Nome" });
             DropTable("dbo.VagaEstagioTags");
             DropTable("dbo.VagaEmpregoTags");
+            DropTable("dbo.AspNetUsers");
+            DropTable("dbo.AspNetUserLogins");
+            DropTable("dbo.AspNetUserClaims");
+            DropTable("dbo.AspNetUserRoles");
+            DropTable("dbo.AspNetRoles");
             DropTable("dbo.VagaEstagio");
             DropTable("dbo.Tags");
             DropTable("dbo.VagaEmprego");

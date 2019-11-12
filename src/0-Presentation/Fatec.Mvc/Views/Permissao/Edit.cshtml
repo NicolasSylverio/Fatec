@@ -5,11 +5,43 @@
     ViewBag.Title = "Permissões";
 }
 
+<div>
+    <h3 class="center">Editar Usuário</h3>
+</div>
 
-@Model.IdUsuario
+@using (Html.BeginForm("Edit", "Permissao", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
 
-@Model.Role
+    <div class="row">
+        <div class="input-field col s12 m12 l6 xl6 center">
+            @Html.TextBoxFor(m => m.IdUsuario, new { @class = "form-control", disabled = "disabled" })
+            @Html.LabelFor(m => m.IdUsuario, new { @class = "validate" })
+            @Html.HiddenFor(m => m.IdUsuario)
+        </div>
+        <div class="input-field col s12 m12 l6 xl6 center">
+            @Html.TextBoxFor(m => m.NomeUsuario, new { @class = "form-control", disabled = "disabled"})
+            @Html.LabelFor(m => m.NomeUsuario, new { @class = "validate" })
+            @Html.HiddenFor(m => m.NomeUsuario)
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s12 m12 l6 xl6 center">
+            @Html.TextBoxFor(m => m.EmailUsuario, new { @class = "form-control", disabled = "disabled" })
+            @Html.LabelFor(m => m.EmailUsuario, new { @class = "validate" })
+            @Html.HiddenFor(m => m.EmailUsuario)
+        </div>
+        <div class="input-field col s12 m12 l6 xl6 center">
+            @Html.DropDownListFor(m => m.Role, new SelectList(ViewBag.Roles, "Id", "Descricao", "Selecione a Função"), "Selecione a Função", new { @class = "form-control", @style = "display: flex" })
+        </div>
+    </div>
 
-@Model.NomeUsuario
+    <br />
 
-@Model.EmailUsuario
+    <div class="row center">
+        <div class="col s12 m12 l12 xl12 center">
+            <input type="submit" value="Alterar" class="btn teal-2 waves-light" />
+        </div>
+    </div>
+
+}

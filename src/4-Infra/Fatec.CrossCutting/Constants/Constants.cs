@@ -13,6 +13,6 @@
         // visitantes = usuarios comuns ex: alunos.
         // administrador = usuarios administradores ex: coordenadores.
         // usuarios = usuarios comuns com acessos simples ex: professores, administrativo.
-        public static readonly string[] SystemRoles = { "visitantes", "administrador", "usuario" };
+        public static readonly string[] SystemRoles = { "visitante", "administrador", "usuario" };
     }
 }

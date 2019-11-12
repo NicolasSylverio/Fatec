@@ -1,13 +1,13 @@
-﻿using Fatec.Identity;
-using Fatec.Identity.Context;
-using Fatec.Identity.Identity;
-using Fatec.Identity.Models;
+﻿using Fatec.CrossCutting.Models.Identity;
+using Fatec.DataBase.Context;
+using Fatec.DataBase.Identity;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 using System;
+using Microsoft.AspNet.Identity.Owin;
+
 
 namespace Fatec.Mvc
 {
@@ -17,7 +17,7 @@ namespace Fatec.Mvc
         public void ConfigureAuth(IAppBuilder app)
         {
             // Configure o contexto db, gerenciador de usuários e gerenciador de login para usar uma única instância por solicitação
-            app.CreatePerOwinContext(ApplicationDbContext.Create);
+            app.CreatePerOwinContext(IntranetFatecContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
 

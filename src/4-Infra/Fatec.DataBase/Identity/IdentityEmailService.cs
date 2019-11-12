@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using System.Threading.Tasks;
 
-namespace Fatec.Identity
+namespace Fatec.DataBase.Identity
 {
     class IdentityEmailService : IIdentityMessageService
     {

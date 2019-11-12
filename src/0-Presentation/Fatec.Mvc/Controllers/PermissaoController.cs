@@ -1,7 +1,7 @@
 ﻿using Fatec.Application.ViewModels;
 using Fatec.CrossCutting.Constants;
-using Fatec.Identity;
-using Fatec.Identity.Identity;
+using Fatec.DataBase.Identity;
+using Fatec.Mvc.Models;
 using Microsoft.AspNet.Identity.Owin;
 using PagedList;
 using System;
@@ -66,7 +66,7 @@ namespace Fatec.Mvc.Controllers
                         IdUsuario = s.Id,
                         EmailUsuario = s.Email,
                         NomeUsuario = s.UserName,
-                        Role = "administrador"
+                        Role = UserManager.GetRolesAsync(s.Id).Result.FirstOrDefault() ?? "Sem Função Associada"
                     })
                     .ToList();
 
@@ -90,7 +90,7 @@ namespace Fatec.Mvc.Controllers
             catch (Exception ex)
             {
                 ViewBag.TotalItens = 0;
-                ViewBag.Error = $"Erro ao pesquisar usuários. Erro: {ex.Message}";
+                ViewBag.Error = $"Erro ao pesquisar usuários. Erro: {ex.Message} {ex.InnerException}";
                 return View("Index");
             }
         }
@@ -131,15 +131,23 @@ namespace Fatec.Mvc.Controllers
         {
             try
             {
-                var usuario = UserManager.Users.First(x => x.Id == id);
+                var usuario = UserManager
+                    .Users
+                    .First(x => x.Id == id);
+
+                var funcao = UserManager.GetRolesAsync(usuario.Id).Result.FirstOrDefault();
 
                 var permissao = new PermissaoViewModel
                 {
                     IdUsuario = usuario.Id,
                     NomeUsuario = usuario.UserName,
                     EmailUsuario = usuario.Email,
-                    Role = "Administrador",
+                    Role = funcao,
                 };
+
+                ViewBag.Roles = Constants
+                    .SystemRoles
+                    .Select(s => new DropDownDto<string> { Id = s, Descricao = s });
 
                 return View("Edit", permissao);
             }
@@ -152,11 +160,15 @@ namespace Fatec.Mvc.Controllers
 
         [HttpPost]
         [Route("Edit/{id}")]
-        public ActionResult Edit(string id, FormCollection collection)
+        public ActionResult Edit(PermissaoViewModel permissao)
         {
             try
             {
-                // TODO: Add update logic here
+                // Retira todas as funções associadas.
+                UserManager.RemoveFromRolesAsync(permissao.IdUsuario, Constants.SystemRoles);
+
+                // Adiciona a função selecionada na alteração.
+                UserManager.AddToRoleAsync(permissao.IdUsuario, permissao.Role);
 
                 return RedirectToAction("Index");
             }

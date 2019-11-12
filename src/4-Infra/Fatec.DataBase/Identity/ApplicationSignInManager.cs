@@ -1,11 +1,11 @@
-﻿using Fatec.Identity.Models;
+﻿using Fatec.CrossCutting.Models.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace Fatec.Identity.Identity
+namespace Fatec.DataBase.Identity
 {
     // Configure o gerenciador de login do aplicativo que é usado neste aplicativo.
     public class ApplicationSignInManager : SignInManager<ApplicationUser, string>

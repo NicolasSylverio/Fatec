@@ -84,6 +84,21 @@ a.navbar-brand {
     word-break: break-all;
 }
 
-.teste {
-    padding: 20px 20px;
+.card-link {
+    background-color: #ee6e73;
+    height: 150px;
+    justify-content: center;
+    align-items: center;
+    vertical-align: central;
+}
+
+.card-link-content {
+    justify-content: center;
+    align-items: center;
+    vertical-align: central;
+}
+
+.add-button-position {
+    left: 80%;
+    top: 80%;
 }

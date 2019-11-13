@@ -6,17 +6,6 @@
     ViewBag.Title = "Empresas";
 }
 
-<div class="nav-wrapper hide-on-med-and-down">
-    <br />
-    <nav>
-        <div class="col s12">
-            <a href="#!" class="breadcrumb">&nbsp; Empresas</a>
-            <a href="#!" class="breadcrumb">@ViewBag.Title</a>
-        </div>
-    </nav>
-</div>
-
-<br />
 <h3 class="center">Empresas</h3>
 <br />
 
@@ -27,16 +16,16 @@
         @foreach (var item in Model.Resultado)
         {
             <div class="col s12 m6 l6 xl6">
-                <div class="card ">
-                    <div class="card-content ">
+                <div class="card">
+                    <div class="card-content">
                         <span class="card-title">@item.Nome</span>
                         <p>
                             Telefone: @item.Telefone
                         </p>
                     </div>
                     <div class="card-action">
-                        <a href="@item.Email">Email</a>
-                        <a href="@item.UrlSite">Site</a>
+                        <a href="@string.Format("mailto:{0}", item.Email);" class="blue-text">Email</a>
+                        <a href="@item.UrlSite" class="blue-text">Site</a>
                     </div>
                 </div>
             </div>
@@ -83,3 +72,9 @@ else
             })
     </div>
 }
+
+<div class="fixed-action-btn add-button-position">
+    <a class="btn-floating btn-large green" href='@Url.Action("Cadastrar", "Empresas")'>
+        <i class="large material-icons">add</i>
+    </a>
+</div>

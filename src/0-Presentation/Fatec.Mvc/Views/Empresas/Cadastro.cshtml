@@ -1,20 +1,6 @@
 ﻿@model IEnumerable<Fatec.Application.ViewModels.EmpresaViewModel>
 
-<style>
-    .fixed-action-btn {
-        bottom: 80px;
-        right: 50px; /*desired value*/
-    }
-</style>
-<br />
-<nav>
-    <div class="nav-wrapper">
-        <div class="col s12">
-            <a href="#!" class="breadcrumb">&nbsp; Cadastro de Empresas</a>
-            <a href="#!" class="breadcrumb">@ViewBag.Title</a>
-        </div>
-    </div>
-</nav>
+<h3 class="center">Empresas</h3>
 <br />
 
 @if (Model != null)
@@ -59,7 +45,7 @@ else
     </div>
 }
 
-<div class="fixed-action-btn">
+<div class="fixed-action-btn add-button-position">
     <a class="btn-floating btn-large green" href='@Url.Action("Cadastrar", "Empresas")'>
         <i class="large material-icons">add</i>
     </a>

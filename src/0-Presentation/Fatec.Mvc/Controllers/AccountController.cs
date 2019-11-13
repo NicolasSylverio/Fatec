@@ -502,7 +502,7 @@ namespace Fatec.Mvc.Controllers
         {
             foreach (var error in result.Errors)
             {
-                ModelState.AddModelError("", error);
+                ModelState.AddModelError("Password", error);
             }
         }
 

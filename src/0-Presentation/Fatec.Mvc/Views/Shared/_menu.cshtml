@@ -52,27 +52,9 @@
     <li>
         <div class="divider"></div>
     </li>
-    <li>
-        <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Contact", "Home")')"><i class="material-icons left">question_answer</i>Contato</a>
-    </li>
-    <li>
-        <div class="divider"></div>
-    </li>
-    <li>
-        <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Privacy", "Home")')"><i class="material-icons left">lock_open</i>Politica de Privacidade</a>
-    </li>
-    <li>
-        <div class="divider"></div>
-    </li>
 
     @if (User.Identity.IsAuthenticated)
     {
-        <li class="version">
-            <a href="#" class="collapsible-header waves-effect waves-teal center" onclick="abrirLinkMenu('@Url.Action("Professores", "Home")')">Links</a>
-        </li>
-        <li>
-            <div class="divider"></div>
-        </li>
         <li>
             <ul class="collapsible collapsible-accordion">
                 <li>
@@ -82,17 +64,7 @@
                             <li>
                                 <ul class="collapsible collapsible-accordion">
                                     <li>
-                                        <a class="collapsible-header waves-effect waves-teal">Empresas<i class="material-icons">arrow_drop_down</i></a>
-                                        <div class="collapsible-body">
-                                            <ul>
-                                                <li>
-                                                    <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Index", "Empresas")')"><i class="material-icons left">business</i>Lista Empresas</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Cadastro", "Empresas")')"><i class="material-icons left">business</i>Cadastro de Empresas</a>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                        <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Index", "Empresas")')"><i class="material-icons left">business</i>Lista Empresas</a>
                                     </li>
                                 </ul>
                             </li>

@@ -48,12 +48,12 @@
         </div>
         <div class="input-field col s12 m6 l6 xl6 center">
             @Html.LabelFor(m => m.UrlImagem, new { @class = "validate" })
-            @Html.TextBoxFor(m => m.UrlImagem, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.UrlImagem, new { @class = "form-control", @Value = "https://" })
             @Html.ValidationMessageFor(m => m.UrlImagem, "", new { @class = "helper-text" })
         </div>
         <div class="input-field col s12 m6 l6 xl6 center">
             @Html.LabelFor(m => m.UrlSite, new { @class = "validate" })
-            @Html.TextBoxFor(m => m.UrlSite, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.UrlSite, new { @class = "form-control", @Value = "https://" })
             @Html.ValidationMessageFor(m => m.UrlSite, "", new { @class = "helper-text" })
         </div>
     </div>

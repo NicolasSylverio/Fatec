@@ -84,8 +84,10 @@ namespace Fatec.Mvc.Controllers
 
                 return View(model);
             }
-            catch
+            catch (Exception ex)
             {
+
+                ViewBag.Error = $"Erro ao cadastrar empresa. Erro: {ex.Message}";
                 return View(model);
             }
         }
@@ -125,14 +127,15 @@ namespace Fatec.Mvc.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("Delete/{id}")]
-        [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {
             _empresaAppService.Remove(id);
             return RedirectToAction("Cadastro");
         }
+
+      
 
     }
 }

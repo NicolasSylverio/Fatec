@@ -137,7 +137,7 @@ namespace Fatec.Mvc.Controllers
         [Route("Cadastrar")]
         public ActionResult Cadastrar()
         {
-            ViewBag.EmpresaId = _empresaAppService.GetAll();
+            ViewBag.Empresa = _empresaAppService.GetAll();
 
             ViewBag.Tags = _tagsAppService.GetAll().Select(x => new { x.Id, x.Nome });
 
@@ -151,15 +151,19 @@ namespace Fatec.Mvc.Controllers
         {
             try
             {
-                if (!ModelState.IsValid) return View("Cadastrar", model);
-
+                if (!ModelState.IsValid)
+                {
+                    ViewBag.Empresa = _empresaAppService.GetAll();
+                    ViewBag.Tags = _tagsAppService.GetAll();
+                    return View("Cadastrar", model);
+                }
                 _vagaEstagioAppService.Add(model);
 
                 return RedirectToAction("Lista");
             }
             catch (Exception)
             {
-                ViewBag.EmpresaId = _empresaAppService.GetAll();
+                ViewBag.Empresa = _empresaAppService.GetAll();
                 ViewBag.Tags = _tagsAppService.GetAll();
 
                 ViewBag.Error = "Erro ao cadastrar nova Vaga Emprego";
@@ -173,12 +177,16 @@ namespace Fatec.Mvc.Controllers
         {
             try
             {
+                ViewBag.Empresa = _empresaAppService.GetAll();
+                ViewBag.Tags = _tagsAppService.GetAll();
+
                 var vaga = _vagaEstagioAppService.GetById(id);
 
                 return View("Edit", vaga);
             }
             catch (Exception ex)
             {
+
                 ViewBag.Error = $"Erro ao carregar Vaga. Erro: {ex.Message}";
                 return RedirectToAction("Lista");
             }
@@ -190,18 +198,31 @@ namespace Fatec.Mvc.Controllers
         {
             try
             {
-                _vagaEstagioAppService.Update(model);
+                if (ModelState.IsValid)
+                {
+                    _vagaEstagioAppService.Update(model);
 
-                return RedirectToAction("Lista");
+                    return RedirectToAction("Lista");
+                }
+                else
+                {
+                    ViewBag.Empresa = _empresaAppService.GetAll();
+                    ViewBag.Tags = _tagsAppService.GetAll();
+
+                    return View(model);
+                }
             }
             catch (Exception ex)
             {
+                ViewBag.Empresa = _empresaAppService.GetAll();
+                ViewBag.Tags = _tagsAppService.GetAll();
+
                 ViewBag.Error = $"Erro ao carregar Vaga. Erro: {ex.Message}";
                 return View(model);
             }
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("Delete/{id}")]
         public ActionResult Delete(int id)
         {

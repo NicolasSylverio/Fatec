@@ -140,7 +140,7 @@ namespace Fatec.Mvc.Controllers
         [Route("Cadastrar")]
         public ActionResult Cadastrar()
         {
-            ViewBag.EmpresaId = _empresaAppService.GetAll();
+            ViewBag.Empresa = _empresaAppService.GetAll();
 
             ViewBag.Tags = _tagsAppService.GetAll().Select(x => new { x.Id, x.Nome });
 
@@ -154,7 +154,12 @@ namespace Fatec.Mvc.Controllers
         {
             try
             {
-                if (!ModelState.IsValid) return RedirectToAction("Cadastrar");
+                if (!ModelState.IsValid)
+                {
+                    ViewBag.Empresa = _empresaAppService.GetAll();
+                    ViewBag.Tags = _tagsAppService.GetAll();
+                    return View("Cadastrar", model);
+                }
 
                 _vagaEmpregoAppService.Add(model);
 
@@ -162,7 +167,7 @@ namespace Fatec.Mvc.Controllers
             }
             catch (Exception)
             {
-                ViewBag.EmpresaId = _empresaAppService.GetAll();
+                ViewBag.Empresa = _empresaAppService.GetAll();
                 ViewBag.Tags = _tagsAppService.GetAll();
 
                 ViewBag.Error = "Erro ao cadastrar nova Vaga Emprego";
@@ -176,7 +181,7 @@ namespace Fatec.Mvc.Controllers
         {
             try
             {
-                ViewBag.EmpresaId = _empresaAppService.GetAll();
+                ViewBag.Empresa = _empresaAppService.GetAll();
                 ViewBag.Tags = _tagsAppService.GetAll();
 
                 var vaga = _vagaEmpregoAppService.GetById(id);
@@ -197,13 +202,22 @@ namespace Fatec.Mvc.Controllers
         {
             try
             {
-                _vagaEmpregoAppService.Update(model);
+                if (ModelState.IsValid)
+                {
+                    _vagaEmpregoAppService.Update(model);
+                    return RedirectToAction("Lista");
+                }
+                else
+                {
+                    ViewBag.Empresa = _empresaAppService.GetAll();
+                    ViewBag.Tags = _tagsAppService.GetAll();
 
-                return RedirectToAction("Lista");
+                    return View(model);
+                }
             }
             catch (Exception ex)
             {
-                ViewBag.EmpresaId = _empresaAppService.GetAll();
+                ViewBag.Empresa = _empresaAppService.GetAll();
                 ViewBag.Tags = _tagsAppService.GetAll();
 
                 ViewBag.Error = $"Erro ao carregar Vaga. Erro: {ex.Message}";

@@ -4,7 +4,7 @@
     ViewBag.Title = "Vagas Estágio";
 }
 
-<h3 class="center">Cadastro de Vagas Emprego</h3>
+<h3 class="center">Cadastro de Vaga de Estágio</h3>
 
 @using (Html.BeginForm("Cadastrar", "VagasEstagio", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
@@ -32,7 +32,7 @@
             @Html.ListBoxFor(m => m.TagsId, new SelectList(ViewBag.Tags, "Id", "Nome", "Selecione"), new { @class = "form-control", multiple = "multiple" })
             @Html.ValidationMessageFor(m => m.TagsId, "", new { @class = "helper-text" })
         </div>
-        <div class="input-field col s12 m6 l4 xl4 center">
+        @*<div class="input-field col s12 m6 l4 xl4 center">
             @Html.LabelFor(m => m.Email, new { @class = "validate" })
             @Html.TextBoxFor(m => m.Email, new { @class = "validate", type = "email" })
             @Html.ValidationMessageFor(m => m.Email, "", new { @class = "helper-text" })
@@ -41,9 +41,9 @@
             @Html.LabelFor(m => m.Telefone, new { @class = "validate" })
             @Html.TextBoxFor(m => m.Telefone, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Telefone, "", new { @class = "helper-text" })
-        </div>
+        </div>*@
         <div class="input-field col s12 m6 l4 xl4 center">
-            @Html.DropDownListFor(m => m.EmpresaId, new SelectList(ViewBag.EmpresaId, "Id", "Nome"), "Selecione a Empresa", new { @class = "form-control" })
+            @Html.DropDownListFor(m => m.EmpresaId, new SelectList(ViewBag.Empresa, "Id", "Nome"), "Selecione a Empresa", new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.EmpresaId, "", new { @class = "helper-text" })
         </div>
         <div class="input-field col s12 m6 l6 xl6 center">
@@ -51,11 +51,11 @@
             @Html.TextBoxFor(m => m.UrlImagem, new { @class = "form-control", @Value = "https://" })
             @Html.ValidationMessageFor(m => m.UrlImagem, "", new { @class = "helper-text" })
         </div>
-        <div class="input-field col s12 m6 l6 xl6 center">
+        @*<div class="input-field col s12 m6 l6 xl6 center">
             @Html.LabelFor(m => m.UrlSite, new { @class = "validate" })
             @Html.TextBoxFor(m => m.UrlSite, new { @class = "form-control", @Value = "https://" })
             @Html.ValidationMessageFor(m => m.UrlSite, "", new { @class = "helper-text" })
-        </div>
+        </div>*@
     </div>
 
     <div class="row">

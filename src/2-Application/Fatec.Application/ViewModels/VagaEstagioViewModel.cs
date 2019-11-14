@@ -3,6 +3,7 @@ using Fatec.CrossCutting.Models;
 using Fatec.CrossCutting.Models.Empresas;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Fatec.Application.ViewModels
@@ -29,23 +30,25 @@ namespace Fatec.Application.ViewModels
         [Display(Name = "Descrição da Vaga")]
         public string Descricao { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "O {0} deve ter no mínimo {2} e no máximo {1} caracteres.", MinimumLength = 3)]
+        [ReadOnly(true)]
+        //[StringLength(100, ErrorMessage = "O {0} deve ter no mínimo {2} e no máximo {1} caracteres.", MinimumLength = 3)]
         [DataType(DataType.EmailAddress)]
         [Display(Name = "E-mail de Contato")]
         public string Email { get; set; }
 
+        [ReadOnly(true)]
+        [DataType(DataType.PhoneNumber)]
         [Display(Name = "Telefone")]
         public string Telefone { get; set; }
 
         [StringLength(100, ErrorMessage = "O {0} deve ter no mínimo {2} e no máximo {1} caracteres.", MinimumLength = 3)]
-        [DataType(DataType.EmailAddress)]
+        [DataType(DataType.ImageUrl)]
         [Display(Name = "Url da Imagem")]
         public string UrlImagem { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "O {0} deve ter no mínimo {2} e no máximo {1} caracteres.", MinimumLength = 3)]
-        [DataType(DataType.EmailAddress)]
+        [ReadOnly(true)]
+        //[StringLength(100, ErrorMessage = "O {0} deve ter no mínimo {2} e no máximo {1} caracteres.", MinimumLength = 3)]
+        [DataType(DataType.Url)]
         [Display(Name = "Url do Site")]
         public string UrlSite { get; set; }
 

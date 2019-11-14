@@ -19,11 +19,13 @@ namespace Fatec.Application.ViewModels
         [Display(Name = "E-mail")]
         public string Email { get; set; }
 
+        [Required]
         [DataType(DataType.PhoneNumber)]
         [StringLength(14, ErrorMessage = "O {0} deve ter no mínimo {2} caracteres.", MinimumLength = 7)]
         [Display(Name = "Telefone")]
         public string Telefone { get; set; }
 
+        [Required]
         [DataType(DataType.Url)]
         [StringLength(100, ErrorMessage = "O {0} deve ter no mínimo {2} caracteres.", MinimumLength = 6)]
         [Display(Name = "Endereço URl do site da empresa")]

@@ -1,4 +1,5 @@
-﻿using Fatec.CrossCutting.Models.Empresas;
+﻿using Fatec.CrossCutting.Helper;
+using Fatec.CrossCutting.Models.Empresas;
 using Fatec.CrossCutting.Models.PaginacaoHelper;
 using Fatec.DataBase.Context;
 using Fatec.DataBase.Interfaces;
@@ -12,6 +13,13 @@ namespace Fatec.DataBase.Repository
         public EmpresaRepository(IntranetFatecContext context)
             : base(context)
         {
+        }
+
+        public override void Add(Empresa obj)
+        {
+            obj.DataCadastro = DataHelper.GetHoraBrasilia();
+
+            base.Add(obj);
         }
 
         public override void Update(Empresa obj)

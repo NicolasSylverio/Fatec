@@ -59,7 +59,7 @@ namespace Fatec.Mvc.Controllers
             {
                 if (!ModelState.IsValid) return View();
 
-                model.DataHoraCadastro = DateTime.Now;
+                model.DataCadastro = DateTime.Now;
                 _tagsAppService.Add(model);
 
                 return RedirectToAction("Index");

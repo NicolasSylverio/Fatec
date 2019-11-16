@@ -1,5 +1,4 @@
-﻿using Fatec.CrossCutting.Helper;
-using Fatec.CrossCutting.Models.Empresas;
+﻿using Fatec.CrossCutting.Models.Empresas;
 using System;
 using System.Collections.Generic;
 
@@ -22,7 +21,7 @@ namespace Fatec.CrossCutting.Models.Vagas
 
         public string UrlImagem { get; set; }
 
-        public DateTime DataHoraCadastro { get; set; } = DataHelper.GetHoraBrasilia();
+        public DateTime DataCadastro { get; set; }
 
         public DateTime DataValidade { get; set; }
 

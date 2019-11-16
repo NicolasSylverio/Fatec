@@ -20,7 +20,7 @@ namespace Fatec.Application.ViewModels
         [Display(Name = "Descrição da Tag")]
         public string Descricao { get; set; }
 
-        public DateTime DataHoraCadastro { get; set; } = DataHelper.GetHoraBrasilia();
+        public DateTime DataCadastro { get; set; }
 
         [Display(Name = "Tag")]
         public bool Ativo { get; set; }

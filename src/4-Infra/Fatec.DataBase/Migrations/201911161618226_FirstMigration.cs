@@ -29,7 +29,7 @@ namespace Fatec.DataBase.Migrations
                         Subtitulo = c.String(nullable: false, maxLength: 50, unicode: false),
                         Descricao = c.String(nullable: false, maxLength: 512, unicode: false),
                         UrlImagem = c.String(nullable: false, maxLength: 512, unicode: false),
-                        DataHoraCadastro = c.DateTime(nullable: false, precision: 0),
+                        DataCadastro = c.DateTime(nullable: false, precision: 0),
                         DataValidade = c.DateTime(nullable: false, precision: 0),
                         EmpresaId = c.Int(nullable: false),
                     })
@@ -60,7 +60,7 @@ namespace Fatec.DataBase.Migrations
                         Subtitulo = c.String(nullable: false, maxLength: 50, unicode: false),
                         Descricao = c.String(nullable: false, maxLength: 512, unicode: false),
                         UrlImagem = c.String(nullable: false, maxLength: 512, unicode: false),
-                        DataHoraCadastro = c.DateTime(nullable: false, precision: 0),
+                        DataCadastro = c.DateTime(nullable: false, precision: 0),
                         DataValidade = c.DateTime(nullable: false, precision: 0),
                         EmpresaId = c.Int(nullable: false),
                     })

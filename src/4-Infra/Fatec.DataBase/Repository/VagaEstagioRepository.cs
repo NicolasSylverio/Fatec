@@ -1,4 +1,5 @@
-﻿using Fatec.CrossCutting.Models.PaginacaoHelper;
+﻿using Fatec.CrossCutting.Helper;
+using Fatec.CrossCutting.Models.PaginacaoHelper;
 using Fatec.CrossCutting.Models.Vagas;
 using Fatec.DataBase.Context;
 using Fatec.DataBase.Interfaces;
@@ -30,6 +31,8 @@ namespace Fatec.DataBase.Repository
                 .Where(x => tags.Contains(x.Id))
                 .ToList();
 
+            obj.DataCadastro = DataHelper.GetHoraBrasilia();
+
             base.Add(obj);
         }
 
@@ -42,7 +45,7 @@ namespace Fatec.DataBase.Repository
             var totalPorPagina = paginacao.TodosRegistros ? totalDeRegistros : paginacao.TotalPorPagina;
 
             var entity = obj.AsNoTracking()
-                .OrderByDescending(x => x.DataHoraCadastro)
+                .OrderByDescending(x => x.DataCadastro)
                 .Skip(paginacao.TotalPaginacao)
                 .Take(totalPorPagina)
                 .ToList();

@@ -31,7 +31,6 @@ namespace Fatec.Application.ViewModels
         public string Descricao { get; set; }
 
         [ReadOnly(true)]
-        //[StringLength(100, ErrorMessage = "O {0} deve ter no mínimo {2} e no máximo {1} caracteres.", MinimumLength = 3)]
         [DataType(DataType.EmailAddress)]
         [Display(Name = "E-mail de Contato")]
         public string Email { get; set; }
@@ -47,14 +46,13 @@ namespace Fatec.Application.ViewModels
         public string UrlImagem { get; set; }
 
         [ReadOnly(true)]
-        //[StringLength(100, ErrorMessage = "O {0} deve ter no mínimo {2} e no máximo {1} caracteres.", MinimumLength = 3)]
         [DataType(DataType.Url)]
         [Display(Name = "Url do Site")]
         public string UrlSite { get; set; }
 
         [DataType(DataType.DateTime)]
         [Display(Name = "Data e Hora de Cadastro")]
-        public DateTime DataHoraCadastro { get; set; } = DataHelper.GetHoraBrasilia();
+        public DateTime DataCadastro { get; set; }
 
         [DataType(DataType.Date)]
         [Display(Name = "Data de Validade da Vaga")]

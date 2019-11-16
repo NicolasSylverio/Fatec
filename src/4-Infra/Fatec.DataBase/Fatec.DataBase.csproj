@@ -100,9 +100,9 @@
     <Compile Include="Map\TagsMap.cs" />
     <Compile Include="Map\VagaEmpregoMap.cs" />
     <Compile Include="Map\VagaEstagioMap.cs" />
-    <Compile Include="Migrations\201911120243433_FirstMigration.cs" />
-    <Compile Include="Migrations\201911120243433_FirstMigration.Designer.cs">
-      <DependentUpon>201911120243433_FirstMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201911161618226_FirstMigration.cs" />
+    <Compile Include="Migrations\201911161618226_FirstMigration.Designer.cs">
+      <DependentUpon>201911161618226_FirstMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -125,8 +125,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201911120243433_FirstMigration.resx">
-      <DependentUpon>201911120243433_FirstMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201911161618226_FirstMigration.resx">
+      <DependentUpon>201911161618226_FirstMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

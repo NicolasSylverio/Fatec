@@ -3,6 +3,7 @@ using System.Data.Entity;
 using Fatec.DataBase.Context;
 
 using Fatec.DataBase.Interfaces;
+using Fatec.CrossCutting.Helper;
 
 namespace Fatec.DataBase.Repository
 {
@@ -13,6 +14,12 @@ namespace Fatec.DataBase.Repository
         {
         }
 
+        public override void Add(Tags obj)
+        {
+            obj.DataCadastro = DataHelper.GetHoraBrasilia();
+
+            base.Add(obj);
+        }
         public override void Update(Tags obj)
         {
             var objeto = Db.Set<Tags>().Find(obj.Id);

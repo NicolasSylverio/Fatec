@@ -44,8 +44,8 @@ namespace Fatec.DataBase.Map
                 .HasMaxLength(512)
                 .IsRequired();
 
-            Property(x => x.DataHoraCadastro)
-                .HasColumnName("DataHoraCadastro");
+            Property(x => x.DataCadastro)
+                .HasColumnName("DataCadastro");
 
             Property(x => x.DataValidade)
                 .HasColumnName("DataValidade");

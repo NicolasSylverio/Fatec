@@ -14,8 +14,6 @@
             <div class="col s12 m12 l12 xl12 center">
                 <h4>Alterar Cadastro da Empresa.</h4>
             </div>
-            //public int Id { get; set; }
-            //public DateTime DataHoraCadastro { get; set; }
 
             <div class="input-field col s12 m12 l12 xl12 center">
                 @Html.LabelFor(m => m.Id, new { @class = "validate" })
@@ -47,8 +45,8 @@
             </div>
 
             <div class="input-field col s12 m12 l12 xl12 center">
-                @Html.LabelFor(m => m.DataHoraCadastro, new { @class = "validate" })
-                @Html.TextBoxFor(m => m.DataHoraCadastro, new { @class = "form-control", @readonly = "readonly" })
+                @Html.LabelFor(m => m.DataCadastro, new { @class = "validate" })
+                @Html.TextBoxFor(m => m.DataCadastro, new { @class = "form-control", @readonly = "readonly" })
             </div>
 
             <div class="col s12 m12 l12 xl12 center">

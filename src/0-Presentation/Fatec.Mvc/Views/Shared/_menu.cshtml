@@ -43,14 +43,13 @@
 
 <ul class="sidenav" id="slide_menu">
 
-    <li class="logo">
-        <a id="imagem-auth" aria-label="Página Principal" class="brand-logo" href="#"></a>
-    </li>
-    <li class="version">
-        <a href="#" class="collapsible-header waves-effect waves-teal center" onclick="abrirLinkMenu('@Url.Action("Index", "Home")')">Fatec</a>
-    </li>
     <li>
-        <div class="divider"></div>
+        <div class="user-view">
+            <div class="background">
+                <img src="~/Content/images/fundos/fundo1.jpg" alt="Imagem Fundo">
+            </div>
+            <div style="height:100px; display:block;"></div>
+        </div>
     </li>
 
     @if (User.Identity.IsAuthenticated)

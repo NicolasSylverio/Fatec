@@ -1,16 +1,19 @@
 ﻿using Fatec.Application.ViewModels;
 using Fatec.CrossCutting.Constants;
 using Fatec.DataBase.Identity;
+using Fatec.Mvc.App_Start;
 using Fatec.Mvc.Models;
 using Microsoft.AspNet.Identity.Owin;
 using PagedList;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
 namespace Fatec.Mvc.Controllers
 {
+    [CustomAuthorize(Roles = "administrador")]
     public class PermissaoController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -145,9 +148,7 @@ namespace Fatec.Mvc.Controllers
                     Role = funcao,
                 };
 
-                ViewBag.Roles = Constants
-                    .SystemRoles
-                    .Select(s => new DropDownDto<string> { Id = s, Descricao = s });
+                LoadPage();
 
                 return View("Edit", permissao);
             }
@@ -160,17 +161,31 @@ namespace Fatec.Mvc.Controllers
 
         [HttpPost]
         [Route("Edit/{id}")]
-        public ActionResult Edit(PermissaoViewModel permissao)
+        public async Task<ActionResult> Edit(PermissaoViewModel permissao)
         {
             try
             {
+                var funcao = UserManager
+                    .GetRolesAsync(permissao.IdUsuario)
+                    .Result
+                    .ToArray();
+
                 // Retira todas as funções associadas.
-                UserManager.RemoveFromRolesAsync(permissao.IdUsuario, Constants.SystemRoles);
+                var resultRemove = await UserManager.RemoveFromRolesAsync(permissao.IdUsuario, funcao);
 
                 // Adiciona a função selecionada na alteração.
-                UserManager.AddToRoleAsync(permissao.IdUsuario, permissao.Role);
+                var result = await UserManager.AddToRoleAsync(permissao.IdUsuario, permissao.Role);
 
-                return RedirectToAction("Index");
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index");
+                }
+
+                LoadPage();
+
+                ViewBag.Error = $"Erro ao alterar usuário. {string.Concat(", ", result.Errors)}";
+
+                return View(permissao);
             }
             catch
             {
@@ -199,6 +214,13 @@ namespace Fatec.Mvc.Controllers
             {
                 return View();
             }
+        }
+
+        private void LoadPage()
+        {
+            ViewBag.Roles = Constants
+                .SystemRoles
+                .Select(s => new DropDownDto<string> { Id = s, Descricao = s });
         }
     }
 }

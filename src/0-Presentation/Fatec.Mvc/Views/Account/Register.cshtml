@@ -32,6 +32,12 @@
             </div>
 
             <div class="input-field col s12 m12 l12 xl12 center">
+                @Html.LabelFor(m => m.UserName, new { @class = "validate" })
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "helper-text" })
+            </div>
+
+            <div class="input-field col s12 m12 l12 xl12 center">
                 @Html.LabelFor(m => m.Email, new { @class = "validate" })
                 @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.Email, "", new { @class = "helper-text" })

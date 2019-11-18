@@ -1,13 +1,14 @@
 ﻿using Fatec.Application.Interface;
 using Fatec.Application.ViewModels;
 using Fatec.CrossCutting.Models.PaginacaoHelper;
+using Fatec.Mvc.App_Start;
 using PagedList;
 using System;
 using System.Web.Mvc;
 
 namespace Fatec.Mvc.Controllers
 {
-    [Authorize]
+    [CustomAuthorize(Roles = "administrador,usuario")]
     public class TagsController : Controller
     {
         private readonly ITagsAppService _tagsAppService;

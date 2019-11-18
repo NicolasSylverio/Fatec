@@ -1,6 +1,7 @@
 ﻿using Fatec.Application.ViewModels;
 using Fatec.CrossCutting.Constants;
 using Fatec.DataBase.Identity;
+using Fatec.Mvc.App_Start;
 using Fatec.Mvc.Models;
 using Microsoft.AspNet.Identity.Owin;
 using PagedList;
@@ -12,6 +13,7 @@ using System.Web.Mvc;
 
 namespace Fatec.Mvc.Controllers
 {
+    [CustomAuthorize(Roles = "administrador")]
     public class PermissaoController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -55,7 +57,6 @@ namespace Fatec.Mvc.Controllers
 
         [HttpGet]
         [Route("Index")]
-        [Authorize(Roles = "administrador")]
         public ActionResult Index()
         {
             try
@@ -99,7 +100,6 @@ namespace Fatec.Mvc.Controllers
 
         [HttpGet]
         [Route("Details")]
-        [Authorize(Roles = "administrador")]
         public ActionResult Details(int id)
         {
             return View();
@@ -112,7 +112,6 @@ namespace Fatec.Mvc.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "administrador")]
         public ActionResult Create(PermissaoViewModel model)
         {
             try
@@ -131,7 +130,6 @@ namespace Fatec.Mvc.Controllers
 
         [HttpGet]
         [Route("Edit/{id}")]
-        [Authorize(Roles = "administrador")]
         public ActionResult Edit(string id)
         {
             try
@@ -163,7 +161,6 @@ namespace Fatec.Mvc.Controllers
 
         [HttpPost]
         [Route("Edit/{id}")]
-        [Authorize(Roles = "administrador")]
         public async Task<ActionResult> Edit(PermissaoViewModel permissao)
         {
             try
@@ -198,7 +195,6 @@ namespace Fatec.Mvc.Controllers
 
         [HttpGet]
         [Route("Delete/{id}")]
-        [Authorize(Roles = "administrador")]
         public ActionResult Delete(int id)
         {
             return View();

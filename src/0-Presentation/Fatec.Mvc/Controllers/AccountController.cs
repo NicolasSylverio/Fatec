@@ -80,6 +80,12 @@ namespace Fatec.Mvc.Controllers
             }
 
             var user = SignInManager.UserManager.FindByEmail(model.Email);
+            if(user == null)
+            {
+                ModelState.AddModelError("", @"Tentativa de login inválida.");
+                ViewBag.Erro = "Tentativa de login inválida.";
+                return View(model);
+            }
 
             // Isso não conta falhas de login em relação ao bloqueio de conta
             // Para permitir que falhas de senha acionem o bloqueio da conta, altere para shouldLockout: true
@@ -182,10 +188,10 @@ namespace Fatec.Mvc.Controllers
                 
                 var result = await UserManager.CreateAsync(user, model.Password);
                 
-                UserManager.AddToRole(user.Id, "Usuario");
-
                 if (result.Succeeded)
                 {
+                    UserManager.AddToRole(user.Id, "visitante");
+
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     // Para obter mais informações sobre como habilitar a confirmação da conta e redefinição de senha, visite https://go.microsoft.com/fwlink/?LinkID=320771

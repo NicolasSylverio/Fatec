@@ -213,6 +213,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\CustomAuthorize.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
@@ -336,6 +337,7 @@
     <Content Include="Views\Permissao\Index.cshtml" />
     <Content Include="Views\Permissao\Edit.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Views\Home\AcessoNegado.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\2-Application\Fatec.Application\Fatec.Application.csproj">

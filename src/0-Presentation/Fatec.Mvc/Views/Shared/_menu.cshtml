@@ -43,11 +43,15 @@
 
 <ul class="sidenav" id="slide_menu">
 
-    <li class="version">
-
-    </li>
     <li>
-        <div class="divider"></div>
+        <div class="user-view">
+            <div class="background">
+                <img src="~/Content/images/fundos/fundo1.jpg" alt="Imagem Fundo">
+            </div>
+            <a href="#user"></a>
+            <a href="#name"><span class="black-text name"></span></a>
+            <a href="#email"><span class="black-text email"></span></a>
+        </div>
     </li>
 
     @if (User.Identity.IsAuthenticated)

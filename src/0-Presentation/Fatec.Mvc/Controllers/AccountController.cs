@@ -79,9 +79,11 @@ namespace Fatec.Mvc.Controllers
                 return View(model);
             }
 
+            var user = SignInManager.UserManager.FindByEmail(model.Email);
+
             // Isso não conta falhas de login em relação ao bloqueio de conta
             // Para permitir que falhas de senha acionem o bloqueio da conta, altere para shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(user?.UserName, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -172,8 +174,16 @@ namespace Fatec.Mvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser 
+                { 
+                    UserName = model.UserName, 
+                    Email = model.Email 
+                };
+                
                 var result = await UserManager.CreateAsync(user, model.Password);
+                
+                UserManager.AddToRole(user.Id, "Usuario");
+
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);

@@ -30,7 +30,7 @@
                     <tr>
                         <td>@item.Id</td>
                         <td>@item.Titulo</td>
-                        <td>@item.DataHoraCadastro.ToString("dd/MM/yyyy")</td>
+                        <td>@item.DataCadastro.ToString("dd/MM/yyyy")</td>
                         <td>
                             <a href="@Url.Action("Delete","VagasEmprego", new { id = item.Id })" title="Excluir" class="btn red lighten-2 waves-effect right" style="max-height:36px; max-width:52px;">
                                 <i class="material-icons">clear</i>

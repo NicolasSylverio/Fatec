@@ -240,16 +240,17 @@
     <Content Include="Content\css\material-icons.css" />
     <Content Include="Content\css\materialize.css" />
     <Content Include="Content\css\materialize.min.css" />
-    <Content Include="Content\images\144x144.jpeg" />
-    <Content Include="Content\images\168x168.jpeg" />
-    <Content Include="Content\images\192x192.jpeg" />
-    <Content Include="Content\images\48x48.jpeg" />
-    <Content Include="Content\images\512x512.jpeg" />
-    <Content Include="Content\images\72x72.jpeg" />
-    <Content Include="Content\images\96x96.jpeg" />
+    <Content Include="Content\images\avatares\avatar1.jpg" />
+    <Content Include="Content\images\fundos\fundo1.jpg" />
+    <Content Include="Content\images\icons\144x144.jpeg" />
+    <Content Include="Content\images\icons\168x168.jpeg" />
+    <Content Include="Content\images\icons\192x192.jpeg" />
+    <Content Include="Content\images\icons\48x48.jpeg" />
+    <Content Include="Content\images\favicon.ico" />
+    <Content Include="Content\images\icons\72x72.jpeg" />
+    <Content Include="Content\images\icons\96x96.jpeg" />
     <Content Include="Content\images\logoPadrao.png" />
     <Content Include="Content\PagedList.css" />
-    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\css\site.css" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -300,7 +301,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\images\icons\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\Roboto-Regular.ttf" />

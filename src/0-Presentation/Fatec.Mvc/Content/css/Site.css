@@ -102,3 +102,8 @@ a.navbar-brand {
     left: 80%;
     top: 80%;
 }
+
+.login-imagem {
+    height: 100px;
+    width: 400px;
+}

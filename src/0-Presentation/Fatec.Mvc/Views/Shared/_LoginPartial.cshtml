@@ -1,74 +1,24 @@
 ﻿@using Microsoft.AspNet.Identity
 
-    <ul class="sidenav" id="slide_login">
-        @if (Request.IsAuthenticated)
+<ul class="sidenav" id="slide_login">
+    @if (Request.IsAuthenticated)
+    {
+        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
         {
-            using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
-            {
-                @Html.AntiForgeryToken()
+            @Html.AntiForgeryToken()
 
-                <li>
-                    <div class="user-view">
-                        <div class="background" onclick="abrirLinkMenu('@Url.Action("Index", "Manage")')">
-                            <img src="~/Content/images/fundos/fundo1.jpg" alt="Imagem Fundo">
-                        </div>
-                        <a href="#user" onclick="abrirLinkMenu('@Url.Action("Index", "Manage")')"><img class="circle" src="~/Content/images/avatares/avatar1.jpg" alt="Avatar"></a>
-                        <a href="#name" onclick="abrirLinkMenu('@Url.Action("Index", "Manage")')"><span class="black-text name">@User.Identity.GetUserName()</span></a>
-                        <a href="#email" onclick="abrirLinkMenu('@Url.Action("Index", "Manage")')"><span class="black-text email">Gerenciar Dados</span></a>
-                    </div>
-                </li>
-                <li>
-                    <a href="javascript:document.getElementById('logoutForm').submit()" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">account_circle</i>Fazer logoff</a>
-                </li>
-                <li>
-                    <div class="divider"></div>
-                </li>
-                <li class="version">
-                    <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Professores", "Home")')"><i class="material-icons left">message</i>Links</a>
-                </li>
-                <li>
-                    <div class="divider"></div>
-                </li>
-                <li>
-                    <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Index", "Permissao")')"><i class="material-icons left">person_outline</i>Permissões</a>
-                </li>
-                <li>
-                    <div class="divider"></div>
-                </li>
-                <li>
-                    <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Contact", "Home")')"><i class="material-icons left">question_answer</i>Contato</a>
-                </li>
-                <li>
-                    <div class="divider"></div>
-                </li>
-                <li>
-                    <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Privacy", "Home")')"><i class="material-icons left">lock_open</i>Politica de Privacidade</a>
-                </li>
-                <li>
-                    <div class="divider"></div>
-                </li>
-            }
-        }
-        else
-        {
             <li>
-                <div class="user-view" style="height:100px;">
-                    <div class="background">
-                        <img src="~/imagens/fundoPadrao.png" alt="Imagem Fundo">
+                <div class="user-view">
+                    <div class="background" onclick="abrirLinkMenu('@Url.Action("Index", "Manage")')">
+                        <img src="~/Content/images/fundos/fundo1.jpg" alt="Imagem Fundo">
                     </div>
+                    <a href="#user" onclick="abrirLinkMenu('@Url.Action("Index", "Manage")')"><img class="circle" src="~/Content/images/avatares/avatar1.jpg" alt="Avatar"></a>
+                    <a href="#name" onclick="abrirLinkMenu('@Url.Action("Index", "Manage")')"><span class="black-text name">@User.Identity.GetUserName()</span></a>
+                    <a href="#email" onclick="abrirLinkMenu('@Url.Action("Index", "Manage")')"><span class="black-text email">Gerenciar Dados</span></a>
                 </div>
             </li>
             <li>
-                <div class="divider"></div>
-            </li>
-            <li>
-                <a id="registerLink" href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Register", "Account")')"><i class="material-icons left"></i>Registrar</a>
-            </li>
-            <li>
-                <div class="divider"></div>
-            </li>
-            <li>
-                <a id="loginLink" href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Login", "Account")')"><i class="material-icons left"></i>Logon</a>
+                <a href="javascript:document.getElementById('logoutForm').submit()" class="collapsible-header waves-effect waves-teal"><i class="material-icons left">account_circle</i>Fazer logoff</a>
             </li>
             <li>
                 <div class="divider"></div>
@@ -98,7 +48,55 @@
                 <div class="divider"></div>
             </li>
         }
-    </ul>
+    }
+    else
+    {
+        <li>
+            <div class="user-view">
+                <div class="background">
+                    <img src="~/Content/images/fundos/fundo1.jpg" alt="Imagem Fundo">
+                </div>
+                <div style="height:100px; display:block;"></div>
+            </div>
+        </li>
+        <li>
+            <a id="registerLink" href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Register", "Account")')"><i class="material-icons left"></i>Registrar</a>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li>
+            <a id="loginLink" href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Login", "Account")')"><i class="material-icons left"></i>Logon</a>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li class="version">
+            <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Professores", "Home")')"><i class="material-icons left">message</i>Links</a>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li>
+            <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Index", "Permissao")')"><i class="material-icons left">person_outline</i>Permissões</a>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li>
+            <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Contact", "Home")')"><i class="material-icons left">question_answer</i>Contato</a>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li>
+            <a href="#" class="collapsible-header waves-effect waves-teal" onclick="abrirLinkMenu('@Url.Action("Privacy", "Home")')"><i class="material-icons left">lock_open</i>Politica de Privacidade</a>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+    }
+</ul>
 
 <script language="javascript">
 

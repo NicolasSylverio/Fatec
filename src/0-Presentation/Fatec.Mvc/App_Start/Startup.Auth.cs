@@ -28,6 +28,7 @@ namespace Fatec.Mvc
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
                 LoginPath = new PathString("/Account/Login"),
+                LogoutPath = new PathString("/Account/Login"),
                 Provider = new CookieAuthenticationProvider
                 {
                     // Permite que o aplicativo valide o carimbo de segurança quando o usuário efetuar login.

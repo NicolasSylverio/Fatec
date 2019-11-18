@@ -55,6 +55,7 @@ namespace Fatec.Mvc.Controllers
 
         [HttpGet]
         [Route("Index")]
+        [Authorize(Roles = "administrador")]
         public ActionResult Index()
         {
             try
@@ -98,6 +99,7 @@ namespace Fatec.Mvc.Controllers
 
         [HttpGet]
         [Route("Details")]
+        [Authorize(Roles = "administrador")]
         public ActionResult Details(int id)
         {
             return View();
@@ -110,6 +112,7 @@ namespace Fatec.Mvc.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "administrador")]
         public ActionResult Create(PermissaoViewModel model)
         {
             try
@@ -128,6 +131,7 @@ namespace Fatec.Mvc.Controllers
 
         [HttpGet]
         [Route("Edit/{id}")]
+        [Authorize(Roles = "administrador")]
         public ActionResult Edit(string id)
         {
             try
@@ -159,6 +163,7 @@ namespace Fatec.Mvc.Controllers
 
         [HttpPost]
         [Route("Edit/{id}")]
+        [Authorize(Roles = "administrador")]
         public async Task<ActionResult> Edit(PermissaoViewModel permissao)
         {
             try
@@ -193,6 +198,7 @@ namespace Fatec.Mvc.Controllers
 
         [HttpGet]
         [Route("Delete/{id}")]
+        [Authorize(Roles = "administrador")]
         public ActionResult Delete(int id)
         {
             return View();

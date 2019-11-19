@@ -8,10 +8,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using Fatec.Mvc.App_Start;
 
 namespace Fatec.Mvc.Controllers
 {
-    [Authorize]
+    [CustomAuthorize]
     public class VagasEmpregoController : Controller
     {
         private readonly IVagaEmpregoAppService _vagaEmpregoAppService;
@@ -93,6 +94,7 @@ namespace Fatec.Mvc.Controllers
 
         [HttpGet]
         [Route("Lista")]
+        [CustomAuthorize(Roles = "administrador, usuario")]
         public ActionResult Lista(VagasFiltroViewModel<VagaEmpregoViewModel> view)
         {
             try
@@ -138,6 +140,7 @@ namespace Fatec.Mvc.Controllers
 
         [HttpGet]
         [Route("Cadastrar")]
+        [CustomAuthorize(Roles = "administrador, usuario")]
         public ActionResult Cadastrar()
         {
             ViewBag.Empresa = _empresaAppService.GetAll();
@@ -150,6 +153,7 @@ namespace Fatec.Mvc.Controllers
         [HttpPost]
         [Route("Cadastrar")]
         [ValidateAntiForgeryToken]
+        [CustomAuthorize(Roles = "administrador, usuario")]
         public ActionResult Cadastrar(VagaEmpregoViewModel model)
         {
             try
@@ -177,6 +181,7 @@ namespace Fatec.Mvc.Controllers
 
         [HttpGet]
         [Route("Edit/{id}")]
+        [CustomAuthorize(Roles = "administrador, usuario")]
         public ActionResult Edit(int id)
         {
             try
@@ -198,6 +203,7 @@ namespace Fatec.Mvc.Controllers
         [HttpPost]
         [Route("Edit/{id}")]
         [ValidateAntiForgeryToken]
+        [CustomAuthorize(Roles = "administrador, usuario")]
         public ActionResult Edit(VagaEmpregoViewModel model)
         {
             try
@@ -228,6 +234,7 @@ namespace Fatec.Mvc.Controllers
         [HttpPost]
         [Route("Delete/{id}")]
         [ValidateAntiForgeryToken]
+        [CustomAuthorize(Roles = "administrador")]
         public ActionResult Delete(int id)
         {
             try

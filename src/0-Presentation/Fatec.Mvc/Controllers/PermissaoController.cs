@@ -31,13 +31,13 @@ namespace Fatec.Mvc.Controllers
             SignInManager = signInManager;
         }
 
-        public ApplicationSignInManager SignInManager
+        private ApplicationSignInManager SignInManager
         {
             get
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set
+            set
             {
                 _signInManager = value;
             }
@@ -106,19 +106,21 @@ namespace Fatec.Mvc.Controllers
         }
 
         [HttpGet]
+        [Route("Create")]
         public ActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Create(PermissaoViewModel model)
+        [Route("Create")]
+        public async Task<ActionResult> Create(PermissaoViewModel model)
         {
             try
             {
-                UserManager.RemoveFromRolesAsync(model.IdUsuario, Constants.SystemRoles);
+                await UserManager.RemoveFromRolesAsync(model.IdUsuario, Constants.SystemRoles);
 
-                UserManager.AddToRoleAsync(model.IdUsuario, model.Role);
+                await UserManager.AddToRoleAsync(model.IdUsuario, model.Role);
 
                 return RedirectToAction("Index");
             }
@@ -171,7 +173,7 @@ namespace Fatec.Mvc.Controllers
                     .ToArray();
 
                 // Retira todas as funções associadas.
-                var resultRemove = await UserManager.RemoveFromRolesAsync(permissao.IdUsuario, funcao);
+                await UserManager.RemoveFromRolesAsync(permissao.IdUsuario, funcao);
 
                 // Adiciona a função selecionada na alteração.
                 var result = await UserManager.AddToRoleAsync(permissao.IdUsuario, permissao.Role);

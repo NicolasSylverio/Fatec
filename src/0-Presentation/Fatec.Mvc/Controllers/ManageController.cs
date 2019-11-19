@@ -7,10 +7,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Fatec.Mvc.App_Start;
 
 namespace Fatec.Mvc.Controllers
 {
-    [Authorize]
+    [CustomAuthorize]
     public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -149,7 +150,7 @@ namespace Fatec.Mvc.Controllers
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
             if (user != null)
             {
-                await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                await SignInManager.SignInAsync(user, false, false);
             }
             return RedirectToAction("Index", "Manage");
         }

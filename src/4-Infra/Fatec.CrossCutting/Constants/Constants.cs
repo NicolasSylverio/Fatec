@@ -10,9 +10,10 @@
 
         public const int NumeroPaginacaoListaDefault = 20;
 
-        // visitantes = usuarios comuns ex: alunos.
+        // visitantes = usuarios comuns.
+        // alunos = usuario com cadastro mais especifico, 
         // administrador = usuarios administradores ex: coordenadores.
         // usuarios = usuarios comuns com acessos simples ex: professores, administrativo.
-        public static readonly string[] SystemRoles = { "visitante", "administrador", "usuario" };
+        public static readonly string[] SystemRoles = { "visitante", "administrador", "usuario", "aluno" };
     }
 }

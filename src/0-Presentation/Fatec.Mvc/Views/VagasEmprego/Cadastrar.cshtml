@@ -6,7 +6,7 @@
 
 <h3 class="center">Cadastro de Vaga de Emprego</h3>
 
-@using (Html.BeginForm("Cadastrar", "VagasEmprego", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("Cadastrar", "VagasEmprego", FormMethod.Post, new { @class = "form-horizontal", role = "form", onsubmit = "loader()" }))
 {
     @Html.AntiForgeryToken()
 
@@ -48,6 +48,7 @@
     <div class="row">
         <div class="col s12 m12 l12 xl12 center">
             <input type="submit" value="Cadastrar" class="btn teal-2 waves-light" />
+            <a class="btn yellow accent-3 waves-light black-text" onclick="loaderLink('@Url.Action("Lista","VagasEmprego")')" value="Cancelar">Cancelar</a>
         </div>
     </div>
 }

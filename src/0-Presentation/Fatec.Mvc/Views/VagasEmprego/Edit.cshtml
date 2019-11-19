@@ -6,7 +6,7 @@
 
 <h3 class="center">Alterar Vaga</h3>
 
-@using (Html.BeginForm("Edit", "VagasEmprego", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("Edit", "VagasEmprego", FormMethod.Post, new { @class = "form-horizontal", role = "form", onsubmit = "loader()" }))
 {
     @Html.AntiForgeryToken()
 

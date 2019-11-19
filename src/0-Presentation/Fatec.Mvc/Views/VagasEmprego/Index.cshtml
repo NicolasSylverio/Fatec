@@ -9,7 +9,7 @@
 <br />
 <h3 class="center">Vagas de Emprego</h3>
 <br />
-@using (Html.BeginForm("Index", "VagasEmprego", FormMethod.Get, new { @class = "form-horizontal", id = "form-filtro-vagas" }))
+@using (Html.BeginForm("Index", "VagasEmprego", FormMethod.Get, new { @class = "form-horizontal", id = "form-filtro-vagas", onsubmit = "loader()" }))
 {
     @Html.HiddenFor(x => x.TotalPorPagina)
     @Html.HiddenFor(x => x.OrdenarPor)
@@ -55,7 +55,7 @@
                     </div>
                     <div class="card-action">
                         <a href="#">@item.UrlSite</a>
-                        <a href="#" onclick="abrirLinkMenu('@Url.Action($"Detalhes/{item.Id}", "VagasEmprego")')">Mais Detalhes..</a>
+                        <a href="#" onclick="abrirLinkMenu('@Url.Action("Detalhes", "VagasEmprego", new RouteValueDictionary(new { item.Id }))')">Mais Detalhes..</a>
                     </div>
                 </div>
             </div>

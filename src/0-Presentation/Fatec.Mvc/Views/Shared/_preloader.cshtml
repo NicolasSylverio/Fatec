@@ -41,6 +41,17 @@
         window.location.href = vUrl;
     };
 
+    function loader() {
+        $("#fadeTela").show();
+        $("#preloader").show();
+    };
+
+    function loaderLink(vUrl) {
+        $("#fadeTela").show();
+        $("#preloader").show();
+        window.location.href = vUrl;
+    };
+
     //paste this code under the head tag or in a separate js file.
     // Wait for window load
     $(window).on('load', function () {

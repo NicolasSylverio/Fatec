@@ -8,7 +8,7 @@
             <h2>@ViewBag.Title</h2>
         </div>
 
-        @using (Html.BeginForm("Alterar", "Empresas", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        @using (Html.BeginForm("Alterar", "Empresas", FormMethod.Post, new { @class = "form-horizontal", role = "form", onsubmit = "loader()" }))
         {
             @Html.AntiForgeryToken()
             <div class="col s12 m12 l12 xl12 center">
@@ -51,7 +51,7 @@
 
             <div class="col s12 m12 l12 xl12 center">
                 <input type="submit" class="btn teal-2 waves-light" value="Alterar" />
-                <a class="btn yellow accent-3 black-text waves-light" href="@Url.Action("Cadastro", "Empresas")">Cancelar</a>
+                <a class="btn yellow accent-3 black-text waves-light" href="#" onclick="loaderLink('@Url.Action("Cadastro","Empresas")')" >Cancelar</a>
             </div>
         }
     </div>

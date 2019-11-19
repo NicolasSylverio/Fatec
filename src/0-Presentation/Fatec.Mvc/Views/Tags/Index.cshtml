@@ -18,8 +18,8 @@
                     </div>
                     <div class="card-action">
                         <span class="card-title"></span>
-                        <a href="Tags/Edit/@item.Id" class="white-text">Alterar</a>
-                        <a href="Tags/Delete/@item.Id" class="white-text">Excluir</a>
+                        <a class="white-text" href="#" onclick="loaderLink('@Url.Action("Edit", "Tags", new RouteValueDictionary(new { id = item.Id }))')">Alterar</a>
+                        <a class="white-text" href="#" onclick="loaderLink('@Url.Action("Delete", "Tags", new RouteValueDictionary(new { id = item.Id }))')">Excluir</a>
                     </div>
                 </div>
             </div>
@@ -68,7 +68,7 @@ else
 
 
 <div class="fixed-action-btn add-button-position">
-    <a class="btn-floating btn-large green" href='@Url.Action("Cadastrar", "Tags")'>
+    <a class="btn-floating btn-large green" href="#" onclick="loaderLink('@Url.Action("Cadastrar", "Tags")')">
         <i class="large material-icons">add</i>
     </a>
 </div>

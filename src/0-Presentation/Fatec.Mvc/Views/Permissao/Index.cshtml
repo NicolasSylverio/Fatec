@@ -7,10 +7,10 @@
 }
 
 <br />
-<h3 class="center">Usuario/Permissões</h3>
+<h3 class="center">Permissões</h3>
 <br />
 
-@using (Html.BeginForm("Index", "Permissao", FormMethod.Get, new { @class = "form-horizontal", id = "form-filtro-vagas" }))
+@using (Html.BeginForm("Index", "Permissao", FormMethod.Get, new { @class = "form-horizontal", id = "form-filtro-vagas", onsubmit = "loader()" }))
 {
     @Html.HiddenFor(x => x.TotalPorPagina)
     @Html.HiddenFor(x => x.OrdenarPor)
@@ -38,7 +38,6 @@
         <table class="striped centered responsive-table">
             <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Nome</th>
                     <th>E-mail</th>
                     <th>Permissão</th>
@@ -50,18 +49,18 @@
                 @foreach (var usuario in Model.Resultado)
                 {
                     <tr>
-                        <td>@usuario.IdUsuario</td>
                         <td>@usuario.NomeUsuario</td>
                         <td>@usuario.EmailUsuario</td>
                         <td>@usuario.Role</td>
                         <td>
-                            <a href="@Url.Action("Desativar","Permissao", new { id = usuario.IdUsuario })" title="Desativar" class="btn red lighten-2 waves-effect right" style="max-height:36px; max-width:52px;">
+                            <a class="btn red lighten-2 waves-effect right center-on-small-only" href="#" onclick="loaderLink('@Url.Action("Desativar","Permissao", new RouteValueDictionary(new { id = usuario.IdUsuario }))')" style="max-height:36px; max-width:52px;" title="Desativar">
                                 <i class="material-icons">clear</i>
                             </a>
-                            <a href="@Url.Action("Edit","Permissao", new { id = usuario.IdUsuario })" title="Editar" class="btn blue lighten-2 waves-effect right" style="max-height:36px; max-width:52px;">
+                            <a class="btn blue lighten-2 waves-effect right center-on-small-only" href="#" onclick="loaderLink('@Url.Action("Edit","Permissao", new RouteValueDictionary(new { id = usuario.IdUsuario }))')" style="max-height:36px; max-width:52px;" title="Editar">
                                 <i class="material-icons center">edit</i>
                             </a>
                         </td>
+                        <td></td>
                     </tr>
                 }
             </tbody>

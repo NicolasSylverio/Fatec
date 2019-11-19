@@ -1,13 +1,14 @@
 ﻿using Fatec.Application.Interface;
 using Fatec.Application.ViewModels;
 using Fatec.CrossCutting.Models.PaginacaoHelper;
+using Fatec.Mvc.App_Start;
 using PagedList;
 using System;
 using System.Web.Mvc;
 
 namespace Fatec.Mvc.Controllers
 {
-    [Authorize]
+    [CustomAuthorize(Roles = "administrador, usuario")]
     public class EmpresasController : Controller
     {
         private readonly IEmpresaAppService _empresaAppService;
@@ -40,7 +41,7 @@ namespace Fatec.Mvc.Controllers
             catch (Exception ex)
             {
                 ViewBag.TotalItens = 0;
-                ViewBag.Error = $"Erro ao pesquisar vaga. Erro: {ex.Message}";
+                ViewBag.Error = $"Erro ao pesquisar empresa. Erro: {ex.Message}";
                 return View("Index");
             }
         }
@@ -96,30 +97,46 @@ namespace Fatec.Mvc.Controllers
         [Route("Details/{id}")]
         public ActionResult Details(int id)
         {
-            var empresa = _empresaAppService.GetById(id);
-            return View(empresa);
+            try
+            {
+                var empresa = _empresaAppService.GetById(id);
+                return View(empresa);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         [HttpGet]
         [Route("Alterar/{id}")]
         public ActionResult Alterar(int id)
         {
-            EmpresaViewModel empresaViewModel = _empresaAppService.GetById(id);
-            return View(empresaViewModel);
+            try
+            {
+                var empresaViewModel = _empresaAppService.GetById(id);
+                return View(empresaViewModel);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         [HttpPost]
+        [Route("Alterar/{id}")]
         [ValidateAntiForgeryToken]
         public ActionResult Alterar(EmpresaViewModel model)
         {
             try
             {
-                if (ModelState.IsValid)
-                {
-                    _empresaAppService.Update(model);
-                    return RedirectToAction("Cadastro");
-                }
-                return View(model);
+                if (!ModelState.IsValid) return View(model);
+
+                _empresaAppService.Update(model);
+
+                return RedirectToAction("Cadastro");
             }
             catch
             {
@@ -129,13 +146,22 @@ namespace Fatec.Mvc.Controllers
 
         [HttpGet]
         [Route("Delete/{id}")]
+        [CustomAuthorize(Roles = "administrador")]
         public ActionResult Delete(int id)
         {
-            _empresaAppService.Remove(id);
-            return RedirectToAction("Cadastro");
+            try
+            {
+                _empresaAppService.Remove(id);
+                return RedirectToAction("Cadastro");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
-      
+
 
     }
 }

@@ -24,7 +24,7 @@
                         </p>
                     </div>
                     <div class="card-action">
-                        <a href="@string.Format("mailto:{0}", item.Email);" class="blue-text">Email</a>
+                        <a href="@($"mailto:{item.Email}")" class="blue-text">Email</a>
                         <a href="@item.UrlSite" class="blue-text">Site</a>
                     </div>
                 </div>
@@ -74,7 +74,7 @@ else
 }
 
 <div class="fixed-action-btn add-button-position">
-    <a class="btn-floating btn-large green" href='@Url.Action("Cadastrar", "Empresas")'>
+    <a class="btn-floating btn-large green" href="#" onclick="abrirLinkMenu('@Url.Action("Cadastrar", "Empresas")')">
         <i class="large material-icons">add</i>
     </a>
 </div>

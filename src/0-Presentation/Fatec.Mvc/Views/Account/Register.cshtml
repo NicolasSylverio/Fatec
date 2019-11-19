@@ -24,7 +24,7 @@
             <h2>@ViewBag.Title</h2>
         </div>
 
-        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", onsubmit = "loader()" }))
         {
             @Html.AntiForgeryToken()
             <div class="col s12 m12 l12 xl12 center">

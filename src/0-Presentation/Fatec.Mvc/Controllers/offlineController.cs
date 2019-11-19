@@ -2,13 +2,15 @@
 
 namespace Fatec.Mvc.Controllers
 {
+    [AllowAnonymous]
     public class OfflineController : Controller
     {
-        // GET: offline
         /// <summary>
         /// Index Offline
         /// </summary>
         /// <returns></returns>
+        [HttpGet]
+        [Route("Index")]
         public ActionResult Index()
         {
             return View();

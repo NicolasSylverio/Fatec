@@ -197,7 +197,7 @@ namespace Fatec.Mvc.Controllers
                     // Para obter mais informações sobre como habilitar a confirmação da conta e redefinição de senha, visite https://go.microsoft.com/fwlink/?LinkID=320771
                     // Enviar um email com este link
                     var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code }, protocol: Request.Url.Scheme);
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code }, protocol: Request.Url?.Scheme);
                     await UserManager.SendEmailAsync(user.Id, "Confirmar sua conta", "Confirme sua conta clicando <a href=\"" + callbackUrl + "\">aqui</a>");
 
                     return RedirectToAction("Index", "Home");
@@ -258,7 +258,7 @@ namespace Fatec.Mvc.Controllers
             // Para obter mais informações sobre como habilitar a confirmação da conta e redefinição de senha, visite https://go.microsoft.com/fwlink/?LinkID=320771
             // Enviar um email com este link
             var code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-            var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code }, protocol: Request.Url.Scheme);
+            var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code }, protocol: Request.Url?.Scheme);
             await UserManager.SendEmailAsync(user.Id, "Redefinir senha", "Redefina sua senha, clicando <a href=\"" + callbackUrl + "\">aqui</a>");
             return RedirectToAction("ForgotPasswordConfirmation", "Account");
 

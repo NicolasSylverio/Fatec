@@ -46,13 +46,15 @@ namespace Fatec.Mvc.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("Cadastrar")]
         public ActionResult Cadastrar()
         {
             return View();
         }
 
         [HttpPost]
-        [Route("Cadastrar/{id}")]
+        [Route("Cadastrar")]
         [ValidateAntiForgeryToken]
         public ActionResult Cadastrar(TagsViewModel model)
         {
@@ -110,6 +112,7 @@ namespace Fatec.Mvc.Controllers
         [HttpPost]
         [Route("Delete/{id}")]
         [ValidateAntiForgeryToken]
+        [CustomAuthorize(Roles = "administrador")]
         public ActionResult Delete(int id)
         {
             try

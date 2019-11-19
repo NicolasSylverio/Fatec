@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using Fatec.Mvc.App_Start;
 
 namespace Fatec.Mvc.Controllers
 {
@@ -6,6 +7,7 @@ namespace Fatec.Mvc.Controllers
     {
         [HttpGet]
         [Route("Home")]
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View();
@@ -13,6 +15,7 @@ namespace Fatec.Mvc.Controllers
 
         [HttpGet]
         [Route("About")]
+        [AllowAnonymous]
         public ActionResult About()
         {
             return View();
@@ -20,6 +23,7 @@ namespace Fatec.Mvc.Controllers
 
         [HttpGet]
         [Route("Contact")]
+        [AllowAnonymous]
         public ActionResult Contact()
         {
             return View();
@@ -27,14 +31,15 @@ namespace Fatec.Mvc.Controllers
 
         [HttpGet]
         [Route("Privacy")]
+        [AllowAnonymous]
         public ActionResult Privacy()
         {
             return View();
         }
 
         [HttpGet]
-        [Authorize]
         [Route("Professores")]
+        [CustomAuthorize(Roles = "administrador, usuario")]
         public ActionResult Professores()
         {
             return View();
@@ -42,6 +47,7 @@ namespace Fatec.Mvc.Controllers
 
         [HttpGet]
         [Route("AcessoNegado")]
+        [AllowAnonymous]
         public ActionResult AcessoNegado()
         {
             return View();

@@ -31,10 +31,10 @@
                         <td>@item.Titulo</td>
                         <td>@item.DataCadastro.ToString("dd/MM/yyyy")</td>
                         <td>
-                            <a href="@Url.Action("Delete","VagasEstagio", new { id = item.Id })" title="Excluir" class="btn red lighten-2 waves-effect right" style="max-height:36px; max-width:52px;">
+                            <a class="btn red lighten-2 waves-effect right" href="#" onclick="loaderLink('@Url.Action("Delete","VagasEstagio", new RouteValueDictionary(new { item.Id }))')" style="max-height:36px; max-width:52px;" title="Excluir">
                                 <i class="material-icons">clear</i>
                             </a>
-                            <a href="@Url.Action("Edit","VagasEstagio", new { id = item.Id })" title="Editar" class="btn blue lighten-2 waves-effect right" style="max-height:36px; max-width:52px;">
+                            <a class="btn blue lighten-2 waves-effect right" href="#" onclick="loaderLink('@Url.Action("Edit","VagasEstagio", new RouteValueDictionary(new { item.Id }))')" style="max-height:36px; max-width:52px;" title="Editar">
                                 <i class="material-icons center">edit</i>
                             </a>
                         </td>
@@ -86,7 +86,7 @@ else
 }
 
 <div class="fixed-action-btn add-button-position">
-    <a class="btn-floating btn-large green" href='@Url.Action("Cadastrar", "VagasEstagio")'>
+    <a class="btn-floating btn-large green" href="#" onclick="loaderLink('@Url.Action("Cadastrar","VagasEstagio")')">
         <i class="large material-icons">add</i>
     </a>
 </div>

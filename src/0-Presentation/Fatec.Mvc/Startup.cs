@@ -28,7 +28,7 @@ namespace Fatec.Mvc
             // In Startup iam creating first Admin Role and creating a default Admin User    
             if (!roleManager.RoleExists("administrador"))
             {
-                using (var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context)))
+                using (var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context)))
                 {
                     // first we create Admin rool   
                     var role = new IdentityRole
@@ -46,14 +46,14 @@ namespace Fatec.Mvc
                         Email = "nicolas_sylveriopereira@hotmail.com"
                     };
 
-                    string userPWD = "01Senha!";
+                    const string userPwd = "01Senha!";
 
-                    var chkUser = UserManager.Create(user, userPWD);
+                    var chkUser = userManager.Create(user, userPwd);
 
                     //Add default User to Role Admin   
                     if (chkUser.Succeeded)
                     {
-                        _ = UserManager.AddToRole(user.Id, "administrador");
+                        _ = userManager.AddToRole(user.Id, "administrador");
 
                     }
                 }
@@ -80,6 +80,16 @@ namespace Fatec.Mvc
 
                 roleManager.Create(role);
             }
+
+            if (!roleManager.RoleExists("aluno"))
+            {
+                var role = new IdentityRole
+                {
+                    Name = "aluno"
+                };
+
+                roleManager.Create(role);
+            }            
         }
     }
 }

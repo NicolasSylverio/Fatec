@@ -8,10 +8,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using Fatec.Mvc.App_Start;
 
 namespace Fatec.Mvc.Controllers
 {
-    [Authorize]
     public class VagasEstagioController : Controller
     {
         private readonly IVagaEstagioAppService _vagaEstagioAppService;
@@ -75,6 +75,7 @@ namespace Fatec.Mvc.Controllers
 
         [HttpGet]
         [Route("Lista")]
+        [CustomAuthorize(Roles = "administrador, usuario")]
         public ActionResult Lista(VagasFiltroViewModel<VagaEstagioViewModel> view)
         {
             try
@@ -135,6 +136,7 @@ namespace Fatec.Mvc.Controllers
 
         [HttpGet]
         [Route("Cadastrar")]
+        [CustomAuthorize(Roles = "administrador, usuario")]
         public ActionResult Cadastrar()
         {
             ViewBag.Empresa = _empresaAppService.GetAll();
@@ -147,6 +149,7 @@ namespace Fatec.Mvc.Controllers
         [HttpPost]
         [Route("Cadastrar")]
         [ValidateAntiForgeryToken]
+        [CustomAuthorize(Roles = "administrador, usuario")]
         public ActionResult Cadastrar(VagaEstagioViewModel model)
         {
             try
@@ -173,6 +176,7 @@ namespace Fatec.Mvc.Controllers
 
         [HttpGet]
         [Route("Edit/{id}")]
+        [CustomAuthorize(Roles = "administrador, usuario")]
         public ActionResult Edit(int id)
         {
             try
@@ -194,6 +198,8 @@ namespace Fatec.Mvc.Controllers
 
         [HttpPost]
         [Route("Edit/{id}")]
+        [ValidateAntiForgeryToken]
+        [CustomAuthorize(Roles = "administrador, usuario")]
         public ActionResult Edit(VagaEstagioViewModel model)
         {
             try
@@ -204,13 +210,11 @@ namespace Fatec.Mvc.Controllers
 
                     return RedirectToAction("Lista");
                 }
-                else
-                {
-                    ViewBag.Empresa = _empresaAppService.GetAll();
-                    ViewBag.Tags = _tagsAppService.GetAll();
 
-                    return View(model);
-                }
+                ViewBag.Empresa = _empresaAppService.GetAll();
+                ViewBag.Tags = _tagsAppService.GetAll();
+
+                return View(model);
             }
             catch (Exception ex)
             {
@@ -224,6 +228,7 @@ namespace Fatec.Mvc.Controllers
 
         [HttpGet]
         [Route("Delete/{id}")]
+        [CustomAuthorize(Roles = "administrador")]
         public ActionResult Delete(int id)
         {
             try

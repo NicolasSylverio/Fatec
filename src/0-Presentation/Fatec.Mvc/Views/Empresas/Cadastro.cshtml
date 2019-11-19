@@ -3,44 +3,44 @@
 <h3 class="center">Empresas</h3>
 <br />
 
-@using (Html.BeginForm("Cadastro", "Empresas", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("Cadastro", "Empresas", FormMethod.Post, new { @class = "form-horizontal", role = "form", onsubmit = "loader()" }))
 {
     @Html.AntiForgeryToken()
 
     if (Model != null)
     {
 
-        <div class="row">
-            <table class="striped centered">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Nome da Empresa</th>
-                        <th>Data/Hora de Cadastro</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var empresa in Model)
-                    {
-                        <tr>
-                            <td>@empresa.Id</td>
-                            <td>@empresa.Nome</td>
-                            <td>@empresa.DataCadastro</td>
-                            <td>
-                                <a href="@Url.Action("Delete","Empresas", new { id = empresa.Id })" title="Excluir" class="btn red lighten-2 waves-effect right" style="max-height:36px; max-width:52px;">
-                                    <i class="material-icons">clear</i>
-                                </a>
-                                <a href="@Url.Action("Alterar","Empresas", new { id = empresa.Id })" title="Editar" class="btn blue lighten-2 waves-effect right" style="max-height:36px; max-width:52px;">
-                                    <i class="material-icons center">edit</i>
-                                </a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
+<div class="row">
+    <table class="striped centered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome da Empresa</th>
+                <th>Data/Hora de Cadastro</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var empresa in Model)
+            {
+                <tr>
+                    <td>@empresa.Id</td>
+                    <td>@empresa.Nome</td>
+                    <td>@empresa.DataCadastro</td>
+                    <td>
+                        <a class="btn red lighten-2 waves-effect right" href="#" onclick="loaderLink('@Url.Action("Delete","Empresas", new RouteValueDictionary(new { id = empresa.Id }))')" style="max-height:36px; max-width:52px;" title="Excluir">
+                            <i class="material-icons">clear</i>
+                        </a>
+                        <a class="btn blue lighten-2 waves-effect right" href="#" onclick="loaderLink('@Url.Action("Alterar","Empresas", new RouteValueDictionary(new { id = empresa.Id }))')" style="max-height:36px; max-width:52px;" title="Editar">
+                            <i class="material-icons center">edit</i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
     }
     else
@@ -52,7 +52,7 @@
 }
 
 <div class="fixed-action-btn add-button-position">
-    <a class="btn-floating btn-large green" href='@Url.Action("Cadastrar", "Empresas")'>
+    <a class="btn-floating btn-large green" href="#" onclick="loaderLink('@Url.Action("Cadastrar", "Empresas")')">
         <i class="large material-icons">add</i>
     </a>
 </div>

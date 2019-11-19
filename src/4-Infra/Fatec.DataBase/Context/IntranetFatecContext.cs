@@ -5,22 +5,29 @@ using Fatec.CrossCutting.Models.Identity;
 using Fatec.CrossCutting.Models.Vagas;
 using Fatec.DataBase.Map;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Configuration;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace Fatec.DataBase.Context
 {
     public class IntranetFatecContext : IdentityDbContext<ApplicationUser>, IDbContext
     {
+        private const int DefaultTimeOut = 30;
+
         public IntranetFatecContext()
             : base("IntranetFatecContext")
         {
+            ((IObjectContextAdapter)this).ObjectContext.CommandTimeout
+                = int.TryParse(ConfigurationManager.AppSettings.Get("CommandTimeOut"), out var result) ? result : DefaultTimeOut;
         }
 
         public IntranetFatecContext(string connectionString)
            : base(connectionString)
         {
-
+            ((IObjectContextAdapter)this).ObjectContext.CommandTimeout
+                = int.TryParse(ConfigurationManager.AppSettings.Get("CommandTimeOut"), out var result) ? result : DefaultTimeOut;
         }
 
         public static IntranetFatecContext Create()

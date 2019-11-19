@@ -11,73 +11,75 @@
 <div>
     <br />
 
-    <div>
-        <span>Senha: </span>
+    <div class="row">
+        <div class="col s12 m6">
+            <div class="card white z-depth-2">
+                <div class="card-content black-text">
+                    <span class="card-title">Senha: ********</span>
+                    <p><a class="btn waves-effect waves-light red accent-2 z-depth-2" href="#" onclick="loaderLink('@Url.Action("ChangePassword", "Manage")')" value="Alterar Senha">Alterar sua Senha</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        @if (Model.HasPassword)
-        {
-            @Html.ActionLink("Alterar sua senha", "ChangePassword")
-        }
-        else
-        {
-            @Html.ActionLink("Criar", "SetPassword")
-        }
+    <div class="row">
+        <div class="col s12 m6">
+            <div class="card white z-depth-2">
+                <div class="card-content black-text">
+                    <span class="card-title">Serviços Logins externos: @Model.Logins.Count</span>
+                    <p><a class="btn waves-effect waves-light red accent-2 z-depth-2" href="#" onclick="loaderLink('@Url.Action("ManageLogins", "Manage")')" value="Logins Externos">Gerenciar Logins Externos</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12 m6">
+            <div class="card white z-depth-2">
+                <div class="card-content black-text">
+                    <span class="card-title">Número de Telefone: @(Model.PhoneNumber ?? "Nenhum")</span>
+                    <p align="justify">Os Números de Telefone podem ser usados como um segundo fator de verificação em um sistema de autenticação de dois fatores usando SMS.</p>
+                    <br />
+                    @if (Model.PhoneNumber != null)
+                    {
+                        @Html.ActionLink("Change", "AddPhoneNumber")
+                        using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form", onsubmit = "loader()" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <input type="submit" value="Remover" class="btn waves-effect waves-light red accent-2 z-depth-2" />
+                        }
+                    }
+                    else
+                    {
+                        <a class="btn waves-effect waves-light red accent-2 z-depth-2" onclick="loaderLink('@Url.Action("AddPhoneNumber","Manage")')" value="Adicionar">Adicionar</a>
+                    }
+                </div>
+            </div>
+        </div>
     </div>
 
     <br />
+    @*<div class="left">
+            <span>Autenticação de dois fatores:</span>
 
-    <div>
-        <span>Logins externos:</span>
-
-        @Model.Logins.Count 
-        @Html.ActionLink("Gerenciar", "ManageLogins") 
-
-    </div>
-
-    <p>Os Números de Telefone podem ser usados como um segundo fator de verificação em um sistema de autenticação de dois fatores usando SMS.</p>
-
-    <div>
-        <span>Número de Telefone:</span>
-
-        @(Model.PhoneNumber ?? "Nenhum")
-        @if (Model.PhoneNumber != null)
-        {
-            <br />
-            @Html.ActionLink("Change", "AddPhoneNumber")
-            using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            <p>
+                Não há nenhum provedor de autenticação de dois fatores configurado.
+            </p>
+            @if (Model.TwoFactor)
             {
-                @Html.AntiForgeryToken()
-                <input type="submit" value="Remover" class="btn-link" />
+                using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form", onsubmit = "loader()" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="submit" value="Desabilitar" class="btn teal-2 waves-light" />
+                }
             }
-        }
-        else
-        {
-            @Html.ActionLink("Adicionar", "AddPhoneNumber")
-        }
-    </div>
-
-    <br />
-    <div>
-        <span>Autenticação de dois fatores:</span>
-
-        <p>
-            Não há nenhum provedor de autenticação de dois fatores configurado.
-        </p>
-        @if (Model.TwoFactor)
-        {
-            using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            else
             {
-                @Html.AntiForgeryToken()
-                    <input type="submit" value="Desabilitar" class="btn btn-link" />
+                using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form", onsubmit = "loader()" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="submit" value="Habilitar" class="btn teal-2 waves-light" />
+                }
             }
-        }
-        else
-        {
-            using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-            {
-                @Html.AntiForgeryToken()
-                    <input type="submit" value="Habilitar" class="btn btn-link" />
-            }
-        }
-    </div>
+        </div>*@
 </div>

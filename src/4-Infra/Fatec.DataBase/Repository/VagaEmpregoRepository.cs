@@ -29,6 +29,12 @@ namespace Fatec.DataBase.Repository
             base.Add(obj);
         }
 
+        public override void Update(VagaEmprego obj)
+        {
+            Db.Entry(obj).State = EntityState.Modified;
+            Db.SaveChanges();
+        }
+
         public ResultadoPaginacao<VagaEmprego> GetAll(Paginacao paginacao)
         {
             var obj = DbSet.AsQueryable();

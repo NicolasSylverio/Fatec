@@ -201,7 +201,6 @@ namespace Fatec.Mvc.Controllers
         }
 
         [HttpPost]
-        [Route("Edit/{id}")]
         [ValidateAntiForgeryToken]
         [CustomAuthorize(Roles = "administrador, usuario")]
         public ActionResult Edit(VagaEmpregoViewModel model)
@@ -213,13 +212,11 @@ namespace Fatec.Mvc.Controllers
                     _vagaEmpregoAppService.Update(model);
                     return RedirectToAction("Lista");
                 }
-                else
-                {
-                    ViewBag.Empresa = _empresaAppService.GetAll();
-                    ViewBag.Tags = _tagsAppService.GetAll();
 
-                    return View(model);
-                }
+                ViewBag.Empresa = _empresaAppService.GetAll();
+                ViewBag.Tags = _tagsAppService.GetAll();
+
+                return View(model);
             }
             catch (Exception ex)
             {
@@ -231,15 +228,31 @@ namespace Fatec.Mvc.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("Delete/{id}")]
-        [ValidateAntiForgeryToken]
         [CustomAuthorize(Roles = "administrador")]
         public ActionResult Delete(int id)
         {
             try
             {
-                _vagaEmpregoAppService.Remove(id);
+                var vaga = _vagaEmpregoAppService.GetById(id);
+
+                return View("Delete", vaga);
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Lista");
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [CustomAuthorize(Roles = "administrador")]
+        public ActionResult Delete(VagaEmpregoViewModel model)
+        {
+            try
+            {
+                _vagaEmpregoAppService.Remove(model.Id);
 
                 ViewBag.Sucess = "Vaga excluida com sucesso.";
 
@@ -248,7 +261,7 @@ namespace Fatec.Mvc.Controllers
             catch (Exception ex)
             {
                 ViewBag.Error = $"Erro ao deletar Vaga. Erro: {ex.Message}";
-                return RedirectToAction("lista");
+                return RedirectToAction("Lista");
             }
         }
     }

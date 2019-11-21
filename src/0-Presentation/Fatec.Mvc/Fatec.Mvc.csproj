@@ -338,6 +338,8 @@
     <Content Include="Views\Permissao\Edit.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Views\Home\AcessoNegado.cshtml" />
+    <Content Include="Views\VagasEmprego\Delete.cshtml" />
+    <Content Include="Views\VagasEstagio\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\2-Application\Fatec.Application\Fatec.Application.csproj">

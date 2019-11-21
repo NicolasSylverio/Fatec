@@ -107,3 +107,10 @@ a.navbar-brand {
     height: 100px;
     width: 400px;
 }
+
+.card-size-high {
+    min-height: 150px;
+    justify-content: center;
+    align-items: center;
+    vertical-align: central;
+}

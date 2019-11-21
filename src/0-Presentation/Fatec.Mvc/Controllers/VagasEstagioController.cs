@@ -233,7 +233,27 @@ namespace Fatec.Mvc.Controllers
         {
             try
             {
-                _vagaEstagioAppService.Remove(id);
+                var model = _vagaEstagioAppService.GetById(id);
+
+                ViewBag.Sucess = "Vaga excluida com sucesso.";
+
+                return View("Delete", model);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = $"Erro ao deletar Vaga. Erro: {ex.Message}";
+                return RedirectToAction("Lista");
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [CustomAuthorize(Roles = "administrador")]
+        public ActionResult Delete(VagaEstagioViewModel model)
+        {
+            try
+            {
+                _vagaEstagioAppService.Remove(model.Id);
 
                 ViewBag.Sucess = "Vaga excluida com sucesso.";
 
@@ -242,7 +262,7 @@ namespace Fatec.Mvc.Controllers
             catch (Exception ex)
             {
                 ViewBag.Error = $"Erro ao deletar Vaga. Erro: {ex.Message}";
-                return RedirectToAction("Lista");
+                return View("Delete", model);
             }
         }
     }

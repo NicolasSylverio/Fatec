@@ -12,38 +12,42 @@
 
 @if (Model?.Resultado != null)
 {
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", onsubmit = "loader()" }))
+    {
+        @Html.AntiForgeryToken()
 
-    <div class="row">
-        <table class="striped responsive-table centered">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Empresa</th>
-                    <th>Data Cadastro</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.Resultado)
-                {
+        <div class="row">
+            <table class="striped responsive-table centered">
+                <thead>
                     <tr>
-                        <td>@item.Id</td>
-                        <td>@item.Titulo</td>
-                        <td>@item.DataCadastro.ToString("dd/MM/yyyy")</td>
-                        <td>
-                            <a class="btn red lighten-2 waves-effect right" href="#" onclick="loaderLink('@Url.Action("Delete","VagasEmprego", new RouteValueDictionary(new { item.Id }))')" style="max-height:36px; max-width:52px;" title="Excluir">
-                                <i class="material-icons">clear</i>
-                            </a>
-                            <a class="btn blue lighten-2 waves-effect right" href="#" onclick="loaderLink('@Url.Action("Edit","VagasEmprego", new RouteValueDictionary(new { item.Id }))')" style="max-height:36px; max-width:52px;" title="Editar">
-                                <i class="material-icons center">edit</i>
-                            </a>
-                        </td>
+                        <th>Id</th>
+                        <th>Empresa</th>
+                        <th>Data Cadastro</th>
+                        <th></th>
+                        <th></th>
                     </tr>
-                }
-            </tbody>
-        </table>
-    </div>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Resultado)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Titulo</td>
+                            <td>@item.DataCadastro.ToString("dd/MM/yyyy")</td>
+                            <td>                               
+                                <a class="btn red lighten-2 waves-effect right" href="#" id="btnDeletar" onclick="loaderLink('@Url.Action("Delete", "VagasEmprego", new RouteValueDictionary(new {item.Id}))')" style="max-height: 36px; max-width: 52px;" title="Excluir">
+                                    <i class="material-icons">clear</i>
+                                </a>
+                                <a class="btn blue lighten-2 waves-effect right" href="#" id="btnEditar" onclick="loaderLink('@Url.Action("Edit", "VagasEmprego", new RouteValueDictionary(new {item.Id}))')" style="max-height: 36px; max-width: 52px;" title="Editar">
+                                    <i class="material-icons center">edit</i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
 
     if (ViewBag.PagedList != null)
     {
@@ -84,7 +88,6 @@ else
         <h4>Nenhuma Vaga de Emprego Disponível no Momento</h4>
     </div>
 }
-
 
 <div class="fixed-action-btn add-button-position">
     <a class="btn-floating btn-large green" href="#" onclick="loaderLink('@Url.Action("Cadastrar","VagasEmprego")')">

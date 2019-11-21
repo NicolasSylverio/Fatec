@@ -11,40 +11,37 @@
 @if (Model != null)
 {
     <br />
-    <div class="row">
-        <div class="col s12 m12 l12 xl12 center">
-            <div class="card-panel white z-depth-3">
-                <h2 class="center">
-                    @Model.Titulo
-                </h2>
-                <br />
-            </div>
-        </div>
+    <div class="center">
+        <h3>@Model.Titulo</h3>
+    </div>
 
-        <div class="col s12 m12 l6 xl6">
-            <div class="card white z-depth-3">
+    <div class="center">
+        <h5>@Model.Subtitulo</h5>
+    </div>
+
+    <br />
+    <div class="row">
+
+        <div class="col s12 m12 l12 xl6">
+            <div class="card white z-depth-3 card-size-high">
                 <div class="card-content black-text">
                     <span class="card-title">@Model.Empresa.Nome</span>
-                    <div class="col s12 m6 l6 xl6">
-                        <p>
-                            Site Empresa:
-                            <a href="@Model.UrlSite">@Model.Empresa.UrlSite</a>
-                        </p>
-                    </div>
-                    <div class="col s12 m6 l6 xl6">
-                        <p>
-                            Telefone Empresa: @Model.Empresa.Telefone
-                        </p>
-                    </div>
+                    <p>
+                        Site Empresa:
+                        <a href="@Model.Empresa.UrlSite" rel="noopener" target="_blank">@Model.Empresa.UrlSite</a>
+                    </p>
+                    <p>
+                        Telefone Empresa: @Model.Empresa.Telefone
+                    </p>
                     <br />
                 </div>
             </div>
         </div>
 
-        <div class="col s12 m12 l6 xl6">
-            <div class="card white z-depth-3">
+        <div class="col s12 m12 l12 xl6">
+            <div class="card white z-depth-3 card-size-high">
                 <div class="card-content black-text">
-                    <span class="card-title">Tags da Vaga</span>
+                    <span style="padding-bottom: 5px;" class="card-title">Tags</span>
                     @foreach (var item in Model.Tags)
                     {
                         <div class="chip blue lighten-3">
@@ -54,28 +51,33 @@
                 </div>
             </div>
         </div>
-
+    </div>
+    <div class="row">
         <div class="col s12 m12 l12 xl12">
-            <div class="card white z-depth-3">
+            <div class="card white z-depth-3 card-size-high">
                 <div class="card-content black-text">
                     <span class="card-title">Descrição da Vaga</span>
-                    <p>@Model.Descricao</p>
+                    <p>
+                        @Model.Descricao
+                    </p>
                 </div>
             </div>
         </div>
-        <div class="col s12 m6 l4 xl4">
-            <div class="card white z-depth-3">
+    </div>
+    <div class="row">
+        <div class="col s12 m6 l6 xl4">
+            <div class="card white z-depth-3 card-size-high">
                 <div class="card-content black-text">
-                    <span class="card-title">E-mail Contato</span>
-                    <p>@(Model.Email ?? "Sem E-mail Contato Cadastrado.")</p>
+                    <span class="card-title">E-mail de Contato</span>
+                    <p>@(Model.Email ?? "Sem E-mail de Contato Cadastrado.")</p>
                 </div>
             </div>
         </div>
-        <div class="col s12 m6 l4 xl4">
-            <div class="card white z-depth-3">
+        <div class="col s12 m6 l6 xl4">
+            <div class="card white z-depth-3 card-size-high">
                 <div class="card-content black-text">
-                    <span class="card-title">Telefone Contato</span>
-                    <p>@(Model.Telefone ?? "Sem Telefone Contato Cadastrado.")</p>
+                    <span class="card-title">Telefone de Contato</span>
+                    <p>@(Model.Telefone ?? "Sem Telefone de Contato Cadastrado.")</p>
                 </div>
             </div>
         </div>

@@ -1,0 +1,99 @@
+﻿@using Fatec.Application.ViewModels;
+@model VagaEstagioViewModel
+@{
+    ViewBag.Title = "Vaga Estágio - Deletar";
+}
+
+<h1 align="justify">Exclusão Vaga de Estágio</h1>
+
+@using (Html.BeginForm("Delete", "VagasEstagio", FormMethod.Post, new { @class = "form-horizontal", role = "form", onsubmit = "loader()" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div align="justify">
+        <h3>Tem certeza que deseja excluir a vaga selecionada?</h3>
+    </div>
+
+    <div class="row">
+        <div class="col s12 m12 l12 xl12 center">
+            <input type="submit" value="Excluir" class="btn teal-2 waves-light" />
+            <a class="btn yellow accent-3 waves-light black-text" onclick="loaderLink('@Url.Action("Lista","VagasEstagio")')" value="Cancelar">Cancelar</a>
+        </div>
+    </div>
+
+    if (Model != null)
+    {
+        <br />
+        <div class="center">
+            <h3>@Model.Titulo</h3>
+        </div>
+
+        <div class="center">
+            <h5>@Model.Subtitulo</h5>
+        </div>
+
+        <br />
+        <div class="row">
+
+            <div class="col s12 m12 l12 xl6">
+                <div class="card white z-depth-3 card-size-high">
+                    <div class="card-content black-text">
+                        <span class="card-title">@Model.Empresa.Nome</span>
+                        <p>
+                            Site Empresa:
+                            <a href="@Model.Empresa.UrlSite" rel="noopener" target="_blank">@Model.Empresa.UrlSite</a>
+                        </p>
+                        <p>
+                            Telefone Empresa: @Model.Empresa.Telefone
+                        </p>
+                        <br />
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s12 m12 l12 xl6">
+                <div class="card white z-depth-3 card-size-high">
+                    <div class="card-content black-text">
+                        <span style="padding-bottom: 5px;" class="card-title">Tags</span>
+                        @foreach (var item in Model.Tags)
+                        {
+                            <div class="chip blue lighten-3">
+                                @item.Nome
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m12 l12 xl12">
+                <div class="card white z-depth-3 card-size-high">
+                    <div class="card-content black-text">
+                        <span class="card-title">Descrição da Vaga</span>
+                        <p>
+                            @Model.Descricao
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m6 l6 xl4">
+                <div class="card white z-depth-3 card-size-high">
+                    <div class="card-content black-text">
+                        <span class="card-title">E-mail de Contato</span>
+                        <p>@(Model.Email ?? "Sem E-mail de Contato Cadastrado.")</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m6 l6 xl4">
+                <div class="card white z-depth-3 card-size-high">
+                    <div class="card-content black-text">
+                        <span class="card-title">Telefone de Contato</span>
+                        <p>@(Model.Telefone ?? "Sem Telefone de Contato Cadastrado.")</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
